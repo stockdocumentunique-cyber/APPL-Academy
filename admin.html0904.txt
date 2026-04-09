@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APPL Academy — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
+h1,h2,h3,h4{font-family:'Syne',sans-serif}
+
+/* ---- Login ---- */
+.login-wrap{min-height:100vh;background:#0D1B2A;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px 30px;width:100%;max-width:360px}
+.login-logo{width:56px;height:56px;background:#F5A623;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:16px;margin:0 auto 16px}
+.login-card h2{color:#fff;font-size:20px;font-weight:800;text-align:center;margin-bottom:4px}
+.login-card p{color:#93C5FD;font-size:13px;text-align:center;margin-bottom:24px}
+.login-card label{color:#BFDBFE;font-size:12px;font-weight:600;display:block;margin-bottom:6px}
+.login-card input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:6px}
+.login-card input::placeholder{color:#93C5FD}
+.login-card input:focus{border-color:#F5A623}
+.login-err{color:#FCA5A5;font-size:12px;margin-bottom:12px;display:none}
+.login-err.show{display:block}
+.btn-login{width:100%;background:#F5A623;color:#0D1B2A;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:12px;border:none;border-radius:10px;cursor:pointer;margin-top:4px;transition:.2s}
+.btn-login:hover{background:#EAB308}
+.back-link{display:block;text-align:center;margin-top:16px;color:#93C5FD;text-decoration:none;font-size:13px}
+.back-link:hover{color:#fff}
+
+/* ---- Dashboard ---- */
+.dash-header{background:#0D1B2A;padding:13px 20px}
+.dash-header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;background:#F5A623;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:11px;flex-shrink:0}
+.dash-header h1{color:#fff;font-size:16px;font-weight:700}
+.dash-header p{color:#93C5FD;font-size:11px}
+.dash-header .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.dash-header .right a{color:#93C5FD;text-decoration:none;font-size:12px}
+.dash-header .right a:hover{color:#fff}
+.btn-logout{background:rgba(239,68,68,.15);color:#FCA5A5;border:none;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-logout:hover{background:rgba(239,68,68,.3)}
+
+.dash-body{max-width:1100px;margin:0 auto;padding:20px 14px 40px}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.stat-card{border-radius:14px;padding:16px 18px;color:#fff}
+.stat-card small{font-size:11px;opacity:.75;display:block;margin-bottom:4px}
+.stat-card strong{font-size:28px;font-weight:800;font-family:'Syne',sans-serif}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;background:#fff;border-radius:14px;padding:5px;border:1px solid #EFF6FF;margin-bottom:16px;width:fit-content;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:#6B7FA3;border:none;background:transparent;transition:.2s}
+.tab.active{background:#1B4FBF;color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Table */
+.table-card{background:#fff;border-radius:16px;border:1px solid #EFF6FF;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.table-top{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EFF6FF;gap:10px;flex-wrap:wrap}
+.table-top h3{font-size:15px;font-weight:700}
+.search-input{border:1px solid #DBEAFE;border-radius:9px;padding:7px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;width:220px}
+.search-input:focus{border-color:#1B4FBF}
+.btn-add{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:7px 16px;border:none;border-radius:9px;cursor:pointer;white-space:nowrap}
+.btn-add:hover{background:#1539A0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:#0D1B2A}
+thead th{padding:10px 14px;text-align:left;color:#fff;font-family:'Syne',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600;white-space:nowrap}
+tbody tr{border-top:1px solid #EFF6FF;transition:.15s}
+tbody tr:hover{background:#F8FAFF}
+tbody td{padding:10px 14px;color:#0D1B2A;vertical-align:middle}
+.empty-msg{text-align:center;padding:30px;color:#9CA3AF;font-size:13px}
+
+/* Badges statut */
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-att{background:#FEF3C7;color:#92400E}
+.badge-app{background:#D1FAE5;color:#065F46}
+.badge-ref{background:#FEE2E2;color:#991B1B}
+
+/* Place bar */
+.place-wrap{display:flex;align-items:center;gap:8px}
+.place-bar{width:80px;height:6px;background:#DBEAFE;border-radius:3px;overflow:hidden}
+.place-fill{height:100%;border-radius:3px;transition:.3s}
+
+/* Action buttons */
+.btn-edit{background:#EFF6FF;color:#1B4FBF;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600}
+.btn-edit:hover{background:#DBEAFE}
+.btn-del{background:#FEF2F2;color:#DC2626;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600;margin-left:4px}
+.btn-del:hover{background:#FEE2E2}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px;display:none}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:420px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal h3{font-size:17px;font-weight:800;margin-bottom:18px}
+.modal label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;margin-top:12px}
+.modal label:first-of-type{margin-top:0}
+.modal input,.modal select{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none}
+.modal input:focus,.modal select:focus{border-color:#1B4FBF}
+.modal-btns{display:flex;gap:8px;margin-top:18px}
+.btn-save{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:10px;cursor:pointer}
+.btn-save:hover{background:#1539A0}
+.btn-cancel{padding:10px 18px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer}
+.btn-cancel:hover{background:#E5E7EB}
+.close-modal{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#9CA3AF;line-height:1}
+.close-modal:hover{color:#0D1B2A}
+
+select.statut-sel{border:1px solid #E5E7EB;border-radius:7px;padding:4px 8px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer}
+
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.toast{position:fixed;bottom:20px;right:20px;background:#0D1B2A;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s}
+.toast.show{transform:translateY(0);opacity:1}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:1fr}
+  .tabs{flex-wrap:wrap}
+  .search-input{width:100%}
+  table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== LOGIN ==================== -->
+<div id="login-screen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">AA</div>
+    <h2>Espace Admin</h2>
+    <p>APPL Academy</p>
+    <label>Mot de passe administrateur</label>
+    <input type="password" id="inp-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')seConnecter()">
+    <div class="login-err" id="login-err">Mot de passe incorrect.</div>
+    <button class="btn-login" id="btn-login" onclick="seConnecter()">Se connecter</button>
+    <a href="index.html" class="back-link">← Retour au formulaire</a>
+  </div>
+</div>
+
+<!-- ==================== DASHBOARD ==================== -->
+<div id="dashboard" style="display:none">
+
+  <header class="dash-header">
+    <div class="dash-header-inner">
+      <div class="logo">AA</div>
+      <div>
+        <h1>APPL Academy — Admin</h1>
+        <p>Tableau de bord administrateur</p>
+      </div>
+      <div class="right">
+        <a href="index.html">Voir le formulaire →</a>
+        <button class="btn-logout" onclick="seDeconnecter()">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card" style="background:#1B4FBF">
+        <small>Total Demandes</small>
+        <strong id="s-demandes">—</strong>
+      </div>
+      <div class="stat-card" style="background:#0D1B2A">
+        <small>Thèmes de formation</small>
+        <strong id="s-themes">—</strong>
+      </div>
+      <div class="stat-card" style="background:#3B82F6">
+        <small>Demandeurs enregistrés</small>
+        <strong id="s-demandeurs">—</strong>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('demandes')">Demandes</button>
+      <button class="tab" onclick="switchTab('themes')">Thèmes</button>
+      <button class="tab" onclick="switchTab('demandeurs')">Demandeurs</button>
+      <button class="tab" onclick="switchTab('responsables')">Responsables</button>
+    </div>
+
+    <!-- Tab: Demandes -->
+    <div class="tab-content active" id="tab-demandes">
+      <div class="table-card">
+        <div class="table-top">
+          <h3>Toutes les demandes</h3>
+          <input class="search-input" placeholder="Rechercher..." oninput="filtrerDemandes(this.value)">
+        </div>
+        <div id="tbl-demandes"><div class="empty-msg">Chargement...</div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Thèmes -->
+    <div class="tab-content" id="tab-themes">
+      <div class="table-card">
+        <div class="table-top">
+          <h3>Thèmes de formation</h3>
+          <button class="btn-add" onclick="ouvrirModal('theme')">+ Ajouter un thème</button>
+        </div>
+        <div id="tbl-themes"><div class="empty-msg">Chargement...</div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Demandeurs -->
+    <div class="tab-content" id="tab-demandeurs">
+      <div class="table-card">
+        <div class="table-top">
+          <h3>Demandeurs</h3>
+          <button class="btn-add" onclick="ouvrirModal('demandeur')">+ Ajouter</button>
+        </div>
+        <div id="tbl-demandeurs"><div class="empty-msg">Chargement...</div></div>
+      </div>
+    </div>
+
+    <!-- Tab: Responsables -->
+    <div class="tab-content" id="tab-responsables">
+      <div class="table-card">
+        <div class="table-top">
+          <h3>Responsables</h3>
+          <button class="btn-add" onclick="ouvrirModal('responsable')">+ Ajouter</button>
+        </div>
+        <div id="tbl-responsables"><div class="empty-msg">Chargement...</div></div>
+      </div>
+    </div>
+
+  </div><!-- /dash-body -->
+</div><!-- /dashboard -->
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal-overlay" id="modal-overlay" onclick="fermerModal(event)">
+  <div class="modal" id="modal">
+    <button class="close-modal" onclick="fermerModalForce()">×</button>
+    <h3 id="modal-title">Ajouter</h3>
+    <div id="modal-body"></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="fermerModalForce()">Annuler</button>
+      <button class="btn-save" id="btn-save" onclick="sauvegarder()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// ⚠️  REMPLACEZ PAR VOTRE URL GOOGLE APPS SCRIPT
+// ============================================================
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzU_2dZkW2bwBeBCnIvZ-2kP1o0x2WSp_qtVrMuLNavau8T2ePyeVGMPaPlvC1JQ0ajQ/exec';
+// ============================================================
+
+var pwd = '', modalType = '', modalRow = null;
+var dataD = [], dataR = [], dataT = [], dataDem = [];
+
+// ---- Auth ----
+function seConnecter() {
+  var p = document.getElementById('inp-pwd').value;
+  if (!p) return;
+  var btn = document.getElementById('btn-login');
+  btn.innerHTML = '<span class="spin"></span>';
+  btn.disabled = true;
+
+  apiPost({action:'login', p:p}).then(function(res) {
+    if (res.ok) {
+      pwd = p;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      chargerTout();
+    } else {
+      document.getElementById('login-err').className = 'login-err show';
+    }
+    btn.innerHTML = 'Se connecter';
+    btn.disabled = false;
+  }).catch(function() {
+    document.getElementById('login-err').className = 'login-err show';
+    document.getElementById('login-err').textContent = 'Erreur de connexion.';
+    btn.innerHTML = 'Se connecter';
+    btn.disabled = false;
+  });
+}
+
+function seDeconnecter() {
+  pwd = '';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('inp-pwd').value = '';
+  document.getElementById('login-err').className = 'login-err';
+}
+
+// ---- API ----
+function apiGet(action, extraParams) {
+  var url = SCRIPT_URL + '?action=' + action + '&p=' + encodeURIComponent(pwd);
+  if (extraParams) url += '&' + extraParams;
+  return fetch(url, {redirect:'follow'}).then(function(r){ return r.json(); });
+}
+function apiPost(data) {
+  if (!data.p) data.p = pwd;
+  return fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(data), redirect:'follow'})
+    .then(function(r){ return r.json(); });
+}
+
+// ---- Chargement ----
+function chargerTout() {
+  Promise.all([
+    apiGet('demandeurs'), apiGet('responsables'),
+    apiGet('themes'),     apiGet('demandes')
+  ]).then(function(res) {
+    dataDem = res[0] || [];
+    dataR   = res[1] || [];
+    dataT   = res[2] || [];
+    dataD   = res[3] || [];
+
+    document.getElementById('s-demandes').textContent   = dataD.length;
+    document.getElementById('s-themes').textContent     = dataT.length;
+    document.getElementById('s-demandeurs').textContent = dataDem.length;
+
+    afficherDemandes(dataD);
+    afficherThemes();
+    afficherDemandeurs();
+    afficherResponsables();
+  });
+}
+
+// ---- Tabs ----
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(function(t,i){
+    var tabs = ['demandes','themes','demandeurs','responsables'];
+    t.className = 'tab' + (tabs[i] === name ? ' active' : '');
+  });
+  document.querySelectorAll('.tab-content').forEach(function(c){
+    c.className = 'tab-content' + (c.id === 'tab-'+name ? ' active' : '');
+  });
+}
+
+// ---- Affichage Demandes ----
+function filtrerDemandes(q) {
+  var filtered = dataD.filter(function(d) {
+    var s = (d.Nom+d.Prenom+d.Matricule+d.Theme+d.Responsable).toLowerCase();
+    return s.includes(q.toLowerCase());
+  });
+  afficherDemandes(filtered);
+}
+
+function afficherDemandes(list) {
+  var el = document.getElementById('tbl-demandes');
+  if (!list.length) { el.innerHTML = '<div class="empty-msg">Aucune demande.</div>'; return; }
+  var html = '<table><thead><tr>'
+    + '<th>Demandeur</th><th>Matricule</th><th>Poste</th>'
+    + '<th>Responsable</th><th>Thème</th><th>Date</th><th>Soumis le</th><th>Statut</th><th>Action</th>'
+    + '</tr></thead><tbody>';
+  list.forEach(function(d) {
+    var bc = d.Statut === 'Approuvée' ? 'badge-app' : d.Statut === 'Refusée' ? 'badge-ref' : 'badge-att';
+    html += '<tr>'
+      + '<td><strong>' + esc(d.Nom) + ' ' + esc(d.Prenom) + '</strong></td>'
+      + '<td>' + esc(d.Matricule) + '</td>'
+      + '<td>' + esc(d.Poste) + '</td>'
+      + '<td>' + esc(d.Responsable) + '</td>'
+      + '<td style="color:#1B4FBF;font-weight:600">' + esc(d.Theme) + '</td>'
+      + '<td>' + esc(d.Date) + '</td>'
+      + '<td style="color:#6B7FA3">' + esc(d.Soumis_le) + '</td>'
+      + '<td><select class="statut-sel" onchange="changerStatut(this,' + d._row + ')">'
+      + '<option' + (d.Statut==='En attente'?' selected':'') + '>En attente</option>'
+      + '<option' + (d.Statut==='Approuvée'?' selected':'') + '>Approuvée</option>'
+      + '<option' + (d.Statut==='Refusée'?' selected':'') + '>Refusée</option>'
+      + '</select></td>'
+      + '<td><button class="btn-del" onclick="supprimerDemande(' + d._row + ')">Suppr.</button></td>'
+      + '</tr>';
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function changerStatut(sel, row) {
+  apiPost({action:'statut', row:row, val:sel.value}).then(function(res) {
+    if (res.ok) { toast('Statut mis à jour'); chargerTout(); }
+    else toast('Erreur: ' + (res.err || ''));
+  });
+}
+
+function supprimerDemande(row) {
+  if (!confirm('Supprimer cette demande ?')) return;
+  apiPost({action:'delDem', row:row}).then(function(){ chargerTout(); toast('Supprimé'); });
+}
+
+// ---- Affichage Thèmes ----
+function afficherThemes() {
+  var el = document.getElementById('tbl-themes');
+  if (!dataT.length) { el.innerHTML = '<div class="empty-msg">Aucun thème. Ajoutez-en un.</div>'; return; }
+  var html = '<table><thead><tr><th>Titre</th><th>Places max</th><th>Occupées</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
+  dataT.forEach(function(t) {
+    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100,100) : 0;
+    var col = t.Complet ? '#EF4444' : '#1B4FBF';
+    html += '<tr>'
+      + '<td><strong>' + esc(t.Titre) + '</strong></td>'
+      + '<td>' + t.MaxPlaces + '</td>'
+      + '<td>' + (t.Occupees||0) + '</td>'
+      + '<td style="color:' + (t.Complet?'#DC2626':'#16A34A') + ';font-weight:600">' + (t.Restantes||0) + '</td>'
+      + '<td><div class="place-wrap"><div class="place-bar"><div class="place-fill" style="width:'+pct+'%;background:'+col+'"></div></div><span style="font-size:12px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
+      + '<td>'
+      + '<button class="btn-edit" onclick="editerTheme('+t._row+',\''+esc(t.Titre)+'\','+t.MaxPlaces+')">Modifier</button>'
+      + '<button class="btn-del" onclick="supprimerTheme('+t._row+')">Suppr.</button>'
+      + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function editerTheme(row, titre, max) {
+  modalType = 'theme'; modalRow = row;
+  document.getElementById('modal-title').textContent = 'Modifier le thème';
+  document.getElementById('modal-body').innerHTML = champTheme(titre, max);
+  document.getElementById('modal-overlay').className = 'modal-overlay open';
+}
+function supprimerTheme(row) {
+  if (!confirm('Supprimer ce thème ?')) return;
+  apiPost({action:'delT', row:row}).then(function(){ chargerTout(); toast('Thème supprimé'); fermerModalForce(); });
+}
+
+// ---- Affichage Demandeurs ----
+function afficherDemandeurs() {
+  var el = document.getElementById('tbl-demandeurs');
+  if (!dataDem.length) { el.innerHTML = '<div class="empty-msg">Aucun demandeur. Ajoutez-en un.</div>'; return; }
+  var html = '<table><thead><tr><th>Nom</th><th>Prénom</th><th>Matricule</th><th>Poste</th><th>Actions</th></tr></thead><tbody>';
+  dataDem.forEach(function(d) {
+    html += '<tr>'
+      + '<td><strong>' + esc(d.Nom) + '</strong></td>'
+      + '<td>' + esc(d.Prenom) + '</td>'
+      + '<td style="color:#1B4FBF">' + esc(d.Matricule) + '</td>'
+      + '<td>' + esc(d.Poste) + '</td>'
+      + '<td>'
+      + '<button class="btn-edit" onclick="editerDemandeur('+d._row+',\''+esc(d.Nom)+'\',\''+esc(d.Prenom)+'\',\''+esc(d.Matricule)+'\',\''+esc(d.Poste)+'\')">Modifier</button>'
+      + '<button class="btn-del" onclick="supprimerDemandeur('+d._row+')">Suppr.</button>'
+      + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function editerDemandeur(row, nom, prenom, mat, poste) {
+  modalType = 'demandeur'; modalRow = row;
+  document.getElementById('modal-title').textContent = 'Modifier le demandeur';
+  document.getElementById('modal-body').innerHTML = champsDemandeur(nom, prenom, mat, poste);
+  document.getElementById('modal-overlay').className = 'modal-overlay open';
+}
+function supprimerDemandeur(row) {
+  if (!confirm('Supprimer ce demandeur ?')) return;
+  apiPost({action:'delD', row:row}).then(function(){ chargerTout(); toast('Demandeur supprimé'); });
+}
+
+// ---- Affichage Responsables ----
+function afficherResponsables() {
+  var el = document.getElementById('tbl-responsables');
+  if (!dataR.length) { el.innerHTML = '<div class="empty-msg">Aucun responsable. Ajoutez-en un.</div>'; return; }
+  var html = '<table><thead><tr><th>Nom</th><th>Prénom</th><th>Actions</th></tr></thead><tbody>';
+  dataR.forEach(function(r) {
+    html += '<tr>'
+      + '<td><strong>' + esc(r.Nom) + '</strong></td>'
+      + '<td>' + esc(r.Prenom) + '</td>'
+      + '<td>'
+      + '<button class="btn-edit" onclick="editerResponsable('+r._row+',\''+esc(r.Nom)+'\',\''+esc(r.Prenom)+'\')">Modifier</button>'
+      + '<button class="btn-del" onclick="supprimerResponsable('+r._row+')">Suppr.</button>'
+      + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function editerResponsable(row, nom, prenom) {
+  modalType = 'responsable'; modalRow = row;
+  document.getElementById('modal-title').textContent = 'Modifier le responsable';
+  document.getElementById('modal-body').innerHTML = champsResp(nom, prenom);
+  document.getElementById('modal-overlay').className = 'modal-overlay open';
+}
+function supprimerResponsable(row) {
+  if (!confirm('Supprimer ce responsable ?')) return;
+  apiPost({action:'delR', row:row}).then(function(){ chargerTout(); toast('Responsable supprimé'); });
+}
+
+// ---- Modal ----
+function ouvrirModal(type) {
+  modalType = type; modalRow = null;
+  var titles = {theme:'Nouveau thème', demandeur:'Nouveau demandeur', responsable:'Nouveau responsable'};
+  var bodies = {
+    theme: champTheme('', 10),
+    demandeur: champsDemandeur('','','',''),
+    responsable: champsResp('','')
+  };
+  document.getElementById('modal-title').textContent = titles[type];
+  document.getElementById('modal-body').innerHTML = bodies[type];
+  document.getElementById('modal-overlay').className = 'modal-overlay open';
+}
+
+function champTheme(titre, max) {
+  return '<label>Titre du thème</label><input id="m-titre" value="'+esc(titre)+'" placeholder="Ex: Excel Avancé">'
+    + '<label>Nombre max de places</label><input id="m-max" type="number" min="1" value="'+max+'">';
+}
+function champsDemandeur(nom, prenom, mat, poste) {
+  return '<label>Nom</label><input id="m-nom" value="'+esc(nom)+'" placeholder="BENALI">'
+    + '<label>Prénom</label><input id="m-prenom" value="'+esc(prenom)+'" placeholder="Mohammed">'
+    + '<label>Matricule</label><input id="m-mat" value="'+esc(mat)+'" placeholder="MAT-001">'
+    + '<label>Poste</label><input id="m-poste" value="'+esc(poste)+'" placeholder="Technicien">';
+}
+function champsResp(nom, prenom) {
+  return '<label>Nom</label><input id="m-nom" value="'+esc(nom)+'" placeholder="ALAOUI">'
+    + '<label>Prénom</label><input id="m-prenom" value="'+esc(prenom)+'" placeholder="Fatima">';
+}
+
+function sauvegarder() {
+  var data = {p: pwd};
+  if (modalType === 'theme') {
+    data.titre = val('m-titre'); data.max = val('m-max');
+    data.action = modalRow ? 'editT' : 'addT';
+    if (modalRow) data.row = modalRow;
+  } else if (modalType === 'demandeur') {
+    data.nom = val('m-nom'); data.prenom = val('m-prenom');
+    data.mat = val('m-mat'); data.poste = val('m-poste');
+    data.action = modalRow ? 'editD' : 'addD';
+    if (modalRow) data.row = modalRow;
+  } else if (modalType === 'responsable') {
+    data.nom = val('m-nom'); data.prenom = val('m-prenom');
+    data.action = modalRow ? 'editR' : 'addR';
+    if (modalRow) data.row = modalRow;
+  }
+
+  var btn = document.getElementById('btn-save');
+  btn.innerHTML = '<span class="spin"></span>';
+  btn.disabled = true;
+
+  apiPost(data).then(function(res) {
+    btn.innerHTML = 'Enregistrer';
+    btn.disabled = false;
+    if (res.ok) {
+      fermerModalForce();
+      chargerTout();
+      toast('Enregistré avec succès !');
+    } else {
+      alert('Erreur: ' + (res.err || 'Inconnu'));
+    }
+  }).catch(function() {
+    btn.innerHTML = 'Enregistrer';
+    btn.disabled = false;
+    alert('Erreur de connexion.');
+  });
+}
+
+function fermerModal(e) { if (e.target.id === 'modal-overlay') fermerModalForce(); }
+function fermerModalForce() { document.getElementById('modal-overlay').className = 'modal-overlay'; }
+
+// ---- Utils ----
+function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+function esc(s) { return String(s||'').replace(/'/g,'\\\'').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show';
+  setTimeout(function(){ t.className = 'toast'; }, 2500);
+}
+</script>
+</body>
+</html>
