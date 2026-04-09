@@ -1,388 +1,303 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
 <title>APPL Academy — Demande de Formation</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
-h1,h2,h3,h4{font-family:'Syne',sans-serif}
-
-.header{background:#0D1B2A;padding:14px 20px}
-.header-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.logo{width:38px;height:38px;background:#F5A623;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:12px;flex-shrink:0}
-.header h1{color:#fff;font-size:17px;font-weight:700}
-.header p{color:#93C5FD;font-size:11px;margin-top:1px}
-.header a{margin-left:auto;color:#93C5FD;text-decoration:none;font-size:12px;white-space:nowrap;transition:.2s}
-.header a:hover{color:#fff}
-
-.hero{background:linear-gradient(135deg,#0D1B2A 0%,#1B4FBF 100%);color:#fff;padding:28px 20px}
-.hero-inner{max-width:860px;margin:0 auto}
-.hero-badge{color:#F5A623;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
-.hero h2{font-size:26px;font-weight:800;margin-bottom:6px}
+.hdr{background:#0D1B2A;padding:13px 18px}
+.hdr-in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:11px}
+.logo{width:36px;height:36px;background:#F5A623;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:11px;flex-shrink:0}
+.hdr h1{color:#fff;font-size:16px;font-weight:800;font-family:'Syne',sans-serif}
+.hdr p{color:#93C5FD;font-size:11px}
+.hdr a{margin-left:auto;color:#93C5FD;text-decoration:none;font-size:12px}
+.hdr a:hover{color:#fff}
+.hero{background:linear-gradient(135deg,#0D1B2A,#1B4FBF);color:#fff;padding:26px 18px}
+.hero-in{max-width:860px;margin:0 auto}
+.hero-badge{color:#F5A623;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.hero h2{font-size:24px;font-weight:800;font-family:'Syne',sans-serif;margin-bottom:5px}
 .hero p{color:#BFDBFE;font-size:13px}
-
-main{max-width:860px;margin:0 auto;padding:22px 14px 50px}
-
-/* Alert */
-.alert{background:#FEF2F2;border-left:4px solid #EF4444;border-radius:12px;padding:14px 16px;margin-bottom:18px;display:none;align-items:flex-start;gap:12px}
+main{max-width:860px;margin:0 auto;padding:20px 14px 50px}
+.alert{background:#FEF2F2;border-left:4px solid #EF4444;border-radius:11px;padding:13px 15px;margin-bottom:16px;display:none;align-items:flex-start;gap:11px}
 .alert.show{display:flex}
-.alert-ico{font-size:20px;flex-shrink:0}
-.alert h4{color:#B91C1C;font-size:14px;font-weight:700;margin-bottom:3px}
+.alert-ico{font-size:18px;flex-shrink:0}
+.alert h4{color:#B91C1C;font-size:14px;font-weight:700;margin-bottom:2px;font-family:'Syne',sans-serif}
 .alert p{color:#DC2626;font-size:13px;line-height:1.4}
-
-/* Cards */
-.card{background:#fff;border-radius:16px;border:1px solid #EFF6FF;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-.card-title{font-weight:700;font-size:15px;color:#0D1B2A;margin-bottom:16px;display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif}
-.num{width:26px;height:26px;background:#1B4FBF;color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-
-/* Fields */
-.field{margin-bottom:14px}
-.field:last-child{margin-bottom:0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:14px;border:1px solid #EFF6FF;padding:18px;margin-bottom:13px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-h{font-weight:700;font-size:15px;color:#0D1B2A;margin-bottom:14px;display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif}
+.num{width:25px;height:25px;background:#1B4FBF;color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.fld{margin-bottom:13px}
+.fld:last-child{margin-bottom:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
 .req{color:#EF4444}
-select,input[type=date],input[type=text]{width:100%;border:1px solid #DBEAFE;border-radius:10px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D1B2A;background:#fff;outline:none;transition:.2s;-webkit-appearance:none;appearance:none}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7FA3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px}
-select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,191,.1)}
-input[readonly]{background:#F8FAFF;color:#6B7FA3;border-color:#E8F0FE;cursor:default}
-
-/* Theme cards */
-.themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.theme-card{border:2px solid #E8F0FE;border-radius:12px;padding:14px 16px;cursor:pointer;transition:.2s;background:#fff}
-.theme-card:hover:not(.complet){border-color:#1B4FBF;background:#F0F4FF}
-.theme-card.selected{border-color:#1B4FBF;background:#EFF6FF;box-shadow:0 0 0 3px rgba(27,79,191,.12)}
-.theme-card.complet{opacity:.55;cursor:not-allowed;background:#F9FAFB}
-.theme-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:8px;font-family:'Syne',sans-serif}
-.theme-places{font-size:12px;margin-bottom:6px}
-.theme-places span{font-weight:700}
-.prog-bar{height:6px;background:#DBEAFE;border-radius:3px;overflow:hidden}
-.prog-fill{height:100%;border-radius:3px;transition:.4s}
-.badge-complet{display:inline-block;background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:4px}
-.badge-ok{display:inline-block;background:#D1FAE5;color:#065F46;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:4px}
-
-/* Info cards auto-remplies */
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
-.info-cell{background:#F0F4FF;border-radius:9px;padding:10px 12px}
-.info-cell small{font-size:10px;color:#6B7FA3;text-transform:uppercase;letter-spacing:.06em;font-weight:700;display:block;margin-bottom:2px}
-.info-cell span{font-size:13px;font-weight:600;color:#0D1B2A}
-
-/* Section steps */
-.step-section{display:none}
-.step-section.visible{display:block}
-
-/* Buttons */
-.btn-submit{width:100%;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:14px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}
-.btn-submit:hover:not(:disabled){background:#1539A0}
-.btn-submit:active:not(:disabled){transform:scale(.98)}
-.btn-submit:disabled{opacity:.55;cursor:not-allowed}
-
-/* Success */
-.success-card{background:#fff;border-radius:20px;padding:52px 24px;text-align:center;display:none}
-.success-card.show{display:block}
-.ok-icon{width:72px;height:72px;background:#D1FAE5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
-.success-card h3{font-size:24px;font-weight:800;color:#0D1B2A;margin-bottom:8px}
-.success-card p{color:#6B7FA3;font-size:14px;margin-bottom:24px;line-height:1.6}
-.btn-new{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;padding:12px 28px;border:none;border-radius:12px;cursor:pointer;font-size:14px}
+select,input[type=date],input[type=text]{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D1B2A;background:#fff;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7FA3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:15px;padding-right:36px}
+select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,191,.08)}
+input[readonly]{background:#F8FAFF;color:#6B7FA3;cursor:default;border-color:#E8F0FE}
+.themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:9px}
+.th-card{border:2px solid #E8F0FE;border-radius:11px;padding:13px 15px;cursor:pointer;transition:.15s;background:#fff}
+.th-card:hover:not(.full){border-color:#1B4FBF;background:#F0F4FF}
+.th-card.sel{border-color:#1B4FBF;background:#EFF6FF;box-shadow:0 0 0 3px rgba(27,79,191,.1)}
+.th-card.full{opacity:.5;cursor:not-allowed;background:#F9FAFB}
+.th-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:7px;font-family:'Syne',sans-serif}
+.th-places{font-size:12px;margin-bottom:5px}
+.pbar{height:5px;background:#DBEAFE;border-radius:3px;overflow:hidden}
+.pbar-f{height:100%;border-radius:3px;transition:.3s}
+.badge-full{display:inline-block;background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;margin-top:4px}
+.badge-ok{display:inline-block;background:#D1FAE5;color:#065F46;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;margin-top:4px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
+.ic{background:#F0F4FF;border-radius:8px;padding:9px 11px}
+.ic small{font-size:10px;color:#6B7FA3;text-transform:uppercase;letter-spacing:.06em;font-weight:700;display:block;margin-bottom:2px}
+.ic span{font-size:13px;font-weight:600;color:#0D1B2A}
+.step{display:none}.step.on{display:block}
+.btn-sub{width:100%;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;padding:13px;border:none;border-radius:13px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px}
+.btn-sub:hover:not(:disabled){background:#1539A0}
+.btn-sub:disabled{opacity:.5;cursor:not-allowed}
+.succ{background:#fff;border-radius:18px;padding:48px 22px;text-align:center;display:none}
+.succ.on{display:block}
+.ok-ico{width:68px;height:68px;background:#D1FAE5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px}
+.succ h3{font-size:22px;font-weight:800;font-family:'Syne',sans-serif;margin-bottom:7px}
+.succ p{color:#6B7FA3;font-size:13px;margin-bottom:20px;line-height:1.5}
+.btn-new{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;padding:11px 26px;border:none;border-radius:10px;cursor:pointer;font-size:14px}
 .btn-new:hover{background:#1539A0}
-
-/* Loading */
-.loading{text-align:center;padding:40px;color:#6B7FA3;font-size:14px}
-
-/* Spin */
-.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+.loading{text-align:center;padding:36px;color:#6B7FA3;font-size:14px}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-/* Separator */
-.separator{text-align:center;color:#9CA3AF;font-size:12px;margin:4px 0 12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
-
-@media(max-width:500px){
-  .hero h2{font-size:21px}
-  .themes-grid{grid-template-columns:1fr}
-  .grid2{grid-template-columns:1fr}
-  .info-grid{grid-template-columns:1fr 1fr}
-  .card{padding:14px}
-}
+@media(max-width:500px){.hero h2{font-size:20px}.themes-grid{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.card{padding:14px}}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
+<header class="hdr">
+  <div class="hdr-in">
     <div class="logo">AA</div>
     <div><h1>APPL Academy</h1><p>Plateforme de gestion des formations</p></div>
-    <a href="admin.html">Espace Admin →</a>
+    <a href="admin.html">Espace Admin</a>
   </div>
 </header>
 
 <div class="hero">
-  <div class="hero-inner">
+  <div class="hero-in">
     <div class="hero-badge">Formulaire de demande</div>
     <h2>Demande de Formation</h2>
-    <p>Sélectionnez une formation, renseignez le demandeur et les informations du pilote.</p>
+    <p>Selectionnez une formation, puis renseignez le demandeur et les informations du pilote.</p>
   </div>
 </div>
 
 <main>
-  <div class="alert" id="alert">
-    <div class="alert-ico">⚠️</div>
-    <div><h4>Attention</h4><p id="alert-msg"></p></div>
+  <div class="alert" id="alertBox">
+    <div class="alert-ico">!</div>
+    <div><h4>Attention</h4><p id="alertMsg"></p></div>
   </div>
 
-  <div class="success-card" id="success-card">
-    <div class="ok-icon">✅</div>
-    <h3>Demande envoyée !</h3>
-    <p>La demande de formation a été soumise avec succès.<br>L'administration vous contactera prochainement.</p>
+  <div class="succ" id="succCard">
+    <div class="ok-ico">OK</div>
+    <h3>Demande envoyee !</h3>
+    <p>La demande de formation a ete soumise avec succes.<br>L'administration vous contactera prochainement.</p>
     <button class="btn-new" onclick="resetAll()">Nouvelle demande</button>
   </div>
 
-  <div id="form-wrap">
-    <div class="loading" id="loading-msg">⏳ Chargement des données...</div>
+  <div id="formWrap">
+    <div class="loading" id="loadMsg">Chargement des donnees...</div>
 
-    <!-- ÉTAPE 1 : Thème -->
-    <div class="step-section" id="step1">
+    <div class="step" id="step1">
       <div class="card">
-        <div class="card-title"><span class="num">1</span> Choisir le thème de formation</div>
-        <div class="themes-grid" id="themes-grid"></div>
+        <div class="card-h"><span class="num">1</span>Choisir le theme de formation</div>
+        <div class="themes-grid" id="themesGrid"></div>
       </div>
     </div>
 
-    <!-- ÉTAPE 2 : Demandeur -->
-    <div class="step-section" id="step2">
+    <div class="step" id="step2">
       <div class="card">
-        <div class="card-title"><span class="num">2</span> Demandeur</div>
-        <div class="field">
-          <label>Sélectionner le demandeur <span class="req">*</span></label>
-          <select id="sel-dem" onchange="changerDemandeur()">
+        <div class="card-h"><span class="num">2</span>Demandeur</div>
+        <div class="fld">
+          <label>Selectionner le demandeur <span class="req">*</span></label>
+          <select id="selDem" onchange="chgDem()">
             <option value="">-- Choisir le demandeur --</option>
           </select>
         </div>
-        <div class="info-grid" id="info-dem" style="display:none">
-          <div class="info-cell"><small>Poste</small><span id="d-poste">—</span></div>
-          <div class="info-cell"><small>Unité</small><span id="d-unite">—</span></div>
-          <div class="info-cell" style="grid-column:span 2"><small>Responsable</small><span id="d-resp">—</span></div>
+        <div class="info-grid" id="infoDem" style="display:none">
+          <div class="ic"><small>Matricule</small><span id="dMat">-</span></div>
+          <div class="ic"><small>Poste</small><span id="dPoste">-</span></div>
+          <div class="ic" style="grid-column:span 2"><small>Responsable</small><span id="dResp">-</span></div>
         </div>
       </div>
     </div>
 
-    <!-- ÉTAPE 3 : Pilote -->
-    <div class="step-section" id="step3">
+    <div class="step" id="step3">
       <div class="card">
-        <div class="card-title"><span class="num">3</span> Informations du pilote</div>
-        <p style="font-size:13px;color:#6B7FA3;margin-bottom:14px">Renseignez les informations de la personne qui suivra la formation.</p>
-        <div class="grid2">
-          <div class="field">
-            <label>Nom du pilote <span class="req">*</span></label>
-            <input type="text" id="p-nom" placeholder="BENALI">
-          </div>
-          <div class="field">
-            <label>Prénom du pilote <span class="req">*</span></label>
-            <input type="text" id="p-prenom" placeholder="Mohammed">
-          </div>
+        <div class="card-h"><span class="num">3</span>Informations du pilote</div>
+        <p style="font-size:13px;color:#6B7FA3;margin-bottom:13px">Renseignez la personne qui suivra la formation.</p>
+        <div class="g2">
+          <div class="fld"><label>Nom du pilote <span class="req">*</span></label><input type="text" id="pNom" placeholder="BENALI"></div>
+          <div class="fld"><label>Prenom du pilote <span class="req">*</span></label><input type="text" id="pPrenom" placeholder="Mohammed"></div>
         </div>
-        <div class="grid2">
-          <div class="field">
-            <label>Matricule du pilote <span class="req">*</span></label>
-            <input type="text" id="p-mat" placeholder="MAT-001">
-          </div>
-          <div class="field">
-            <label>Poste du pilote <span class="req">*</span></label>
-            <input type="text" id="p-poste" placeholder="Technicien">
-          </div>
+        <div class="g2">
+          <div class="fld"><label>Matricule du pilote <span class="req">*</span></label><input type="text" id="pMat" placeholder="500702"></div>
+          <div class="fld"><label>Poste du pilote <span class="req">*</span></label><input type="text" id="pPoste" placeholder="Technicien"></div>
         </div>
-        <div class="field">
-          <label>Date proposée pour la formation <span class="req">*</span></label>
-          <input type="date" id="p-date" min="">
-        </div>
+        <div class="fld"><label>Date proposee <span class="req">*</span></label><input type="date" id="pDate"></div>
       </div>
-
-      <button class="btn-submit" id="btn-submit" onclick="soumettre()">
-        Soumettre la demande →
-      </button>
+      <button class="btn-sub" id="btnSub" onclick="doSubmit()">Soumettre la demande</button>
     </div>
-
-  </div><!-- /form-wrap -->
+  </div>
 </main>
 
 <script>
-// ============================================================
-// ⚠️ REMPLACEZ PAR VOTRE URL GOOGLE APPS SCRIPT
-// ============================================================
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOBtceliEcpxSPG58WSsofmG4--Ez3Rg02dpOdbFjrXR_RBASnNaiEcWBvBIXvX0HPNA/exec';
-// ============================================================
+var API = 'https://script.google.com/macros/s/AKfycbxnwJijCi172MPQeDgvBfzxPx3MgozEopvqNW5eULUtfmdZG04Y6Wn9mgy_vphbbW2xGQ/exec';
+var allThemes = [], allDem = [], selTheme = null, selDem = null;
 
-var demandeurs = [], themes = [], selectedTheme = null, selectedDem = null;
+document.getElementById('pDate').min = new Date().toISOString().split('T')[0];
 
-document.getElementById('p-date').min = new Date().toISOString().split('T')[0];
+function apiGet(a){ return fetch(API+'?action='+a,{redirect:'follow'}).then(function(r){return r.json();}); }
+function apiPost(d){ return fetch(API,{method:'POST',body:JSON.stringify(d),redirect:'follow'}).then(function(r){return r.json();}); }
 
-function apiGet(action) {
-  return fetch(SCRIPT_URL + '?action=' + action, {redirect:'follow'}).then(function(r){ return r.json(); });
-}
-function apiPost(data) {
-  return fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(data), redirect:'follow'}).then(function(r){ return r.json(); });
-}
-
-function charger() {
-  Promise.all([apiGet('themes'), apiGet('demandeurs')])
-    .then(function(res) {
-      themes     = res[0] || [];
-      demandeurs = res[1] || [];
-      document.getElementById('loading-msg').style.display = 'none';
-      buildThemes();
-      buildDemandeurs();
-      document.getElementById('step1').className = 'step-section visible';
-    })
-    .catch(function() {
-      document.getElementById('loading-msg').innerHTML = '❌ Erreur de connexion. Vérifiez l\'URL du script.';
-    });
-}
-
-// ---- Thèmes ----
-function buildThemes() {
-  var grid = document.getElementById('themes-grid');
-  if (!themes.length) { grid.innerHTML = '<p style="color:#9CA3AF;font-size:13px">Aucun thème disponible. Contactez l\'administration.</p>'; return; }
-  grid.innerHTML = '';
-  themes.forEach(function(t) {
-    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100,100) : 0;
-    var col = t.Complet ? '#EF4444' : '#1B4FBF';
-    var badge = t.Complet
-      ? '<div class="badge-complet">Complet</div>'
-      : '<div class="badge-ok">' + t.Restantes + ' place' + (t.Restantes>1?'s':'') + ' disponible' + (t.Restantes>1?'s':'') + '</div>';
-    var card = document.createElement('div');
-    card.className = 'theme-card' + (t.Complet?' complet':'');
-    card.innerHTML = '<div class="theme-name">' + esc(t.Titre) + '</div>'
-      + '<div class="theme-places" style="color:'+col+'"><span>' + (t.Occupees||0) + '</span> / ' + t.MaxPlaces + ' places</div>'
-      + '<div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%;background:'+col+'"></div></div>'
-      + badge;
-    if (!t.Complet) card.onclick = function(){ selectionnerTheme(t, card); };
-    grid.appendChild(card);
+function load() {
+  Promise.all([apiGet('themes'), apiGet('demandeurs')]).then(function(r) {
+    allThemes = r[0] || [];
+    allDem    = r[1] || [];
+    document.getElementById('loadMsg').style.display = 'none';
+    buildThemes();
+    buildDem();
+    document.getElementById('step1').className = 'step on';
+  }).catch(function() {
+    document.getElementById('loadMsg').textContent = 'Erreur de connexion. Verifiez la configuration.';
   });
 }
 
-function selectionnerTheme(t, card) {
-  document.querySelectorAll('.theme-card').forEach(function(c){ c.className = c.className.replace(' selected','') + (c.classList.contains('complet')?' complet':''); });
-  card.className = 'theme-card selected';
-  selectedTheme = t;
-  cacherAlerte();
-  document.getElementById('step2').className = 'step-section visible';
-  document.getElementById('step3').className = 'step-section';
-  document.getElementById('info-dem').style.display = 'none';
-  document.getElementById('sel-dem').value = '';
-  selectedDem = null;
-  document.getElementById('step2').scrollIntoView({behavior:'smooth', block:'nearest'});
+function buildThemes() {
+  var g = document.getElementById('themesGrid');
+  if (!allThemes.length) { g.innerHTML='<p style="color:#9CA3AF;font-size:13px">Aucun theme disponible.</p>'; return; }
+  g.innerHTML = '';
+  allThemes.forEach(function(t) {
+    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100, 100) : 0;
+    var col = t.Complet ? '#EF4444' : '#1B4FBF';
+    var badge = t.Complet
+      ? '<div class="badge-full">Complet</div>'
+      : '<div class="badge-ok">' + (t.Restantes||0) + ' place(s) disponible(s)</div>';
+    var c = document.createElement('div');
+    c.className = 'th-card' + (t.Complet ? ' full' : '');
+    c.innerHTML = '<div class="th-name">' + t.Titre + '</div>'
+      + '<div class="th-places" style="color:'+col+'"><strong>' + (t.Occupees||0) + '</strong> / ' + t.MaxPlaces + ' places</div>'
+      + '<div class="pbar"><div class="pbar-f" style="width:'+pct+'%;background:'+col+'"></div></div>'
+      + badge;
+    if (!t.Complet) c.onclick = function(){ selTheme=t; selectThemeCard(c); };
+    g.appendChild(c);
+  });
 }
 
-// ---- Demandeurs ----
-function buildDemandeurs() {
-  var sel = document.getElementById('sel-dem');
+function selectThemeCard(card) {
+  document.querySelectorAll('.th-card').forEach(function(c){ if(!c.classList.contains('full')) c.className='th-card'; });
+  card.className = 'th-card sel';
+  hideAlert();
+  document.getElementById('step2').className = 'step on';
+  document.getElementById('step3').className = 'step';
+  document.getElementById('selDem').value = '';
+  document.getElementById('infoDem').style.display = 'none';
+  selDem = null;
+  document.getElementById('step2').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildDem() {
+  var sel = document.getElementById('selDem');
   sel.innerHTML = '<option value="">-- Choisir le demandeur --</option>';
-  demandeurs.forEach(function(d) {
+  allDem.forEach(function(d, i) {
     var o = document.createElement('option');
-    o.value = d.ID;
-    o.textContent = d.Nom + ' ' + d.Prenom + ' — ' + esc(d.Unite||'');
+    o.value = i;
+    o.textContent = d.Nom + ' ' + d.Prenom + ' (' + (d.Matricule||'') + ')';
     sel.appendChild(o);
   });
 }
 
-function changerDemandeur() {
-  var id = document.getElementById('sel-dem').value;
-  var d  = demandeurs.find(function(x){ return String(x.ID) === id; });
-  selectedDem = d || null;
-  var infoEl = document.getElementById('info-dem');
-  if (d) {
-    document.getElementById('d-poste').textContent = d.Poste || '—';
-    document.getElementById('d-unite').textContent = d.Unite || '—';
-    document.getElementById('d-resp').textContent  = d.Responsable || '—';
-    infoEl.style.display = 'grid';
-    document.getElementById('step3').className = 'step-section visible';
-    document.getElementById('step3').scrollIntoView({behavior:'smooth', block:'nearest'});
-  } else {
-    infoEl.style.display = 'none';
-    document.getElementById('step3').className = 'step-section';
-  }
+function chgDem() {
+  var i = document.getElementById('selDem').value;
+  if (i === '') { selDem=null; document.getElementById('infoDem').style.display='none'; document.getElementById('step3').className='step'; return; }
+  selDem = allDem[parseInt(i)];
+  document.getElementById('dMat').textContent   = selDem.Matricule || '-';
+  document.getElementById('dPoste').textContent = selDem.Poste     || '-';
+  document.getElementById('dResp').textContent  = selDem.Responsable || '-';
+  document.getElementById('infoDem').style.display = 'grid';
+  document.getElementById('step3').className = 'step on';
+  document.getElementById('step3').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-// ---- Soumission ----
-function soumettre() {
-  if (!selectedTheme) { afficherAlerte('Veuillez choisir un thème.'); return; }
-  if (!selectedDem)   { afficherAlerte('Veuillez choisir un demandeur.'); return; }
-  var nom   = document.getElementById('p-nom').value.trim();
-  var prenom= document.getElementById('p-prenom').value.trim();
-  var mat   = document.getElementById('p-mat').value.trim();
-  var poste = document.getElementById('p-poste').value.trim();
-  var date  = document.getElementById('p-date').value;
-  if (!nom)   { afficherAlerte('Veuillez saisir le nom du pilote.'); return; }
-  if (!prenom){ afficherAlerte('Veuillez saisir le prénom du pilote.'); return; }
-  if (!mat)   { afficherAlerte('Veuillez saisir le matricule du pilote.'); return; }
-  if (!poste) { afficherAlerte('Veuillez saisir le poste du pilote.'); return; }
-  if (!date)  { afficherAlerte('Veuillez saisir une date proposée.'); return; }
+function doSubmit() {
+  if (!selTheme) { showAlert('Veuillez choisir un theme.'); return; }
+  if (!selDem)   { showAlert('Veuillez choisir un demandeur.'); return; }
+  var nom    = document.getElementById('pNom').value.trim();
+  var prenom = document.getElementById('pPrenom').value.trim();
+  var mat    = document.getElementById('pMat').value.trim();
+  var poste  = document.getElementById('pPoste').value.trim();
+  var date   = document.getElementById('pDate').value;
+  if (!nom)   { showAlert('Veuillez saisir le nom du pilote.'); return; }
+  if (!prenom){ showAlert('Veuillez saisir le prenom du pilote.'); return; }
+  if (!mat)   { showAlert('Veuillez saisir le matricule du pilote.'); return; }
+  if (!poste) { showAlert('Veuillez saisir le poste du pilote.'); return; }
+  if (!date)  { showAlert('Veuillez saisir une date.'); return; }
+  if (selTheme.Complet) { showAlert('Les places pour cette formation sont epuisees.'); return; }
 
-  if (selectedTheme.Complet) { afficherAlerte('Les places pour cette formation sont épuisées.'); return; }
+  var respParts = (selDem.Responsable || '').split(' ');
+  var respNom    = respParts[0] || '';
+  var respPrenom = respParts.slice(1).join(' ') || '';
 
-  var btn = document.getElementById('btn-submit');
+  var btn = document.getElementById('btnSub');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin"></span> Envoi en cours...';
-  cacherAlerte();
+  hideAlert();
 
   apiPost({
-    action:      'submit',
-    theme:       selectedTheme.Titre,
-    date:        date,
-    pilote_nom:  nom,
-    pilote_prenom: prenom,
-    pilote_mat:  mat,
+    action:       'submit',
+    theme:        selTheme.Titre,
+    date:         date,
+    pilote_nom:   nom,
+    pilote_prenom:prenom,
+    pilote_mat:   mat,
     pilote_poste: poste,
-    dem_nom:     selectedDem.Nom,
-    dem_prenom:  selectedDem.Prenom,
-    dem_poste:   selectedDem.Poste,
-    dem_unite:   selectedDem.Unite,
-    resp_nom:    (selectedDem.Responsable||'').split(' ')[0] || selectedDem.Responsable || '',
-    resp_prenom: (selectedDem.Responsable||'').split(' ').slice(1).join(' ') || '',
-    resp_poste:  selectedDem.Resp_Poste || ''
-  }).then(function(res) {
-    if (res.err) {
-      afficherAlerte(res.err);
-      btn.disabled = false;
-      btn.innerHTML = 'Soumettre la demande →';
+    dem_nom:      selDem.Nom,
+    dem_prenom:   selDem.Prenom,
+    dem_mat:      selDem.Matricule || '',
+    dem_poste:    selDem.Poste || '',
+    resp_nom:     respNom,
+    resp_prenom:  respPrenom,
+    resp_poste:   ''
+  }).then(function(r) {
+    if (r.err) {
+      showAlert(r.err);
+      btn.disabled=false; btn.innerHTML='Soumettre la demande';
     } else {
-      document.getElementById('form-wrap').style.display = 'none';
-      document.getElementById('success-card').className = 'success-card show';
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('succCard').className = 'succ on';
       window.scrollTo(0,0);
     }
   }).catch(function() {
-    afficherAlerte('Erreur de connexion. Réessayez.');
-    btn.disabled = false;
-    btn.innerHTML = 'Soumettre la demande →';
+    showAlert('Erreur de connexion. Reessayez.');
+    btn.disabled=false; btn.innerHTML='Soumettre la demande';
   });
 }
 
-function afficherAlerte(msg) {
-  document.getElementById('alert-msg').textContent = msg;
-  document.getElementById('alert').className = 'alert show';
-  window.scrollTo(0,0);
-}
-function cacherAlerte() { document.getElementById('alert').className = 'alert'; }
+function showAlert(msg) { document.getElementById('alertMsg').textContent=msg; document.getElementById('alertBox').className='alert show'; window.scrollTo(0,0); }
+function hideAlert() { document.getElementById('alertBox').className='alert'; }
 
 function resetAll() {
-  document.getElementById('success-card').className = 'success-card';
-  document.getElementById('form-wrap').style.display = 'block';
-  document.getElementById('step2').className = 'step-section';
-  document.getElementById('step3').className = 'step-section';
-  document.getElementById('p-nom').value = '';
-  document.getElementById('p-prenom').value = '';
-  document.getElementById('p-mat').value = '';
-  document.getElementById('p-poste').value = '';
-  document.getElementById('p-date').value = '';
-  selectedTheme = null; selectedDem = null;
-  cacherAlerte();
-  charger();
+  document.getElementById('succCard').className='succ';
+  document.getElementById('formWrap').style.display='block';
+  document.getElementById('step2').className='step';
+  document.getElementById('step3').className='step';
+  document.getElementById('pNom').value='';
+  document.getElementById('pPrenom').value='';
+  document.getElementById('pMat').value='';
+  document.getElementById('pPoste').value='';
+  document.getElementById('pDate').value='';
+  selTheme=null; selDem=null;
+  hideAlert(); load();
 }
 
-function esc(s){ return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-charger();
+load();
 </script>
 </body>
 </html>
