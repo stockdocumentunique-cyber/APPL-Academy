@@ -1,4 +1,445 @@
 <!DOCTYPE html>
+<html lang="fr" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>APPL Academy — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
+.login-wrap{min-height:100vh;background:#0D1B2A;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:36px 30px;width:100%;max-width:360px}
+.login-logo{width:56px;height:56px;background:#F5A623;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:16px;margin:0 auto 16px}
+.lc-h2{color:#fff;font-size:20px;font-weight:800;text-align:center;margin-bottom:3px;font-family:'Syne',sans-serif}
+.lc-p{color:#93C5FD;font-size:13px;text-align:center;margin-bottom:24px}
+.lc-lbl{color:#BFDBFE;font-size:12px;font-weight:600;display:block;margin-bottom:5px}
+.lc-inp{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 13px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:8px}
+.lc-inp::placeholder{color:#93C5FD}
+.lc-inp:focus{border-color:#F5A623}
+.lerr{color:#FCA5A5;font-size:12px;margin-bottom:8px;display:none}
+.lerr.show{display:block}
+.btn-login{width:100%;background:#F5A623;color:#0D1B2A;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:12px;border:none;border-radius:10px;cursor:pointer;margin-top:4px}
+.btn-login:hover{background:#EAB308}
+.back-lnk{display:block;text-align:center;margin-top:14px;color:#93C5FD;text-decoration:none;font-size:13px}
+.back-lnk:hover{color:#fff}
+.dh{background:#0D1B2A;padding:12px 20px}
+.dh-in{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.dh-logo{width:34px;height:34px;background:#F5A623;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:10px;flex-shrink:0}
+.dh-h1{color:#fff;font-size:15px;font-weight:700;font-family:'Syne',sans-serif}
+.dh-p{color:#93C5FD;font-size:11px}
+.dh-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.dh-r a{color:#93C5FD;text-decoration:none;font-size:12px}
+.dh-r a:hover{color:#fff}
+.btn-lo{background:rgba(239,68,68,.15);color:#FCA5A5;border:none;padding:5px 12px;border-radius:7px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-lo:hover{background:rgba(239,68,68,.3);color:#fff}
+.db{max-width:1300px;margin:0 auto;padding:18px 14px 50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat{border-radius:12px;padding:14px 16px;color:#fff}
+.stat small{font-size:11px;opacity:.8;display:block;margin-bottom:3px}
+.stat strong{font-size:28px;font-weight:800;font-family:'Syne',sans-serif;display:block}
+.tabs{display:flex;gap:3px;background:#fff;border-radius:12px;padding:4px;border:1px solid #EFF6FF;margin-bottom:16px;width:fit-content;flex-wrap:wrap}
+.tb{padding:8px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:#6B7FA3;border:none;background:transparent;transition:.15s}
+.tb.on{background:#1B4FBF;color:#fff}
+.tc{display:none}.tc.on{display:block}
+.card{background:#fff;border-radius:14px;border:1px solid #EFF6FF;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-top{padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EFF6FF;gap:10px;flex-wrap:wrap}
+.card-top h3{font-size:14px;font-weight:700;font-family:'Syne',sans-serif}
+.srch{border:1px solid #DBEAFE;border-radius:8px;padding:6px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;width:250px}
+.srch:focus{border-color:#1B4FBF}
+.btn-add{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:8px;cursor:pointer}
+.btn-add:hover{background:#1539A0}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px}
+thead{background:#0D1B2A}
+thead th{padding:9px 13px;text-align:left;color:#fff;font-family:'Syne',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;white-space:nowrap}
+tbody tr{border-top:1px solid #EFF6FF;transition:.1s}
+tbody tr:hover{background:#F8FAFF}
+tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap}
+.empty{text-align:center;padding:36px;color:#9CA3AF;font-size:13px}
+.tag{display:inline-block;background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
+.pbar-w{display:flex;align-items:center;gap:7px}
+.pbar{width:65px;height:5px;background:#DBEAFE;border-radius:3px;overflow:hidden;flex-shrink:0}
+.pbar-f{height:100%;border-radius:3px}
+.be{background:#EFF6FF;color:#1B4FBF;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600}
+.be:hover{background:#DBEAFE}
+.bd{background:#FEF2F2;color:#DC2626;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;margin-left:3px}
+.bd:hover{background:#FEE2E2}
+.ssel{border:1px solid #E5E7EB;border-radius:6px;padding:4px 7px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer;outline:none}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:460px;position:relative;max-height:92vh;overflow-y:auto}
+.modal-h3{font-size:16px;font-weight:800;margin-bottom:16px;font-family:'Syne',sans-serif}
+.mf{margin-bottom:11px}
+.mf label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:4px}
+.mf input,.mf select{width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none}
+.mf input:focus,.mf select:focus{border-color:#1B4FBF}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mbtns{display:flex;gap:8px;margin-top:18px}
+.bsave{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer}
+.bsave:hover{background:#1539A0}
+.bcancel{padding:10px 16px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:9px;cursor:pointer}
+.bcancel:hover{background:#E5E7EB}
+.xbtn{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:#9CA3AF;line-height:1;padding:0}
+.xbtn:hover{color:#0D1B2A}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:18px;right:18px;background:#0D1B2A;color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">AA</div>
+    <p class="lc-h2">Espace Admin</p>
+    <p class="lc-p">APPL Academy</p>
+    <label class="lc-lbl">Mot de passe administrateur</label>
+    <input class="lc-inp" type="password" id="inpPwd" placeholder="••••••••">
+    <div class="lerr" id="lErr">Mot de passe incorrect.</div>
+    <button class="btn-login" id="btnLogin" onclick="doLogin()">Se connecter</button>
+    <a href="index.html" class="back-lnk">← Retour au formulaire</a>
+  </div>
+</div>
+
+<div id="dash" style="display:none">
+  <div class="dh">
+    <div class="dh-in">
+      <div class="dh-logo">AA</div>
+      <div><p class="dh-h1">APPL Academy — Admin</p><p class="dh-p">Tableau de bord administrateur</p></div>
+      <div class="dh-r">
+        <a href="index.html">Voir le formulaire</a>
+        <button class="btn-lo" onclick="doLogout()">Deconnexion</button>
+      </div>
+    </div>
+  </div>
+  <div class="db">
+    <div class="stats">
+      <div class="stat" style="background:#1B4FBF"><small>Total demandes</small><strong id="s1">0</strong></div>
+      <div class="stat" style="background:#0D1B2A"><small>En attente</small><strong id="s2">0</strong></div>
+      <div class="stat" style="background:#059669"><small>Approuvees</small><strong id="s3">0</strong></div>
+      <div class="stat" style="background:#3B82F6"><small>Themes actifs</small><strong id="s4">0</strong></div>
+    </div>
+    <div class="tabs">
+      <button class="tb on" onclick="showTab('demandes')">Demandes</button>
+      <button class="tb" onclick="showTab('themes')">Themes</button>
+      <button class="tb" onclick="showTab('demandeurs')">Demandeurs</button>
+      <button class="tb" onclick="showTab('responsables')">Responsables</button>
+    </div>
+    <div class="tc on" id="tc-demandes">
+      <div class="card"><div class="card-top"><h3>Toutes les demandes</h3>
+        <input class="srch" id="srchD" placeholder="Rechercher..." oninput="filterDem(this.value)">
+      </div><div class="tw"><div id="tDem">Chargement...</div></div></div>
+    </div>
+    <div class="tc" id="tc-themes">
+      <div class="card"><div class="card-top"><h3>Themes de formation</h3>
+        <button class="btn-add" onclick="openM('theme',null)">+ Ajouter</button>
+      </div><div class="tw"><div id="tTh">Chargement...</div></div></div>
+    </div>
+    <div class="tc" id="tc-demandeurs">
+      <div class="card"><div class="card-top"><h3>Demandeurs</h3>
+        <button class="btn-add" onclick="openM('dem',null)">+ Ajouter</button>
+      </div><div class="tw"><div id="tD">Chargement...</div></div></div>
+    </div>
+    <div class="tc" id="tc-responsables">
+      <div class="card"><div class="card-top"><h3>Responsables</h3>
+        <button class="btn-add" onclick="openM('resp',null)">+ Ajouter</button>
+      </div><div class="tw"><div id="tR">Chargement...</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeM()">
+  <div class="modal">
+    <button class="xbtn" onclick="closeM()">x</button>
+    <p class="modal-h3" id="mH3"></p>
+    <div id="mBody"></div>
+    <div class="mbtns">
+      <button class="bcancel" onclick="closeM()">Annuler</button>
+      <button class="bsave" id="mSave" onclick="doSave()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var API = 'VOTRE_URL_ICI';
+var pwd = '', mType = '', mIdx = null;
+var aD = [], aR = [], aT = [], aDem = [];
+
+document.getElementById('inpPwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+
+function doLogin() {
+  var p = document.getElementById('inpPwd').value;
+  if (!p) return;
+  var b = document.getElementById('btnLogin');
+  b.innerHTML = '<span class="spin"></span>'; b.disabled = true;
+  apiPost({action:'login', p:p}).then(function(r) {
+    if (r.ok) {
+      pwd = p;
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dash').style.display = 'block';
+      loadAll();
+    } else {
+      document.getElementById('lErr').className = 'lerr show';
+    }
+    b.innerHTML = 'Se connecter'; b.disabled = false;
+  }).catch(function() {
+    document.getElementById('lErr').textContent = 'Erreur de connexion.';
+    document.getElementById('lErr').className = 'lerr show';
+    b.innerHTML = 'Se connecter'; b.disabled = false;
+  });
+}
+
+function doLogout() {
+  pwd = '';
+  document.getElementById('dash').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('inpPwd').value = '';
+  document.getElementById('lErr').className = 'lerr';
+}
+
+function apiGet(action) {
+  return fetch(API + '?action=' + action + '&p=' + encodeURIComponent(pwd), {redirect:'follow'})
+    .then(function(r){ return r.json(); });
+}
+function apiPost(data) {
+  if (!data.p) data.p = pwd;
+  return fetch(API, {method:'POST', body:JSON.stringify(data), redirect:'follow'})
+    .then(function(r){ return r.json(); });
+}
+
+function loadAll() {
+  Promise.all([apiGet('demandeurs'), apiGet('responsables'), apiGet('themes'), apiGet('demandes')])
+    .then(function(r) {
+      aDem = r[0] || []; aR = r[1] || []; aT = r[2] || []; aD = r[3] || [];
+      var att = aD.filter(function(d){ return d.Statut === 'En attente'; }).length;
+      var app = aD.filter(function(d){ return d.Statut === 'Approuvee'; }).length;
+      document.getElementById('s1').textContent = aD.length;
+      document.getElementById('s2').textContent = att;
+      document.getElementById('s3').textContent = app;
+      document.getElementById('s4').textContent = aT.length;
+      renderDem(aD); renderTh(); renderD(); renderR();
+    }).catch(function(){ showToast('Erreur de chargement'); });
+}
+
+function showTab(name) {
+  var names = ['demandes','themes','demandeurs','responsables'];
+  document.querySelectorAll('.tb').forEach(function(t, i){ t.className = 'tb' + (names[i]===name?' on':''); });
+  document.querySelectorAll('.tc').forEach(function(c){ c.className = 'tc' + (c.id==='tc-'+name?' on':''); });
+}
+
+function xt(s){ return s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
+function sv(id){ var e=document.getElementById(id); return e ? e.value.trim() : ''; }
+
+// ===== DEMANDES =====
+function filterDem(q) {
+  var f = aD.filter(function(d){
+    return (xt(d.Pilote_Nom)+xt(d.Pilote_Prenom)+xt(d.Pilote_Matricule)+xt(d.Dem_Nom)+xt(d.Theme))
+      .toLowerCase().includes(q.toLowerCase());
+  });
+  renderDem(f);
+}
+
+function renderDem(list) {
+  var el = document.getElementById('tDem');
+  if (!list.length) { el.innerHTML='<div class="empty">Aucune demande.</div>'; return; }
+  var h = '<table><thead><tr>'
+    + '<th>Pilote — Nom Prenom</th><th>Matricule</th><th>Poste Pilote</th>'
+    + '<th>Demandeur</th><th>Matricule Dem.</th><th>Poste Dem.</th>'
+    + '<th>Responsable</th><th>Poste Resp.</th>'
+    + '<th>Theme</th><th>Date proposee</th><th>Soumis le</th><th>Statut</th><th></th>'
+    + '</tr></thead><tbody>';
+  list.forEach(function(d) {
+    var st = d.Statut || 'En attente';
+    var row = d._row;
+    h += '<tr>'
+      + '<td><strong>' + xt(d.Pilote_Nom) + ' ' + xt(d.Pilote_Prenom) + '</strong></td>'
+      + '<td style="color:#1B4FBF;font-weight:700">' + xt(d.Pilote_Matricule) + '</td>'
+      + '<td>' + xt(d.Pilote_Poste) + '</td>'
+      + '<td><strong>' + xt(d.Dem_Nom) + ' ' + xt(d.Dem_Prenom) + '</strong></td>'
+      + '<td style="color:#1B4FBF">' + xt(d.Dem_Matricule) + '</td>'
+      + '<td style="color:#6B7FA3">' + xt(d.Dem_Poste) + '</td>'
+      + '<td>' + xt(d.Resp_Nom) + ' ' + xt(d.Resp_Prenom) + '</td>'
+      + '<td style="color:#6B7FA3">' + xt(d.Resp_Poste) + '</td>'
+      + '<td style="font-weight:700">' + xt(d.Theme) + '</td>'
+      + '<td>' + xt(d.Date_Proposee) + '</td>'
+      + '<td style="color:#6B7FA3;font-size:12px">' + xt(d.Soumis_le) + '</td>'
+      + '<td><select class="ssel" onchange="chSt(this,' + row + ')">'
+      + '<option' + (st==='En attente'?' selected':'') + '>En attente</option>'
+      + '<option' + (st==='Approuvee'?' selected':'') + '>Approuvee</option>'
+      + '<option' + (st==='Refusee'?' selected':'') + '>Refusee</option>'
+      + '</select></td>'
+      + '<td><button class="bd" onclick="delDemande(' + row + ')">Suppr</button></td>'
+      + '</tr>';
+  });
+  h += '</tbody></table>';
+  el.innerHTML = h;
+}
+
+function chSt(sel, row) {
+  apiPost({action:'statut', row:row, val:sel.value}).then(function(r){
+    if (r.ok) { showToast('Statut mis a jour'); loadAll(); }
+    else showToast('Erreur: ' + (r.err||''));
+  });
+}
+function delDemande(row) {
+  if (!confirm('Supprimer cette demande ?')) return;
+  apiPost({action:'delDem', row:row}).then(function(){ loadAll(); showToast('Supprime'); });
+}
+
+// ===== THEMES =====
+function renderTh() {
+  var el = document.getElementById('tTh');
+  if (!aT.length) { el.innerHTML='<div class="empty">Aucun theme. Ajoutez-en un.</div>'; return; }
+  var h = '<table><thead><tr><th>Titre</th><th>Max</th><th>Occupees</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
+  aT.forEach(function(t, i) {
+    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100, 100) : 0;
+    var col = t.Complet ? '#EF4444' : '#1B4FBF';
+    h += '<tr>'
+      + '<td><strong>' + xt(t.Titre) + '</strong></td>'
+      + '<td>' + xt(t.MaxPlaces) + '</td>'
+      + '<td>' + (t.Occupees||0) + '</td>'
+      + '<td style="color:' + (t.Complet?'#DC2626':'#16A34A') + ';font-weight:700">' + (t.Restantes||0) + '</td>'
+      + '<td><div class="pbar-w"><div class="pbar"><div class="pbar-f" style="width:'+pct.toFixed(0)+'%;background:'+col+'"></div></div>'
+      + '<span style="font-size:11px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
+      + '<td><button class="be" onclick="openM(\'theme\',' + i + ')">Modifier</button>'
+      + '<button class="bd" onclick="delT(' + t._row + ')">Suppr</button></td></tr>';
+  });
+  h += '</tbody></table>'; el.innerHTML = h;
+}
+function delT(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delT',row:row}).then(function(){loadAll();showToast('Theme supprime');}); }
+
+// ===== DEMANDEURS =====
+function renderD() {
+  var el = document.getElementById('tD');
+  if (!aDem.length) { el.innerHTML='<div class="empty">Aucun demandeur.</div>'; return; }
+  var h = '<table><thead><tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Matricule</th><th>Poste</th><th>Responsable</th><th>Actions</th></tr></thead><tbody>';
+  aDem.forEach(function(d, i) {
+    h += '<tr>'
+      + '<td style="color:#6B7FA3;font-weight:700">' + xt(d.ID) + '</td>'
+      + '<td><strong>' + xt(d.Nom) + '</strong></td>'
+      + '<td>' + xt(d.Prenom) + '</td>'
+      + '<td style="color:#1B4FBF;font-weight:700">' + xt(d.Matricule) + '</td>'
+      + '<td>' + xt(d.Poste) + '</td>'
+      + '<td>' + xt(d.Responsable) + '</td>'
+      + '<td><button class="be" onclick="openM(\'dem\',' + i + ')">Modifier</button>'
+      + '<button class="bd" onclick="delD(' + d._row + ')">Suppr</button></td></tr>';
+  });
+  h += '</tbody></table>'; el.innerHTML = h;
+}
+function delD(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delD',row:row}).then(function(){loadAll();showToast('Demandeur supprime');}); }
+
+// ===== RESPONSABLES =====
+function renderR() {
+  var el = document.getElementById('tR');
+  if (!aR.length) { el.innerHTML='<div class="empty">Aucun responsable.</div>'; return; }
+  var h = '<table><thead><tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Poste</th><th>Actions</th></tr></thead><tbody>';
+  aR.forEach(function(r, i) {
+    h += '<tr>'
+      + '<td style="color:#6B7FA3;font-weight:700">' + xt(r.ID) + '</td>'
+      + '<td><strong>' + xt(r.Nom) + '</strong></td>'
+      + '<td>' + xt(r.Prenom) + '</td>'
+      + '<td>' + xt(r.Poste) + '</td>'
+      + '<td><button class="be" onclick="openM(\'resp\',' + i + ')">Modifier</button>'
+      + '<button class="bd" onclick="delR(' + r._row + ')">Suppr</button></td></tr>';
+  });
+  h += '</tbody></table>'; el.innerHTML = h;
+}
+function delR(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delR',row:row}).then(function(){loadAll();showToast('Responsable supprime');}); }
+
+// ===== MODAL =====
+function openM(type, idx) {
+  mType = type; mIdx = idx;
+  var isEdit = idx !== null;
+  var labels = {theme:'Theme de formation', dem:'Demandeur', resp:'Responsable'};
+  document.getElementById('mH3').textContent = (isEdit ? 'Modifier — ' : 'Ajouter — ') + labels[type];
+  var body = '';
+
+  if (type === 'theme') {
+    var t = isEdit ? aT[idx] : null;
+    body = '<div class="mf"><label>Titre du theme</label>'
+      + '<input id="f1" value="' + (t ? xt(t.Titre) : '') + '" placeholder="Ex: Securite incendie"></div>'
+      + '<div class="mf"><label>Nombre maximum de places</label>'
+      + '<input id="f2" type="number" min="1" value="' + (t ? t.MaxPlaces : 10) + '"></div>';
+
+  } else if (type === 'dem') {
+    var d = isEdit ? aDem[idx] : null;
+    var opts = '<option value="">-- Choisir --</option>';
+    aR.forEach(function(r) {
+      var rv = r.Nom + ' ' + r.Prenom;
+      opts += '<option' + (d && d.Responsable === rv ? ' selected' : '') + '>' + xt(rv) + '</option>';
+    });
+    body = '<div class="g2">'
+      + '<div class="mf"><label>Nom</label><input id="f1" value="' + (d ? xt(d.Nom) : '') + '" placeholder="BENALI"></div>'
+      + '<div class="mf"><label>Prenom</label><input id="f2" value="' + (d ? xt(d.Prenom) : '') + '" placeholder="Mohammed"></div>'
+      + '</div>'
+      + '<div class="g2">'
+      + '<div class="mf"><label>Matricule</label><input id="f3" value="' + (d ? xt(d.Matricule) : '') + '" placeholder="500702"></div>'
+      + '<div class="mf"><label>Poste</label><input id="f4" value="' + (d ? xt(d.Poste) : '') + '" placeholder="Chef de departement"></div>'
+      + '</div>'
+      + '<div class="mf"><label>Responsable</label><select id="f5">' + opts + '</select></div>';
+
+  } else if (type === 'resp') {
+    var r = isEdit ? aR[idx] : null;
+    body = '<div class="g2">'
+      + '<div class="mf"><label>Nom</label><input id="f1" value="' + (r ? xt(r.Nom) : '') + '" placeholder="ALAOUI"></div>'
+      + '<div class="mf"><label>Prenom</label><input id="f2" value="' + (r ? xt(r.Prenom) : '') + '" placeholder="Fatima"></div>'
+      + '</div>'
+      + '<div class="mf"><label>Poste</label><input id="f3" value="' + (r ? xt(r.Poste) : '') + '" placeholder="Directeur Regional"></div>';
+  }
+
+  document.getElementById('mBody').innerHTML = body;
+  document.getElementById('overlay').className = 'overlay open';
+}
+
+function doSave() {
+  var data = {p: pwd};
+  if (mType === 'theme') {
+    data.titre = sv('f1'); data.max = sv('f2');
+    data.action = mIdx !== null ? 'editT' : 'addT';
+    if (mIdx !== null) data.row = aT[mIdx]._row;
+
+  } else if (mType === 'dem') {
+    data.nom = sv('f1'); data.prenom = sv('f2');
+    data.mat = sv('f3'); data.poste = sv('f4'); data.resp = sv('f5');
+    data.action = mIdx !== null ? 'editD' : 'addD';
+    if (mIdx !== null) data.row = aDem[mIdx]._row;
+
+  } else if (mType === 'resp') {
+    data.nom = sv('f1'); data.prenom = sv('f2'); data.poste = sv('f3');
+    data.action = mIdx !== null ? 'editR' : 'addR';
+    if (mIdx !== null) data.row = aR[mIdx]._row;
+  }
+
+  var btn = document.getElementById('mSave');
+  btn.innerHTML = '<span class="spin"></span>'; btn.disabled = true;
+  apiPost(data).then(function(r) {
+    btn.innerHTML = 'Enregistrer'; btn.disabled = false;
+    if (r.ok) { closeM(); loadAll(); showToast('Enregistre !'); }
+    else alert('Erreur: ' + (r.err || 'Inconnu'));
+  }).catch(function() {
+    btn.innerHTML = 'Enregistrer'; btn.disabled = false;
+    alert('Erreur de connexion.');
+  });
+}
+
+function closeM() { document.getElementById('overlay').className = 'overlay'; }
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast show';
+  setTimeout(function(){ t.className = 'toast'; }, 2500);
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -181,7 +622,7 @@ tbody td{padding:10px 14px;color:#0D1B2A;vertical-align:middle;white-space:nowra
 <div class="toast" id="toast"></div>
 
 <script>
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwR-FcGEzqGmPnLC2pzxsxMjmpC7iM4h4FpC9EsfJtx0b1As-VyHM2EEMKwPcYp7LgW7Q/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnwJijCi172MPQeDgvBfzxPx3MgozEopvqNW5eULUtfmdZG04Y6Wn9mgy_vphbbW2xGQ/exec';
 
 var pwd='', mType='', mIdx=null;
 var DD=[], DR=[], DT=[], DDem=[];
