@@ -1,445 +1,4 @@
 <!DOCTYPE html>
-<html lang="fr" translate="no">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google" content="notranslate">
-<title>APPL Academy — Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
-.login-wrap{min-height:100vh;background:#0D1B2A;display:flex;align-items:center;justify-content:center;padding:20px}
-.login-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:36px 30px;width:100%;max-width:360px}
-.login-logo{width:56px;height:56px;background:#F5A623;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:16px;margin:0 auto 16px}
-.lc-h2{color:#fff;font-size:20px;font-weight:800;text-align:center;margin-bottom:3px;font-family:'Syne',sans-serif}
-.lc-p{color:#93C5FD;font-size:13px;text-align:center;margin-bottom:24px}
-.lc-lbl{color:#BFDBFE;font-size:12px;font-weight:600;display:block;margin-bottom:5px}
-.lc-inp{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 13px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:8px}
-.lc-inp::placeholder{color:#93C5FD}
-.lc-inp:focus{border-color:#F5A623}
-.lerr{color:#FCA5A5;font-size:12px;margin-bottom:8px;display:none}
-.lerr.show{display:block}
-.btn-login{width:100%;background:#F5A623;color:#0D1B2A;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:12px;border:none;border-radius:10px;cursor:pointer;margin-top:4px}
-.btn-login:hover{background:#EAB308}
-.back-lnk{display:block;text-align:center;margin-top:14px;color:#93C5FD;text-decoration:none;font-size:13px}
-.back-lnk:hover{color:#fff}
-.dh{background:#0D1B2A;padding:12px 20px}
-.dh-in{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.dh-logo{width:34px;height:34px;background:#F5A623;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:10px;flex-shrink:0}
-.dh-h1{color:#fff;font-size:15px;font-weight:700;font-family:'Syne',sans-serif}
-.dh-p{color:#93C5FD;font-size:11px}
-.dh-r{margin-left:auto;display:flex;align-items:center;gap:12px}
-.dh-r a{color:#93C5FD;text-decoration:none;font-size:12px}
-.dh-r a:hover{color:#fff}
-.btn-lo{background:rgba(239,68,68,.15);color:#FCA5A5;border:none;padding:5px 12px;border-radius:7px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-lo:hover{background:rgba(239,68,68,.3);color:#fff}
-.db{max-width:1300px;margin:0 auto;padding:18px 14px 50px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-.stat{border-radius:12px;padding:14px 16px;color:#fff}
-.stat small{font-size:11px;opacity:.8;display:block;margin-bottom:3px}
-.stat strong{font-size:28px;font-weight:800;font-family:'Syne',sans-serif;display:block}
-.tabs{display:flex;gap:3px;background:#fff;border-radius:12px;padding:4px;border:1px solid #EFF6FF;margin-bottom:16px;width:fit-content;flex-wrap:wrap}
-.tb{padding:8px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:#6B7FA3;border:none;background:transparent;transition:.15s}
-.tb.on{background:#1B4FBF;color:#fff}
-.tc{display:none}.tc.on{display:block}
-.card{background:#fff;border-radius:14px;border:1px solid #EFF6FF;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.card-top{padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EFF6FF;gap:10px;flex-wrap:wrap}
-.card-top h3{font-size:14px;font-weight:700;font-family:'Syne',sans-serif}
-.srch{border:1px solid #DBEAFE;border-radius:8px;padding:6px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;width:250px}
-.srch:focus{border-color:#1B4FBF}
-.btn-add{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:8px;cursor:pointer}
-.btn-add:hover{background:#1539A0}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px}
-thead{background:#0D1B2A}
-thead th{padding:9px 13px;text-align:left;color:#fff;font-family:'Syne',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;white-space:nowrap}
-tbody tr{border-top:1px solid #EFF6FF;transition:.1s}
-tbody tr:hover{background:#F8FAFF}
-tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap}
-.empty{text-align:center;padding:36px;color:#9CA3AF;font-size:13px}
-.tag{display:inline-block;background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
-.pbar-w{display:flex;align-items:center;gap:7px}
-.pbar{width:65px;height:5px;background:#DBEAFE;border-radius:3px;overflow:hidden;flex-shrink:0}
-.pbar-f{height:100%;border-radius:3px}
-.be{background:#EFF6FF;color:#1B4FBF;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600}
-.be:hover{background:#DBEAFE}
-.bd{background:#FEF2F2;color:#DC2626;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;margin-left:3px}
-.bd:hover{background:#FEE2E2}
-.ssel{border:1px solid #E5E7EB;border-radius:6px;padding:4px 7px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer;outline:none}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
-.overlay.open{display:flex}
-.modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:460px;position:relative;max-height:92vh;overflow-y:auto}
-.modal-h3{font-size:16px;font-weight:800;margin-bottom:16px;font-family:'Syne',sans-serif}
-.mf{margin-bottom:11px}
-.mf label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:4px}
-.mf input,.mf select{width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none}
-.mf input:focus,.mf select:focus{border-color:#1B4FBF}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.mbtns{display:flex;gap:8px;margin-top:18px}
-.bsave{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer}
-.bsave:hover{background:#1539A0}
-.bcancel{padding:10px 16px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:9px;cursor:pointer}
-.bcancel:hover{background:#E5E7EB}
-.xbtn{position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:#9CA3AF;line-height:1;padding:0}
-.xbtn:hover{color:#0D1B2A}
-.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;bottom:18px;right:18px;background:#0D1B2A;color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
-.toast.show{transform:translateY(0);opacity:1}
-@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
-@media(max-width:440px){.g2{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-
-<div id="loginScreen" class="login-wrap">
-  <div class="login-card">
-    <div class="login-logo">AA</div>
-    <p class="lc-h2">Espace Admin</p>
-    <p class="lc-p">APPL Academy</p>
-    <label class="lc-lbl">Mot de passe administrateur</label>
-    <input class="lc-inp" type="password" id="inpPwd" placeholder="••••••••">
-    <div class="lerr" id="lErr">Mot de passe incorrect.</div>
-    <button class="btn-login" id="btnLogin" onclick="doLogin()">Se connecter</button>
-    <a href="index.html" class="back-lnk">← Retour au formulaire</a>
-  </div>
-</div>
-
-<div id="dash" style="display:none">
-  <div class="dh">
-    <div class="dh-in">
-      <div class="dh-logo">AA</div>
-      <div><p class="dh-h1">APPL Academy — Admin</p><p class="dh-p">Tableau de bord administrateur</p></div>
-      <div class="dh-r">
-        <a href="index.html">Voir le formulaire</a>
-        <button class="btn-lo" onclick="doLogout()">Deconnexion</button>
-      </div>
-    </div>
-  </div>
-  <div class="db">
-    <div class="stats">
-      <div class="stat" style="background:#1B4FBF"><small>Total demandes</small><strong id="s1">0</strong></div>
-      <div class="stat" style="background:#0D1B2A"><small>En attente</small><strong id="s2">0</strong></div>
-      <div class="stat" style="background:#059669"><small>Approuvees</small><strong id="s3">0</strong></div>
-      <div class="stat" style="background:#3B82F6"><small>Themes actifs</small><strong id="s4">0</strong></div>
-    </div>
-    <div class="tabs">
-      <button class="tb on" onclick="showTab('demandes')">Demandes</button>
-      <button class="tb" onclick="showTab('themes')">Themes</button>
-      <button class="tb" onclick="showTab('demandeurs')">Demandeurs</button>
-      <button class="tb" onclick="showTab('responsables')">Responsables</button>
-    </div>
-    <div class="tc on" id="tc-demandes">
-      <div class="card"><div class="card-top"><h3>Toutes les demandes</h3>
-        <input class="srch" id="srchD" placeholder="Rechercher..." oninput="filterDem(this.value)">
-      </div><div class="tw"><div id="tDem">Chargement...</div></div></div>
-    </div>
-    <div class="tc" id="tc-themes">
-      <div class="card"><div class="card-top"><h3>Themes de formation</h3>
-        <button class="btn-add" onclick="openM('theme',null)">+ Ajouter</button>
-      </div><div class="tw"><div id="tTh">Chargement...</div></div></div>
-    </div>
-    <div class="tc" id="tc-demandeurs">
-      <div class="card"><div class="card-top"><h3>Demandeurs</h3>
-        <button class="btn-add" onclick="openM('dem',null)">+ Ajouter</button>
-      </div><div class="tw"><div id="tD">Chargement...</div></div></div>
-    </div>
-    <div class="tc" id="tc-responsables">
-      <div class="card"><div class="card-top"><h3>Responsables</h3>
-        <button class="btn-add" onclick="openM('resp',null)">+ Ajouter</button>
-      </div><div class="tw"><div id="tR">Chargement...</div></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="overlay" id="overlay" onclick="if(event.target===this)closeM()">
-  <div class="modal">
-    <button class="xbtn" onclick="closeM()">x</button>
-    <p class="modal-h3" id="mH3"></p>
-    <div id="mBody"></div>
-    <div class="mbtns">
-      <button class="bcancel" onclick="closeM()">Annuler</button>
-      <button class="bsave" id="mSave" onclick="doSave()">Enregistrer</button>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-var API = 'https://script.google.com/macros/s/AKfycbxQNDafeL97GBdXyfT79lslsBt_P6uTkNL-8Xfc7LlkbxcGxehMFV1NbtSTQBlVAXbM7g/exec';
-var pwd = '', mType = '', mIdx = null;
-var aD = [], aR = [], aT = [], aDem = [];
-
-document.getElementById('inpPwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
-
-function doLogin() {
-  var p = document.getElementById('inpPwd').value;
-  if (!p) return;
-  var b = document.getElementById('btnLogin');
-  b.innerHTML = '<span class="spin"></span>'; b.disabled = true;
-  apiPost({action:'login', p:p}).then(function(r) {
-    if (r.ok) {
-      pwd = p;
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('dash').style.display = 'block';
-      loadAll();
-    } else {
-      document.getElementById('lErr').className = 'lerr show';
-    }
-    b.innerHTML = 'Se connecter'; b.disabled = false;
-  }).catch(function() {
-    document.getElementById('lErr').textContent = 'Erreur de connexion.';
-    document.getElementById('lErr').className = 'lerr show';
-    b.innerHTML = 'Se connecter'; b.disabled = false;
-  });
-}
-
-function doLogout() {
-  pwd = '';
-  document.getElementById('dash').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('inpPwd').value = '';
-  document.getElementById('lErr').className = 'lerr';
-}
-
-function apiGet(action) {
-  return fetch(API + '?action=' + action + '&p=' + encodeURIComponent(pwd), {redirect:'follow'})
-    .then(function(r){ return r.json(); });
-}
-function apiPost(data) {
-  if (!data.p) data.p = pwd;
-  return fetch(API, {method:'POST', body:JSON.stringify(data), redirect:'follow'})
-    .then(function(r){ return r.json(); });
-}
-
-function loadAll() {
-  Promise.all([apiGet('demandeurs'), apiGet('responsables'), apiGet('themes'), apiGet('demandes')])
-    .then(function(r) {
-      aDem = r[0] || []; aR = r[1] || []; aT = r[2] || []; aD = r[3] || [];
-      var att = aD.filter(function(d){ return d.Statut === 'En attente'; }).length;
-      var app = aD.filter(function(d){ return d.Statut === 'Approuvee'; }).length;
-      document.getElementById('s1').textContent = aD.length;
-      document.getElementById('s2').textContent = att;
-      document.getElementById('s3').textContent = app;
-      document.getElementById('s4').textContent = aT.length;
-      renderDem(aD); renderTh(); renderD(); renderR();
-    }).catch(function(){ showToast('Erreur de chargement'); });
-}
-
-function showTab(name) {
-  var names = ['demandes','themes','demandeurs','responsables'];
-  document.querySelectorAll('.tb').forEach(function(t, i){ t.className = 'tb' + (names[i]===name?' on':''); });
-  document.querySelectorAll('.tc').forEach(function(c){ c.className = 'tc' + (c.id==='tc-'+name?' on':''); });
-}
-
-function xt(s){ return s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : ''; }
-function sv(id){ var e=document.getElementById(id); return e ? e.value.trim() : ''; }
-
-// ===== DEMANDES =====
-function filterDem(q) {
-  var f = aD.filter(function(d){
-    return (xt(d.Pilote_Nom)+xt(d.Pilote_Prenom)+xt(d.Pilote_Matricule)+xt(d.Dem_Nom)+xt(d.Theme))
-      .toLowerCase().includes(q.toLowerCase());
-  });
-  renderDem(f);
-}
-
-function renderDem(list) {
-  var el = document.getElementById('tDem');
-  if (!list.length) { el.innerHTML='<div class="empty">Aucune demande.</div>'; return; }
-  var h = '<table><thead><tr>'
-    + '<th>Pilote — Nom Prenom</th><th>Matricule</th><th>Poste Pilote</th>'
-    + '<th>Demandeur</th><th>Matricule Dem.</th><th>Poste Dem.</th>'
-    + '<th>Responsable</th><th>Poste Resp.</th>'
-    + '<th>Theme</th><th>Date proposee</th><th>Soumis le</th><th>Statut</th><th></th>'
-    + '</tr></thead><tbody>';
-  list.forEach(function(d) {
-    var st = d.Statut || 'En attente';
-    var row = d._row;
-    h += '<tr>'
-      + '<td><strong>' + xt(d.Pilote_Nom) + ' ' + xt(d.Pilote_Prenom) + '</strong></td>'
-      + '<td style="color:#1B4FBF;font-weight:700">' + xt(d.Pilote_Matricule) + '</td>'
-      + '<td>' + xt(d.Pilote_Poste) + '</td>'
-      + '<td><strong>' + xt(d.Dem_Nom) + ' ' + xt(d.Dem_Prenom) + '</strong></td>'
-      + '<td style="color:#1B4FBF">' + xt(d.Dem_Matricule) + '</td>'
-      + '<td style="color:#6B7FA3">' + xt(d.Dem_Poste) + '</td>'
-      + '<td>' + xt(d.Resp_Nom) + ' ' + xt(d.Resp_Prenom) + '</td>'
-      + '<td style="color:#6B7FA3">' + xt(d.Resp_Poste) + '</td>'
-      + '<td style="font-weight:700">' + xt(d.Theme) + '</td>'
-      + '<td>' + xt(d.Date_Proposee) + '</td>'
-      + '<td style="color:#6B7FA3;font-size:12px">' + xt(d.Soumis_le) + '</td>'
-      + '<td><select class="ssel" onchange="chSt(this,' + row + ')">'
-      + '<option' + (st==='En attente'?' selected':'') + '>En attente</option>'
-      + '<option' + (st==='Approuvee'?' selected':'') + '>Approuvee</option>'
-      + '<option' + (st==='Refusee'?' selected':'') + '>Refusee</option>'
-      + '</select></td>'
-      + '<td><button class="bd" onclick="delDemande(' + row + ')">Suppr</button></td>'
-      + '</tr>';
-  });
-  h += '</tbody></table>';
-  el.innerHTML = h;
-}
-
-function chSt(sel, row) {
-  apiPost({action:'statut', row:row, val:sel.value}).then(function(r){
-    if (r.ok) { showToast('Statut mis a jour'); loadAll(); }
-    else showToast('Erreur: ' + (r.err||''));
-  });
-}
-function delDemande(row) {
-  if (!confirm('Supprimer cette demande ?')) return;
-  apiPost({action:'delDem', row:row}).then(function(){ loadAll(); showToast('Supprime'); });
-}
-
-// ===== THEMES =====
-function renderTh() {
-  var el = document.getElementById('tTh');
-  if (!aT.length) { el.innerHTML='<div class="empty">Aucun theme. Ajoutez-en un.</div>'; return; }
-  var h = '<table><thead><tr><th>Titre</th><th>Max</th><th>Occupees</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
-  aT.forEach(function(t, i) {
-    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100, 100) : 0;
-    var col = t.Complet ? '#EF4444' : '#1B4FBF';
-    h += '<tr>'
-      + '<td><strong>' + xt(t.Titre) + '</strong></td>'
-      + '<td>' + xt(t.MaxPlaces) + '</td>'
-      + '<td>' + (t.Occupees||0) + '</td>'
-      + '<td style="color:' + (t.Complet?'#DC2626':'#16A34A') + ';font-weight:700">' + (t.Restantes||0) + '</td>'
-      + '<td><div class="pbar-w"><div class="pbar"><div class="pbar-f" style="width:'+pct.toFixed(0)+'%;background:'+col+'"></div></div>'
-      + '<span style="font-size:11px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
-      + '<td><button class="be" onclick="openM(\'theme\',' + i + ')">Modifier</button>'
-      + '<button class="bd" onclick="delT(' + t._row + ')">Suppr</button></td></tr>';
-  });
-  h += '</tbody></table>'; el.innerHTML = h;
-}
-function delT(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delT',row:row}).then(function(){loadAll();showToast('Theme supprime');}); }
-
-// ===== DEMANDEURS =====
-function renderD() {
-  var el = document.getElementById('tD');
-  if (!aDem.length) { el.innerHTML='<div class="empty">Aucun demandeur.</div>'; return; }
-  var h = '<table><thead><tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Matricule</th><th>Poste</th><th>Responsable</th><th>Actions</th></tr></thead><tbody>';
-  aDem.forEach(function(d, i) {
-    h += '<tr>'
-      + '<td style="color:#6B7FA3;font-weight:700">' + xt(d.ID) + '</td>'
-      + '<td><strong>' + xt(d.Nom) + '</strong></td>'
-      + '<td>' + xt(d.Prenom) + '</td>'
-      + '<td style="color:#1B4FBF;font-weight:700">' + xt(d.Matricule) + '</td>'
-      + '<td>' + xt(d.Poste) + '</td>'
-      + '<td>' + xt(d.Responsable) + '</td>'
-      + '<td><button class="be" onclick="openM(\'dem\',' + i + ')">Modifier</button>'
-      + '<button class="bd" onclick="delD(' + d._row + ')">Suppr</button></td></tr>';
-  });
-  h += '</tbody></table>'; el.innerHTML = h;
-}
-function delD(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delD',row:row}).then(function(){loadAll();showToast('Demandeur supprime');}); }
-
-// ===== RESPONSABLES =====
-function renderR() {
-  var el = document.getElementById('tR');
-  if (!aR.length) { el.innerHTML='<div class="empty">Aucun responsable.</div>'; return; }
-  var h = '<table><thead><tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Poste</th><th>Actions</th></tr></thead><tbody>';
-  aR.forEach(function(r, i) {
-    h += '<tr>'
-      + '<td style="color:#6B7FA3;font-weight:700">' + xt(r.ID) + '</td>'
-      + '<td><strong>' + xt(r.Nom) + '</strong></td>'
-      + '<td>' + xt(r.Prenom) + '</td>'
-      + '<td>' + xt(r.Poste) + '</td>'
-      + '<td><button class="be" onclick="openM(\'resp\',' + i + ')">Modifier</button>'
-      + '<button class="bd" onclick="delR(' + r._row + ')">Suppr</button></td></tr>';
-  });
-  h += '</tbody></table>'; el.innerHTML = h;
-}
-function delR(row) { if(!confirm('Supprimer ?'))return; apiPost({action:'delR',row:row}).then(function(){loadAll();showToast('Responsable supprime');}); }
-
-// ===== MODAL =====
-function openM(type, idx) {
-  mType = type; mIdx = idx;
-  var isEdit = idx !== null;
-  var labels = {theme:'Theme de formation', dem:'Demandeur', resp:'Responsable'};
-  document.getElementById('mH3').textContent = (isEdit ? 'Modifier — ' : 'Ajouter — ') + labels[type];
-  var body = '';
-
-  if (type === 'theme') {
-    var t = isEdit ? aT[idx] : null;
-    body = '<div class="mf"><label>Titre du theme</label>'
-      + '<input id="f1" value="' + (t ? xt(t.Titre) : '') + '" placeholder="Ex: Securite incendie"></div>'
-      + '<div class="mf"><label>Nombre maximum de places</label>'
-      + '<input id="f2" type="number" min="1" value="' + (t ? t.MaxPlaces : 10) + '"></div>';
-
-  } else if (type === 'dem') {
-    var d = isEdit ? aDem[idx] : null;
-    var opts = '<option value="">-- Choisir --</option>';
-    aR.forEach(function(r) {
-      var rv = r.Nom + ' ' + r.Prenom;
-      opts += '<option' + (d && d.Responsable === rv ? ' selected' : '') + '>' + xt(rv) + '</option>';
-    });
-    body = '<div class="g2">'
-      + '<div class="mf"><label>Nom</label><input id="f1" value="' + (d ? xt(d.Nom) : '') + '" placeholder="BENALI"></div>'
-      + '<div class="mf"><label>Prenom</label><input id="f2" value="' + (d ? xt(d.Prenom) : '') + '" placeholder="Mohammed"></div>'
-      + '</div>'
-      + '<div class="g2">'
-      + '<div class="mf"><label>Matricule</label><input id="f3" value="' + (d ? xt(d.Matricule) : '') + '" placeholder="500702"></div>'
-      + '<div class="mf"><label>Poste</label><input id="f4" value="' + (d ? xt(d.Poste) : '') + '" placeholder="Chef de departement"></div>'
-      + '</div>'
-      + '<div class="mf"><label>Responsable</label><select id="f5">' + opts + '</select></div>';
-
-  } else if (type === 'resp') {
-    var r = isEdit ? aR[idx] : null;
-    body = '<div class="g2">'
-      + '<div class="mf"><label>Nom</label><input id="f1" value="' + (r ? xt(r.Nom) : '') + '" placeholder="ALAOUI"></div>'
-      + '<div class="mf"><label>Prenom</label><input id="f2" value="' + (r ? xt(r.Prenom) : '') + '" placeholder="Fatima"></div>'
-      + '</div>'
-      + '<div class="mf"><label>Poste</label><input id="f3" value="' + (r ? xt(r.Poste) : '') + '" placeholder="Directeur Regional"></div>';
-  }
-
-  document.getElementById('mBody').innerHTML = body;
-  document.getElementById('overlay').className = 'overlay open';
-}
-
-function doSave() {
-  var data = {p: pwd};
-  if (mType === 'theme') {
-    data.titre = sv('f1'); data.max = sv('f2');
-    data.action = mIdx !== null ? 'editT' : 'addT';
-    if (mIdx !== null) data.row = aT[mIdx]._row;
-
-  } else if (mType === 'dem') {
-    data.nom = sv('f1'); data.prenom = sv('f2');
-    data.mat = sv('f3'); data.poste = sv('f4'); data.resp = sv('f5');
-    data.action = mIdx !== null ? 'editD' : 'addD';
-    if (mIdx !== null) data.row = aDem[mIdx]._row;
-
-  } else if (mType === 'resp') {
-    data.nom = sv('f1'); data.prenom = sv('f2'); data.poste = sv('f3');
-    data.action = mIdx !== null ? 'editR' : 'addR';
-    if (mIdx !== null) data.row = aR[mIdx]._row;
-  }
-
-  var btn = document.getElementById('mSave');
-  btn.innerHTML = '<span class="spin"></span>'; btn.disabled = true;
-  apiPost(data).then(function(r) {
-    btn.innerHTML = 'Enregistrer'; btn.disabled = false;
-    if (r.ok) { closeM(); loadAll(); showToast('Enregistre !'); }
-    else alert('Erreur: ' + (r.err || 'Inconnu'));
-  }).catch(function() {
-    btn.innerHTML = 'Enregistrer'; btn.disabled = false;
-    alert('Erreur de connexion.');
-  });
-}
-
-function closeM() { document.getElementById('overlay').className = 'overlay'; }
-
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast show';
-  setTimeout(function(){ t.className = 'toast'; }, 2500);
-}
-</script>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -450,171 +9,225 @@ function showToast(msg) {
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
 h1,h2,h3,h4{font-family:'Syne',sans-serif}
+
+/* Login */
 .login-wrap{min-height:100vh;background:#0D1B2A;display:flex;align-items:center;justify-content:center;padding:20px}
 .login-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:38px 32px;width:100%;max-width:360px}
 .login-logo{width:58px;height:58px;background:#F5A623;border-radius:15px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:17px;margin:0 auto 18px}
 .login-card h2{color:#fff;font-size:21px;font-weight:800;text-align:center;margin-bottom:4px}
-.login-card>p{color:#93C5FD;font-size:13px;text-align:center;margin-bottom:26px}
+.login-card > p{color:#93C5FD;font-size:13px;text-align:center;margin-bottom:26px}
 .login-card label{color:#BFDBFE;font-size:12px;font-weight:600;display:block;margin-bottom:6px}
 .login-card input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:11px;padding:12px 14px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:8px}
 .login-card input::placeholder{color:#93C5FD}
 .login-card input:focus{border-color:#F5A623}
 .login-err{color:#FCA5A5;font-size:12px;margin-bottom:10px;display:none}
 .login-err.show{display:block}
-.btn-login{width:100%;background:#F5A623;color:#0D1B2A;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:13px;border:none;border-radius:11px;cursor:pointer;margin-top:4px}
+.btn-login{width:100%;background:#F5A623;color:#0D1B2A;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:13px;border:none;border-radius:11px;cursor:pointer;transition:.2s;margin-top:4px}
 .btn-login:hover{background:#EAB308}
 .back-link{display:block;text-align:center;margin-top:16px;color:#93C5FD;text-decoration:none;font-size:13px}
 .back-link:hover{color:#fff}
+
+/* Dashboard */
 .dash-header{background:#0D1B2A;padding:13px 20px}
-.dash-header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.dash-header-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:12px}
 .logo{width:36px;height:36px;background:#F5A623;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:11px;flex-shrink:0}
 .dash-header h1{color:#fff;font-size:16px;font-weight:700}
 .dash-header p{color:#93C5FD;font-size:11px}
 .dash-right{margin-left:auto;display:flex;align-items:center;gap:12px}
 .dash-right a{color:#93C5FD;text-decoration:none;font-size:12px}
 .dash-right a:hover{color:#fff}
-.btn-logout{background:rgba(239,68,68,.15);color:#FCA5A5;border:none;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-logout{background:rgba(239,68,68,.15);color:#FCA5A5;border:none;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
 .btn-logout:hover{background:rgba(239,68,68,.3);color:#fff}
-.dash-body{max-width:1300px;margin:0 auto;padding:20px 14px 50px}
+
+.dash-body{max-width:1160px;margin:0 auto;padding:20px 14px 50px}
+
+/* Stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
 .stat{border-radius:14px;padding:16px 18px;color:#fff}
-.stat small{font-size:11px;opacity:.8;display:block;margin-bottom:4px}
-.stat strong{font-size:30px;font-weight:800;font-family:'Syne',sans-serif;display:block}
+.stat small{font-size:11px;opacity:.75;display:block;margin-bottom:4px;font-weight:500}
+.stat strong{font-size:28px;font-weight:800;font-family:'Syne',sans-serif;display:block}
+
+/* Tabs */
 .tabs{display:flex;gap:4px;background:#fff;border-radius:14px;padding:5px;border:1px solid #EFF6FF;margin-bottom:18px;flex-wrap:wrap;width:fit-content}
 .tab{padding:9px 20px;border-radius:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:#6B7FA3;border:none;background:transparent;transition:.2s}
 .tab.active{background:#1B4FBF;color:#fff}
 .tab-content{display:none}
 .tab-content.active{display:block}
+
+/* Table card */
 .tcard{background:#fff;border-radius:16px;border:1px solid #EFF6FF;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
 .tcard-top{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EFF6FF;gap:10px;flex-wrap:wrap}
 .tcard-top h3{font-size:15px;font-weight:700;font-family:'Syne',sans-serif}
-.search{border:1px solid #DBEAFE;border-radius:9px;padding:7px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;width:260px}
+.search{border:1px solid #DBEAFE;border-radius:9px;padding:7px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;width:240px}
 .search:focus{border-color:#1B4FBF}
-.btn-add{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:7px 16px;border:none;border-radius:9px;cursor:pointer;white-space:nowrap}
+.btn-add{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;padding:7px 16px;border:none;border-radius:9px;cursor:pointer;white-space:nowrap;transition:.2s}
 .btn-add:hover{background:#1539A0}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
 thead{background:#0D1B2A}
 thead th{padding:10px 14px;text-align:left;color:#fff;font-family:'Syne',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;white-space:nowrap}
 tbody tr{border-top:1px solid #EFF6FF;transition:.15s}
 tbody tr:hover{background:#F8FAFF}
 tbody td{padding:10px 14px;color:#0D1B2A;vertical-align:middle;white-space:nowrap}
-.empty{text-align:center;padding:40px;color:#9CA3AF;font-size:13px}
-.bu{background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700;display:inline-block}
+.empty{text-align:center;padding:36px;color:#9CA3AF;font-size:13px}
+
+/* Statut badges */
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.b-att{background:#FEF3C7;color:#92400E}
+.b-app{background:#D1FAE5;color:#065F46}
+.b-ref{background:#FEE2E2;color:#991B1B}
+
+/* Place bar */
 .pbar-wrap{display:flex;align-items:center;gap:8px}
 .pbar{width:70px;height:6px;background:#DBEAFE;border-radius:3px;overflow:hidden;flex-shrink:0}
 .pbar-fill{height:100%;border-radius:3px}
-.be{background:#EFF6FF;color:#1B4FBF;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600}
+
+/* Action btns */
+.be{background:#EFF6FF;color:#1B4FBF;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600;transition:.15s}
 .be:hover{background:#DBEAFE}
-.bd{background:#FEF2F2;color:#DC2626;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600;margin-left:4px}
+.bd{background:#FEF2F2;color:#DC2626;border:none;padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-weight:600;margin-left:4px;transition:.15s}
 .bd:hover{background:#FEE2E2}
-.ssel{border:1px solid #E5E7EB;border-radius:7px;padding:5px 8px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer;outline:none}
+
+/* Modal */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:20px;padding:26px;width:100%;max-width:460px;position:relative;max-height:92vh;overflow-y:auto}
+.modal{background:#fff;border-radius:20px;padding:26px;width:100%;max-width:440px;position:relative;max-height:90vh;overflow-y:auto}
 .modal h3{font-size:17px;font-weight:800;margin-bottom:18px;font-family:'Syne',sans-serif}
-.mf{margin-bottom:12px}
-.mf label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
-.mf input,.mf select{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none}
-.mf input:focus,.mf select:focus{border-color:#1B4FBF}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mbtns{display:flex;gap:8px;margin-top:20px}
-.bsave{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:11px;border:none;border-radius:10px;cursor:pointer}
+.mfield{margin-bottom:12px}
+.mfield label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
+.mfield input,.mfield select{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:#0D1B2A;outline:none;-webkit-appearance:none;appearance:none}
+.mfield input:focus,.mfield select:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,191,.08)}
+.mfield select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7FA3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:15px;padding-right:34px}
+.grid2m{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mbtns{display:flex;gap:8px;margin-top:18px}
+.bsave{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:11px;border:none;border-radius:10px;cursor:pointer;transition:.2s}
 .bsave:hover{background:#1539A0}
-.bcancel{padding:11px 18px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer}
+.bcancel{padding:11px 18px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;transition:.2s}
 .bcancel:hover{background:#E5E7EB}
-.xbtn{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#9CA3AF;line-height:1;padding:0}
+.xbtn{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#9CA3AF;line-height:1}
 .xbtn:hover{color:#0D1B2A}
+
+.ssel{border:1px solid #E5E7EB;border-radius:7px;padding:4px 8px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer;-webkit-appearance:none;appearance:none}
+
 .spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;bottom:20px;right:20px;background:#0D1B2A;color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
+
+.toast{position:fixed;bottom:20px;right:20px;background:#0D1B2A;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
-@media(max-width:780px){.stats{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.g2{grid-template-columns:1fr}}
+
+@media(max-width:780px){
+  .stats{grid-template-columns:1fr 1fr}
+  .tabs{flex-wrap:wrap}
+  .search{width:100%}
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr 1fr}
+  .grid2m{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="login-screen" class="login-wrap">
   <div class="login-card">
     <div class="login-logo">AA</div>
     <h2>Espace Admin</h2>
     <p>APPL Academy</p>
     <label>Mot de passe administrateur</label>
-    <input type="password" id="inp-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
-    <div class="login-err" id="lerr">Mot de passe incorrect.</div>
-    <button class="btn-login" id="btn-login" onclick="login()">Se connecter</button>
+    <input type="password" id="inp-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')seConnecter()">
+    <div class="login-err" id="login-err">Mot de passe incorrect.</div>
+    <button class="btn-login" id="btn-login" onclick="seConnecter()">Se connecter</button>
     <a href="index.html" class="back-link">← Retour au formulaire</a>
   </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboard" style="display:none">
   <header class="dash-header">
     <div class="dash-header-inner">
       <div class="logo">AA</div>
       <div><h1>APPL Academy — Admin</h1><p>Tableau de bord administrateur</p></div>
       <div class="dash-right">
-        <a href="index.html">Voir le formulaire</a>
-        <button class="btn-logout" onclick="logout()">Déconnexion</button>
+        <a href="index.html">Voir le formulaire →</a>
+        <button class="btn-logout" onclick="seDeconnecter()">Déconnexion</button>
       </div>
     </div>
   </header>
+
   <div class="dash-body">
+    <!-- Stats -->
     <div class="stats">
-      <div class="stat" style="background:#1B4FBF"><small>Total demandes</small><strong id="s1">—</strong></div>
-      <div class="stat" style="background:#0D1B2A"><small>En attente</small><strong id="s2">—</strong></div>
-      <div class="stat" style="background:#059669"><small>Approuvées</small><strong id="s3">—</strong></div>
-      <div class="stat" style="background:#3B82F6"><small>Thèmes actifs</small><strong id="s4">—</strong></div>
+      <div class="stat" style="background:#1B4FBF"><small>Total demandes</small><strong id="s-dem">—</strong></div>
+      <div class="stat" style="background:#0D1B2A"><small>En attente</small><strong id="s-att">—</strong></div>
+      <div class="stat" style="background:#059669"><small>Approuvées</small><strong id="s-app">—</strong></div>
+      <div class="stat" style="background:#3B82F6"><small>Thèmes actifs</small><strong id="s-th">—</strong></div>
     </div>
+
+    <!-- Tabs -->
     <div class="tabs">
-      <button class="tab active" onclick="tab('demandes')">📋 Demandes</button>
-      <button class="tab" onclick="tab('themes')">📚 Thèmes</button>
-      <button class="tab" onclick="tab('demandeurs')">👥 Demandeurs</button>
-      <button class="tab" onclick="tab('responsables')">🏢 Responsables</button>
+      <button class="tab active" onclick="switchTab('demandes')">📋 Demandes</button>
+      <button class="tab" onclick="switchTab('themes')">📚 Thèmes</button>
+      <button class="tab" onclick="switchTab('demandeurs')">👥 Demandeurs</button>
+      <button class="tab" onclick="switchTab('responsables')">🏢 Responsables</button>
     </div>
+
+    <!-- Tab Demandes -->
     <div class="tab-content active" id="tab-demandes">
       <div class="tcard">
-        <div class="tcard-top"><h3>Toutes les demandes</h3>
-          <input class="search" placeholder="Rechercher pilote, matricule, thème..." oninput="filterD(this.value)">
+        <div class="tcard-top">
+          <h3>Toutes les demandes</h3>
+          <input class="search" placeholder="Rechercher pilote, demandeur, thème..." oninput="filtrerDemandes(this.value)">
         </div>
-        <div class="tw"><div id="tD"><div class="empty">Chargement...</div></div></div>
+        <div id="tbl-demandes"><div class="empty">Chargement...</div></div>
       </div>
     </div>
+
+    <!-- Tab Thèmes -->
     <div class="tab-content" id="tab-themes">
       <div class="tcard">
-        <div class="tcard-top"><h3>Thèmes de formation</h3>
-          <button class="btn-add" onclick="openModal('theme',null)">+ Ajouter un thème</button>
+        <div class="tcard-top">
+          <h3>Thèmes de formation</h3>
+          <button class="btn-add" onclick="ouvrirModal('theme')">+ Ajouter un thème</button>
         </div>
-        <div class="tw"><div id="tT"><div class="empty">Chargement...</div></div></div>
+        <div id="tbl-themes"><div class="empty">Chargement...</div></div>
       </div>
     </div>
+
+    <!-- Tab Demandeurs -->
     <div class="tab-content" id="tab-demandeurs">
       <div class="tcard">
-        <div class="tcard-top"><h3>Demandeurs</h3>
-          <button class="btn-add" onclick="openModal('demandeur',null)">+ Ajouter</button>
+        <div class="tcard-top">
+          <h3>Demandeurs</h3>
+          <button class="btn-add" onclick="ouvrirModal('demandeur')">+ Ajouter</button>
         </div>
-        <div class="tw"><div id="tDem"><div class="empty">Chargement...</div></div></div>
+        <div id="tbl-demandeurs"><div class="empty">Chargement...</div></div>
       </div>
     </div>
+
+    <!-- Tab Responsables -->
     <div class="tab-content" id="tab-responsables">
       <div class="tcard">
-        <div class="tcard-top"><h3>Responsables</h3>
-          <button class="btn-add" onclick="openModal('responsable',null)">+ Ajouter</button>
+        <div class="tcard-top">
+          <h3>Responsables</h3>
+          <button class="btn-add" onclick="ouvrirModal('responsable')">+ Ajouter</button>
         </div>
-        <div class="tw"><div id="tR"><div class="empty">Chargement...</div></div></div>
+        <div id="tbl-responsables"><div class="empty">Chargement...</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="overlay" id="overlay" onclick="if(event.target.id==='overlay')closeModal()">
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
   <div class="modal">
-    <button class="xbtn" onclick="closeModal()">×</button>
-    <h3 id="mtitle"></h3>
-    <div id="mbody"></div>
+    <button class="xbtn" onclick="fermerModal()">×</button>
+    <h3 id="m-title"></h3>
+    <div id="m-body"></div>
     <div class="mbtns">
-      <button class="bcancel" onclick="closeModal()">Annuler</button>
-      <button class="bsave" id="msave" onclick="save()">Enregistrer</button>
+      <button class="bcancel" onclick="fermerModal()">Annuler</button>
+      <button class="bsave" id="m-save" onclick="sauvegarder()">Enregistrer</button>
     </div>
   </div>
 </div>
@@ -622,247 +235,314 @@ tbody td{padding:10px 14px;color:#0D1B2A;vertical-align:middle;white-space:nowra
 <div class="toast" id="toast"></div>
 
 <script>
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQNDafeL97GBdXyfT79lslsBt_P6uTkNL-8Xfc7LlkbxcGxehMFV1NbtSTQBlVAXbM7g/exec';
+// ============================================================
+// ⚠️ REMPLACEZ PAR VOTRE URL GOOGLE APPS SCRIPT
+// ============================================================
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUCXUpdnwVMohIyVN3bTsa249Hr5azrjp4v7usFGLB3tOmpl4PEnfXrs_0KdaHb6fN6w/exec';
+// ============================================================
 
-var pwd='', mType='', mIdx=null;
-var DD=[], DR=[], DT=[], DDem=[];
+var pwd='', mType='', mRow=null;
+var dataD=[], dataR=[], dataT=[], dataDem=[];
 
-function login(){
-  var p=document.getElementById('inp-pwd').value;
-  if(!p)return;
-  var b=document.getElementById('btn-login');
-  b.innerHTML='<span class="spin"></span>';b.disabled=true;
-  post({action:'login',p:p}).then(function(r){
-    if(r.ok){pwd=p;document.getElementById('login-screen').style.display='none';document.getElementById('dashboard').style.display='block';loadAll();}
-    else{document.getElementById('lerr').className='login-err show';}
-    b.innerHTML='Se connecter';b.disabled=false;
+// ---- Auth ----
+function seConnecter() {
+  var p = document.getElementById('inp-pwd').value;
+  if (!p) return;
+  var btn = document.getElementById('btn-login');
+  btn.innerHTML='<span class="spin"></span>'; btn.disabled=true;
+  apiPost({action:'login',p:p}).then(function(r){
+    if (r.ok) {
+      pwd=p;
+      document.getElementById('login-screen').style.display='none';
+      document.getElementById('dashboard').style.display='block';
+      chargerTout();
+    } else {
+      document.getElementById('login-err').className='login-err show';
+    }
+    btn.innerHTML='Se connecter'; btn.disabled=false;
   }).catch(function(){
-    document.getElementById('lerr').textContent='Erreur de connexion.';
-    document.getElementById('lerr').className='login-err show';
-    b.innerHTML='Se connecter';b.disabled=false;
+    document.getElementById('login-err').textContent='Erreur de connexion.';
+    document.getElementById('login-err').className='login-err show';
+    btn.innerHTML='Se connecter'; btn.disabled=false;
   });
 }
 
-function logout(){
+function seDeconnecter() {
   pwd='';
   document.getElementById('dashboard').style.display='none';
   document.getElementById('login-screen').style.display='flex';
   document.getElementById('inp-pwd').value='';
-  document.getElementById('lerr').className='login-err';
+  document.getElementById('login-err').className='login-err';
 }
 
-function get(action){
+// ---- API ----
+function apiGet(action) {
   return fetch(SCRIPT_URL+'?action='+action+'&p='+encodeURIComponent(pwd),{redirect:'follow'}).then(function(r){return r.json();});
 }
-function post(data){
-  if(!data.p)data.p=pwd;
+function apiPost(data) {
+  if (!data.p) data.p=pwd;
   return fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(data),redirect:'follow'}).then(function(r){return r.json();});
 }
 
-function loadAll(){
-  Promise.all([get('demandeurs'),get('responsables'),get('themes'),get('demandes')]).then(function(r){
-    DDem=r[0]||[];DR=r[1]||[];DT=r[2]||[];DD=r[3]||[];
-    var att=DD.filter(function(d){return d.Statut==='En attente';}).length;
-    var app=DD.filter(function(d){return d.Statut==='Approuvée';}).length;
-    document.getElementById('s1').textContent=DD.length;
-    document.getElementById('s2').textContent=att;
-    document.getElementById('s3').textContent=app;
-    document.getElementById('s4').textContent=DT.length;
-    renderD(DD);renderT();renderDem();renderR();
-  }).catch(function(){toast('Erreur de chargement');});
+// ---- Chargement ----
+function chargerTout() {
+  Promise.all([apiGet('demandeurs'),apiGet('responsables'),apiGet('themes'),apiGet('demandes')])
+    .then(function(r){
+      dataDem=r[0]||[]; dataR=r[1]||[]; dataT=r[2]||[]; dataD=r[3]||[];
+      var att=dataD.filter(function(d){return d.Statut==='En attente';}).length;
+      var app=dataD.filter(function(d){return d.Statut==='Approuvée';}).length;
+      document.getElementById('s-dem').textContent=dataD.length;
+      document.getElementById('s-att').textContent=att;
+      document.getElementById('s-app').textContent=app;
+      document.getElementById('s-th').textContent=dataT.length;
+      afficherDemandes(dataD);
+      afficherThemes();
+      afficherDemandeurs();
+      afficherResponsables();
+    });
 }
 
-function tab(name){
+// ---- Tabs ----
+function switchTab(name) {
   var names=['demandes','themes','demandeurs','responsables'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.className='tab'+(names[i]===name?' active':'');});
   document.querySelectorAll('.tab-content').forEach(function(c){c.className='tab-content'+(c.id==='tab-'+name?' active':'');});
 }
 
-// ---- DEMANDES ----
-function filterD(q){
-  var f=DD.filter(function(d){
-    return (s(d.Pilote_Nom)+s(d.Pilote_Prenom)+s(d.Pilote_Matricule)+s(d.Dem_Nom)+s(d.Theme)+s(d.Dem_Unite)).toLowerCase().includes(q.toLowerCase());
+// ---- Demandes ----
+function filtrerDemandes(q) {
+  var f=dataD.filter(function(d){
+    return (d.Pilote_Nom+d.Pilote_Prenom+d.Pilote_Matricule+d.Dem_Nom+d.Dem_Prenom+d.Theme+d.Dem_Unite).toLowerCase().includes(q.toLowerCase());
   });
-  renderD(f);
+  afficherDemandes(f);
 }
 
-function renderD(list){
-  var el=document.getElementById('tD');
-  if(!list.length){el.innerHTML='<div class="empty">Aucune demande.</div>';return;}
+function afficherDemandes(list) {
+  var el=document.getElementById('tbl-demandes');
+  if (!list.length){el.innerHTML='<div class="empty">Aucune demande trouvée.</div>';return;}
   var h='<table><thead><tr>'
-    +'<th>Pilote — Nom &amp; Prénom</th><th>Matricule</th><th>Poste Pilote</th>'
-    +'<th>Demandeur</th><th>Poste Dem.</th><th>Unité</th>'
+    +'<th>Pilote — Nom & Prénom</th><th>Matricule</th><th>Poste Pilote</th>'
+    +'<th>Demandeur</th><th>Poste Demandeur</th><th>Unité</th>'
     +'<th>Responsable</th><th>Poste Resp.</th>'
-    +'<th>Thème</th><th>Date proposée</th><th>Soumis le</th><th>Statut</th><th>Supp.</th>'
+    +'<th>Thème</th><th>Date proposée</th><th>Soumis le</th>'
+    +'<th>Statut</th><th>Action</th>'
     +'</tr></thead><tbody>';
   list.forEach(function(d){
-    var st=s(d.Statut)||'En attente';
-    var row=d._row;
     h+='<tr>'
-      +'<td><strong>'+h2(s(d.Pilote_Nom)+' '+s(d.Pilote_Prenom))+'</strong></td>'
-      +'<td style="color:#1B4FBF;font-weight:700">'+h2(d.Pilote_Matricule)+'</td>'
-      +'<td>'+h2(d.Pilote_Poste)+'</td>'
-      +'<td><strong>'+h2(s(d.Dem_Nom)+' '+s(d.Dem_Prenom))+'</strong></td>'
-      +'<td style="color:#6B7FA3">'+h2(d.Dem_Poste)+'</td>'
-      +'<td><span class="bu">'+h2(d.Dem_Unite)+'</span></td>'
-      +'<td>'+h2(s(d.Resp_Nom)+' '+s(d.Resp_Prenom))+'</td>'
-      +'<td style="color:#6B7FA3">'+h2(d.Resp_Poste)+'</td>'
-      +'<td style="font-weight:700">'+h2(d.Theme)+'</td>'
-      +'<td>'+h2(d.Date_Proposee)+'</td>'
-      +'<td style="color:#6B7FA3;font-size:12px">'+h2(d.Soumis_le)+'</td>'
-      +'<td><select class="ssel" onchange="chStatut(this,'+row+')">'
-      +'<option'+(st==='En attente'?' selected':'')+'>En attente</option>'
-      +'<option'+(st==='Approuvée'?' selected':'')+'>Approuvée</option>'
-      +'<option'+(st==='Refusée'?' selected':'')+'>Refusée</option>'
+      +'<td><strong>'+esc(d.Pilote_Nom)+' '+esc(d.Pilote_Prenom)+'</strong></td>'
+      +'<td style="color:#1B4FBF;font-weight:600">'+esc(d.Pilote_Matricule)+'</td>'
+      +'<td>'+esc(d.Pilote_Poste)+'</td>'
+      +'<td><strong>'+esc(d.Dem_Nom)+' '+esc(d.Dem_Prenom)+'</strong></td>'
+      +'<td style="color:#6B7FA3">'+esc(d.Dem_Poste)+'</td>'
+      +'<td><span style="background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700">'+esc(d.Dem_Unite)+'</span></td>'
+      +'<td>'+esc(d.Resp_Nom)+' '+esc(d.Resp_Prenom)+'</td>'
+      +'<td style="color:#6B7FA3">'+esc(d.Resp_Poste)+'</td>'
+      +'<td style="font-weight:700;color:#0D1B2A">'+esc(d.Theme)+'</td>'
+      +'<td>'+esc(d.Date_Proposee)+'</td>'
+      +'<td style="color:#6B7FA3;font-size:12px">'+esc(d.Soumis_le)+'</td>'
+      +'<td><select class="ssel" onchange="changerStatut(this,'+d._row+')">'
+      +'<option'+(d.Statut==='En attente'?' selected':'')+'>En attente</option>'
+      +'<option'+(d.Statut==='Approuvée'?' selected':'')+'>Approuvée</option>'
+      +'<option'+(d.Statut==='Refusée'?' selected':'')+'>Refusée</option>'
       +'</select></td>'
-      +'<td><button class="bd" onclick="delD('+row+')">✕</button></td>'
+      +'<td><button class="bd" onclick="supprimerDemande('+d._row+')">Suppr.</button></td>'
       +'</tr>';
   });
   h+='</tbody></table>';
   el.innerHTML=h;
 }
 
-function chStatut(sel,row){
-  post({action:'statut',row:row,val:sel.value}).then(function(r){
-    if(r.ok){toast('✅ Statut mis à jour');loadAll();}
+function changerStatut(sel,row) {
+  apiPost({action:'statut',row:row,val:sel.value}).then(function(r){
+    if(r.ok){toast('Statut mis à jour ✅');chargerTout();}
     else toast('Erreur: '+(r.err||''));
   });
 }
-function delD(row){
+
+function supprimerDemande(row) {
   if(!confirm('Supprimer cette demande ?'))return;
-  post({action:'delDem',row:row}).then(function(){loadAll();toast('Supprimé');});
+  apiPost({action:'delDem',row:row}).then(function(){chargerTout();toast('Demande supprimée');});
 }
 
-// ---- THEMES ----
-function renderT(){
-  var el=document.getElementById('tT');
-  if(!DT.length){el.innerHTML='<div class="empty">Aucun thème.</div>';return;}
-  var h='<table><thead><tr><th>Titre</th><th>Max</th><th>Occupées</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
-  DT.forEach(function(t,i){
+// ---- Thèmes ----
+function afficherThemes() {
+  var el=document.getElementById('tbl-themes');
+  if(!dataT.length){el.innerHTML='<div class="empty">Aucun thème. Ajoutez-en un.</div>';return;}
+  var h='<table><thead><tr><th>Titre</th><th>Max places</th><th>Occupées</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
+  dataT.forEach(function(t){
     var pct=t.MaxPlaces>0?Math.min((t.Occupees/t.MaxPlaces)*100,100):0;
     var col=t.Complet?'#EF4444':'#1B4FBF';
     h+='<tr>'
-      +'<td><strong>'+h2(t.Titre)+'</strong></td>'
-      +'<td>'+h2(t.MaxPlaces)+'</td>'
-      +'<td>'+h2(t.Occupees||0)+'</td>'
-      +'<td style="color:'+(t.Complet?'#DC2626':'#16A34A')+';font-weight:700">'+h2(t.Restantes||0)+'</td>'
-      +'<td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" style="width:'+pct.toFixed(0)+'%;background:'+col+'"></div></div>'
-      +'<span style="font-size:11px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
-      +'<td><button class="be" onclick="openModal(\'theme\','+i+')">Modifier</button>'
-      +'<button class="bd" onclick="delT('+t._row+')">Suppr.</button></td>'
+      +'<td><strong>'+esc(t.Titre)+'</strong></td>'
+      +'<td>'+t.MaxPlaces+'</td>'
+      +'<td>'+t.Occupees+'</td>'
+      +'<td style="color:'+(t.Complet?'#DC2626':'#16A34A')+';font-weight:700">'+t.Restantes+'</td>'
+      +'<td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" style="width:'+pct.toFixed(0)+'%;background:'+col+'"></div></div><span style="font-size:11px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
+      +'<td><button class="be" onclick="editTheme('+t._row+',\''+esc(t.Titre)+'\','+t.MaxPlaces+')">Modifier</button>'
+      +'<button class="bd" onclick="delTheme('+t._row+')">Suppr.</button></td>'
       +'</tr>';
   });
   h+='</tbody></table>';
   el.innerHTML=h;
 }
-function delT(row){if(!confirm('Supprimer ?'))return;post({action:'delT',row:row}).then(function(){loadAll();toast('Thème supprimé');});}
 
-// ---- DEMANDEURS ----
-function renderDem(){
-  var el=document.getElementById('tDem');
-  if(!DDem.length){el.innerHTML='<div class="empty">Aucun demandeur.</div>';return;}
-  var h='<table><thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Unité / Agence</th><th>Responsable</th><th>Actions</th></tr></thead><tbody>';
-  DDem.forEach(function(d,i){
+function editTheme(row,titre,max){
+  mType='theme';mRow=row;
+  document.getElementById('m-title').textContent='Modifier le thème';
+  document.getElementById('m-body').innerHTML=hmTheme(titre,max);
+  ouvrir();
+}
+function delTheme(row){
+  if(!confirm('Supprimer ce thème ?'))return;
+  apiPost({action:'delT',row:row}).then(function(){chargerTout();toast('Thème supprimé');});
+}
+
+// ---- Demandeurs ----
+function afficherDemandeurs() {
+  var el=document.getElementById('tbl-demandeurs');
+  if(!dataDem.length){el.innerHTML='<div class="empty">Aucun demandeur. Ajoutez-en un.</div>';return;}
+  var h='<table><thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Unité</th><th>Responsable</th><th>Actions</th></tr></thead><tbody>';
+  dataDem.forEach(function(d){
     h+='<tr>'
-      +'<td><strong>'+h2(d.Nom)+'</strong></td>'
-      +'<td>'+h2(d.Prenom)+'</td>'
-      +'<td>'+h2(d.Poste)+'</td>'
-      +'<td><span class="bu">'+h2(d.Unite)+'</span></td>'
-      +'<td>'+h2(d.Responsable)+'</td>'
-      +'<td><button class="be" onclick="openModal(\'demandeur\','+i+')">Modifier</button>'
+      +'<td><strong>'+esc(d.Nom)+'</strong></td>'
+      +'<td>'+esc(d.Prenom)+'</td>'
+      +'<td>'+esc(d.Poste)+'</td>'
+      +'<td><span style="background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700">'+esc(d.Unite)+'</span></td>'
+      +'<td>'+esc(d.Responsable)+'</td>'
+      +'<td><button class="be" onclick="editDem('+d._row+')">Modifier</button>'
       +'<button class="bd" onclick="delDem('+d._row+')">Suppr.</button></td>'
       +'</tr>';
   });
   h+='</tbody></table>';
   el.innerHTML=h;
 }
-function delDem(row){if(!confirm('Supprimer ?'))return;post({action:'delD',row:row}).then(function(){loadAll();toast('Demandeur supprimé');});}
 
-// ---- RESPONSABLES ----
-function renderR(){
-  var el=document.getElementById('tR');
-  if(!DR.length){el.innerHTML='<div class="empty">Aucun responsable.</div>';return;}
+function editDem(row){
+  var d=dataDem.find(function(x){return x._row===row;});
+  if(!d)return;
+  mType='demandeur';mRow=row;
+  document.getElementById('m-title').textContent='Modifier le demandeur';
+  document.getElementById('m-body').innerHTML=hmDem(d.Nom,d.Prenom,d.Poste,d.Unite,d.Responsable);
+  ouvrir();
+}
+function delDem(row){
+  if(!confirm('Supprimer ce demandeur ?'))return;
+  apiPost({action:'delD',row:row}).then(function(){chargerTout();toast('Demandeur supprimé');});
+}
+
+// ---- Responsables ----
+function afficherResponsables() {
+  var el=document.getElementById('tbl-responsables');
+  if(!dataR.length){el.innerHTML='<div class="empty">Aucun responsable. Ajoutez-en un.</div>';return;}
   var h='<table><thead><tr><th>Nom</th><th>Prénom</th><th>Poste</th><th>Actions</th></tr></thead><tbody>';
-  DR.forEach(function(r,i){
+  dataR.forEach(function(r){
     h+='<tr>'
-      +'<td><strong>'+h2(r.Nom)+'</strong></td>'
-      +'<td>'+h2(r.Prenom)+'</td>'
-      +'<td>'+h2(r.Poste)+'</td>'
-      +'<td><button class="be" onclick="openModal(\'responsable\','+i+')">Modifier</button>'
-      +'<button class="bd" onclick="delR('+r._row+')">Suppr.</button></td>'
+      +'<td><strong>'+esc(r.Nom)+'</strong></td>'
+      +'<td>'+esc(r.Prenom)+'</td>'
+      +'<td>'+esc(r.Poste)+'</td>'
+      +'<td><button class="be" onclick="editResp('+r._row+')">Modifier</button>'
+      +'<button class="bd" onclick="delResp('+r._row+')">Suppr.</button></td>'
       +'</tr>';
   });
   h+='</tbody></table>';
   el.innerHTML=h;
 }
-function delR(row){if(!confirm('Supprimer ?'))return;post({action:'delR',row:row}).then(function(){loadAll();toast('Responsable supprimé');});}
 
-// ---- MODAL ----
-function openModal(type,idx){
-  mType=type;mIdx=idx;
-  var titles={theme:'Thème de formation',demandeur:'Demandeur',responsable:'Responsable'};
-  document.getElementById('mtitle').textContent=(idx===null?'Nouveau ':'Modifier — ')+titles[type];
-  var body='';
-  if(type==='theme'){
-    var t=idx!==null?DT[idx]:null;
-    body='<div class="mf"><label>Titre du thème</label><input id="m1" value="'+(t?h2(t.Titre):'')+'" placeholder="Sécurité incendie"></div>'
-      +'<div class="mf"><label>Nombre maximum de places</label><input id="m2" type="number" min="1" value="'+(t?t.MaxPlaces:10)+'"></div>';
-  } else if(type==='demandeur'){
-    var d=idx!==null?DDem[idx]:null;
-    var opts='<option value="">-- Choisir --</option>';
-    DR.forEach(function(r){
-      var rv=s(r.Nom)+' '+s(r.Prenom);
-      opts+='<option'+(d&&s(d.Responsable)===rv?' selected':'')+'>'+h2(rv)+'</option>';
-    });
-    body='<div class="g2">'
-      +'<div class="mf"><label>Nom</label><input id="m1" value="'+(d?h2(d.Nom):'')+'" placeholder="BENALI"></div>'
-      +'<div class="mf"><label>Prénom</label><input id="m2" value="'+(d?h2(d.Prenom):'')+'" placeholder="Mohammed"></div>'
-      +'</div>'
-      +'<div class="mf"><label>Poste</label><input id="m3" value="'+(d?h2(d.Poste):'')+'" placeholder="Chef de département"></div>'
-      +'<div class="mf"><label>Unité / Agence / Département</label><input id="m4" value="'+(d?h2(d.Unite):'')+'" placeholder="Agence Casablanca Nord"></div>'
-      +'<div class="mf"><label>Responsable</label><select id="m5">'+opts+'</select></div>';
-  } else if(type==='responsable'){
-    var r=idx!==null?DR[idx]:null;
-    body='<div class="g2">'
-      +'<div class="mf"><label>Nom</label><input id="m1" value="'+(r?h2(r.Nom):'')+'" placeholder="ALAOUI"></div>'
-      +'<div class="mf"><label>Prénom</label><input id="m2" value="'+(r?h2(r.Prenom):'')+'" placeholder="Fatima"></div>'
-      +'</div>'
-      +'<div class="mf"><label>Poste</label><input id="m3" value="'+(r?h2(r.Poste):'')+'" placeholder="Directeur Régional"></div>';
-  }
-  document.getElementById('mbody').innerHTML=body;
-  document.getElementById('overlay').className='overlay open';
+function editResp(row){
+  var r=dataR.find(function(x){return x._row===row;});
+  if(!r)return;
+  mType='responsable';mRow=row;
+  document.getElementById('m-title').textContent='Modifier le responsable';
+  document.getElementById('m-body').innerHTML=hmResp(r.Nom,r.Prenom,r.Poste);
+  ouvrir();
+}
+function delResp(row){
+  if(!confirm('Supprimer ce responsable ?'))return;
+  apiPost({action:'delR',row:row}).then(function(){chargerTout();toast('Responsable supprimé');});
 }
 
-function save(){
+// ---- Modal builders ----
+function hmTheme(titre,max){
+  return '<div class="mfield"><label>Titre du thème</label><input id="m1" value="'+esc(titre)+'" placeholder="Ex: Sécurité incendie"></div>'
+    +'<div class="mfield"><label>Nombre max de places</label><input id="m2" type="number" min="1" value="'+max+'"></div>';
+}
+
+function hmDem(nom,prenom,poste,unite,resp){
+  var respOpts=dataR.map(function(r){
+    var v=r.Nom+' '+r.Prenom;
+    return '<option'+(v===resp?' selected':'')+'>'+esc(v)+'</option>';
+  }).join('');
+  return '<div class="grid2m">'
+    +'<div class="mfield"><label>Nom</label><input id="m1" value="'+esc(nom)+'" placeholder="BENALI"></div>'
+    +'<div class="mfield"><label>Prénom</label><input id="m2" value="'+esc(prenom)+'" placeholder="Mohammed"></div>'
+    +'</div>'
+    +'<div class="mfield"><label>Poste</label><input id="m3" value="'+esc(poste)+'" placeholder="Chef d\'unité"></div>'
+    +'<div class="mfield"><label>Unité / Agence / Département</label><input id="m4" value="'+esc(unite)+'" placeholder="Agence Casablanca"></div>'
+    +'<div class="mfield"><label>Responsable</label><select id="m5"><option value="">-- Choisir --</option>'+respOpts+'</select></div>';
+}
+
+function hmResp(nom,prenom,poste){
+  return '<div class="grid2m">'
+    +'<div class="mfield"><label>Nom</label><input id="m1" value="'+esc(nom)+'" placeholder="ALAOUI"></div>'
+    +'<div class="mfield"><label>Prénom</label><input id="m2" value="'+esc(prenom)+'" placeholder="Fatima"></div>'
+    +'</div>'
+    +'<div class="mfield"><label>Poste</label><input id="m3" value="'+esc(poste)+'" placeholder="Directeur Régional"></div>';
+}
+
+// ---- Modal open ----
+function ouvrirModal(type){
+  mType=type;mRow=null;
+  var titles={theme:'Nouveau thème',demandeur:'Nouveau demandeur',responsable:'Nouveau responsable'};
+  document.getElementById('m-title').textContent=titles[type];
+  var bodies={
+    theme:hmTheme('',10),
+    demandeur:hmDem('','','','',''),
+    responsable:hmResp('','','')
+  };
+  document.getElementById('m-body').innerHTML=bodies[type];
+  ouvrir();
+}
+
+function ouvrir(){document.getElementById('overlay').className='overlay open';}
+function fermerModal(){document.getElementById('overlay').className='overlay';}
+function closeOverlay(e){if(e.target.id==='overlay')fermerModal();}
+
+// ---- Sauvegarder ----
+function sauvegarder(){
   var data={p:pwd};
   if(mType==='theme'){
     data.titre=v('m1');data.max=v('m2');
-    data.action=mIdx!==null?'editT':'addT';
-    if(mIdx!==null)data.row=DT[mIdx]._row;
+    data.action=mRow?'editT':'addT';
+    if(mRow)data.row=mRow;
   } else if(mType==='demandeur'){
     data.nom=v('m1');data.prenom=v('m2');data.poste=v('m3');data.unite=v('m4');data.resp=v('m5');
-    data.action=mIdx!==null?'editD':'addD';
-    if(mIdx!==null)data.row=DDem[mIdx]._row;
+    data.action=mRow?'editD':'addD';
+    if(mRow)data.row=mRow;
   } else if(mType==='responsable'){
     data.nom=v('m1');data.prenom=v('m2');data.poste=v('m3');
-    data.action=mIdx!==null?'editR':'addR';
-    if(mIdx!==null)data.row=DR[mIdx]._row;
+    data.action=mRow?'editR':'addR';
+    if(mRow)data.row=mRow;
   }
-  var btn=document.getElementById('msave');
+  var btn=document.getElementById('m-save');
   btn.innerHTML='<span class="spin"></span>';btn.disabled=true;
-  post(data).then(function(r){
+  apiPost(data).then(function(r){
     btn.innerHTML='Enregistrer';btn.disabled=false;
-    if(r.ok){closeModal();loadAll();toast('✅ Enregistré !');}
+    if(r.ok){fermerModal();chargerTout();toast('✅ Enregistré !');}
     else alert('Erreur: '+(r.err||''));
-  }).catch(function(){btn.innerHTML='Enregistrer';btn.disabled=false;alert('Erreur connexion.');});
+  }).catch(function(){
+    btn.innerHTML='Enregistrer';btn.disabled=false;
+    alert('Erreur de connexion.');
+  });
 }
 
-function closeModal(){document.getElementById('overlay').className='overlay';}
-
-function s(x){return x?String(x):'';} 
-function h2(x){return s(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function v(id){var e=document.getElementById(id);return e?e.value.trim():'';}
-function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show';setTimeout(function(){t.className='toast';},2800);}
+// ---- Utils ----
+function v(id){var e=document.getElementById(id);return e?e.value:'';}
+function esc(s){return String(s||'').replace(/'/g,"\\'").replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show';
+  setTimeout(function(){t.className='toast';},2500);
+}
 </script>
 </body>
 </html>
