@@ -303,10 +303,11 @@ document.getElementById('fNbJours').addEventListener('change', checkStep4);
 function updateCounter() {
   var el = document.getElementById('placesNum');
   el.textContent = placesRestantes;
+  el.style.color = placesRestantes === 0 ? '#EF4444' : '#1B4FBF';
+  el.style.fontSize = '22px';
   var ctr = document.getElementById('placesCounter');
   ctr.className = 'places-counter' + (placesRestantes === 0 ? ' rouge' : '');
 }
-
 function validerPilote() {
   if (!selTheme || !selDem) { showAlert('Veuillez completer les etapes precedentes.'); return; }
   var dd = document.getElementById('fDateDebut').value;
