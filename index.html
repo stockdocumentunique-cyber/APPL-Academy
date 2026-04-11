@@ -43,40 +43,35 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,191,.08)}
 .themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:9px}
 .th-card{border:2px solid #E8F0FE;border-radius:11px;padding:13px 15px;cursor:pointer;transition:.15s;background:#fff}
-.th-card:hover:not(.full){border-color:#1B4FBF;background:#F0F4FF}
+.th-card:hover{border-color:#1B4FBF;background:#F0F4FF}
 .th-card.sel{border-color:#1B4FBF;background:#EFF6FF;box-shadow:0 0 0 3px rgba(27,79,191,.1)}
-.th-card.full{opacity:.5;cursor:not-allowed;background:#F9FAFB}
-.th-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:7px;font-family:'Syne',sans-serif}
-.th-info{font-size:12px;margin-bottom:5px}
-.pbar{height:6px;background:#DBEAFE;border-radius:3px;overflow:hidden;margin-bottom:5px}
-.pbar-f{height:100%;border-radius:3px;transition:.4s}
-.badge-full{display:inline-block;background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px}
-.badge-ok{display:inline-block;background:#D1FAE5;color:#065F46;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px}
-.places-counter{background:#F0F4FF;border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
-.places-counter span{font-size:13px;color:#6B7FA3}
-.places-counter strong{font-size:20px;font-weight:800;font-family:'Syne',sans-serif;color:#1B4FBF}
-.places-counter.rouge strong{color:#EF4444}
+.th-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:5px;font-family:'Syne',sans-serif}
+.th-sub{font-size:12px;color:#6B7FA3}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
 .ic{background:#F0F4FF;border-radius:8px;padding:9px 11px}
 .ic small{font-size:10px;color:#6B7FA3;text-transform:uppercase;letter-spacing:.06em;font-weight:700;display:block;margin-bottom:2px}
 .ic span{font-size:13px;font-weight:600;color:#0D1B2A}
-.step{display:none}.step.on{display:block}
-.pilots-list{margin-bottom:14px}
+/* Places counter */
+.places-box{background:#F0F4FF;border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.places-box .label{font-size:13px;color:#374151;font-weight:500}
+.places-box .count{font-size:24px;font-weight:800;font-family:'Syne',sans-serif;color:#1B4FBF;min-width:40px;text-align:right}
+.places-box.rouge .count{color:#EF4444}
+.places-box .session-info{font-size:11px;color:#6B7FA3;margin-top:2px}
+/* Pilotes list */
 .pilot-item{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:11px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .pilot-item .pnum{width:24px;height:24px;background:#16A34A;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.pilot-item .pinfo{flex:1;font-size:13px}
-.pilot-item .pinfo strong{display:block;color:#0D1B2A;font-weight:700}
+.pilot-item .pinfo{flex:1}
+.pilot-item .pinfo strong{display:block;color:#0D1B2A;font-weight:700;font-size:13px}
 .pilot-item .pinfo span{color:#6B7FA3;font-size:12px}
-.pilot-item .ok{color:#16A34A;font-size:18px}
+.pilot-item .del-pilot{background:#FEE2E2;color:#DC2626;border:none;width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.15s}
+.pilot-item .del-pilot:hover{background:#FCA5A5}
 .sep{border:none;border-top:1px solid #EFF6FF;margin:14px 0}
+.step{display:none}.step.on{display:block}
 .btn-valider{width:100%;background:#16A34A;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;padding:12px;border:none;border-radius:11px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px}
 .btn-valider:hover:not(:disabled){background:#15803D}
 .btn-valider:disabled{opacity:.5;cursor:not-allowed}
-.btn-autre{width:100%;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;padding:12px;border:none;border-radius:11px;cursor:pointer;transition:.15s;margin-top:8px}
-.btn-autre:hover{background:#1539A0}
 .btn-fin{width:100%;background:#0D1B2A;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;padding:12px;border:none;border-radius:11px;cursor:pointer;transition:.15s;margin-top:8px}
 .btn-fin:hover{background:#1B2F4A}
-.btn-new{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;padding:11px 26px;border:none;border-radius:10px;cursor:pointer;font-size:14px}
 .loading{text-align:center;padding:36px;color:#6B7FA3;font-size:14px}
 .spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
@@ -84,6 +79,10 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
 .succ-session.on{display:block}
 .succ-session h3{font-size:20px;font-weight:800;font-family:'Syne',sans-serif;color:#15803D;margin-bottom:8px}
 .succ-session p{color:#6B7FA3;font-size:13px;margin-bottom:16px}
+.btn-new{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;padding:11px 26px;border:none;border-radius:10px;cursor:pointer;font-size:14px}
+.btn-new:hover{background:#1539A0}
+.checking{background:#FEF9C3;border-radius:8px;padding:8px 12px;font-size:13px;color:#92400E;margin-bottom:10px;display:none}
+.checking.show{display:block}
 @media(max-width:500px){.hero h2{font-size:20px}.themes-grid{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.card{padding:14px}}
 </style>
 </head>
@@ -105,23 +104,20 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
 
 <main>
   <div class="alert" id="alertBox"><div><h4>Attention</h4><p id="alertMsg"></p></div></div>
-
   <div class="pleine-box" id="pleineBox">
-    <h3>Classe Pleine !</h3>
-    <p id="pleineMsg">Toutes les places sont occupees pour cette formation.</p>
+    <h3>Session Pleine !</h3>
+    <p id="pleineMsg"></p>
   </div>
-
-  <!-- Session terminee avec succes -->
   <div class="succ-session" id="succSession">
     <h3>Session terminee !</h3>
-    <p id="succMsg">Tous vos pilotes ont ete inscrits avec succes.</p>
+    <p id="succMsg"></p>
     <button class="btn-new" onclick="resetAll()">Nouvelle demande</button>
   </div>
 
   <div id="formWrap">
     <div class="loading" id="loadMsg">Chargement...</div>
 
-    <!-- ETAPE 1 : Theme -->
+    <!-- ETAPE 1 -->
     <div class="step" id="step1">
       <div class="card">
         <div class="card-h"><span class="num">1</span>Choisir le theme de formation</div>
@@ -129,7 +125,7 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
       </div>
     </div>
 
-    <!-- ETAPE 2 : Demandeur -->
+    <!-- ETAPE 2 -->
     <div class="step" id="step2">
       <div class="card">
         <div class="card-h"><span class="num">2</span>Demandeur</div>
@@ -147,40 +143,43 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
       </div>
     </div>
 
-    <!-- ETAPE 3 : Formation dates -->
+    <!-- ETAPE 3 -->
     <div class="step" id="step3">
       <div class="card">
-        <div class="card-h"><span class="num">3</span>Informations de la formation</div>
+        <div class="card-h"><span class="num">3</span>Informations de la session</div>
         <div class="g2">
           <div class="fld">
             <label>Date de debut <span class="req">*</span></label>
-            <input type="date" id="fDateDebut">
+            <input type="date" id="fDateDebut" onchange="onDateChange()">
           </div>
           <div class="fld">
             <label>Nombre de jours <span class="req">*</span></label>
-            <input type="number" id="fNbJours" placeholder="Ex: 3" min="1" max="365">
+            <input type="number" id="fNbJours" placeholder="Ex: 3" min="1" max="365" onchange="onDateChange()">
           </div>
         </div>
+        <div class="checking" id="checkingMsg">Verification des places disponibles...</div>
       </div>
     </div>
 
-    <!-- ETAPE 4 : Pilotes -->
+    <!-- ETAPE 4 -->
     <div class="step" id="step4">
       <div class="card">
         <div class="card-h"><span class="num">4</span>Pilotes a inscrire</div>
 
         <!-- Compteur places -->
-        <div class="places-counter" id="placesCounter">
-          <span>Places disponibles pour ce theme</span>
-          <strong id="placesNum">-</strong>
+        <div class="places-box" id="placesBox">
+          <div>
+            <div class="label">Places disponibles pour cette session</div>
+            <div class="session-info" id="sessionInfo"></div>
+          </div>
+          <div class="count" id="placesNum">-</div>
         </div>
 
-        <!-- Liste des pilotes deja valides -->
-        <div class="pilots-list" id="pilotsList"></div>
+        <!-- Liste pilotes valides -->
+        <div id="pilotsList"></div>
 
         <hr class="sep">
         <p style="font-size:13px;color:#6B7FA3;margin-bottom:13px;font-weight:600">Ajouter un pilote :</p>
-
         <div class="g2">
           <div class="fld"><label>Nom <span class="req">*</span></label><input type="text" id="pNom" placeholder="BENALI"></div>
           <div class="fld"><label>Prenom <span class="req">*</span></label><input type="text" id="pPrenom" placeholder="Mohammed"></div>
@@ -190,243 +189,270 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
           <div class="fld"><label>Poste <span class="req">*</span></label><input type="text" id="pPoste" placeholder="Technicien"></div>
         </div>
 
-        <button class="btn-valider" id="btnValider" onclick="validerPilote()">
-          Valider ce pilote
-        </button>
-        <button class="btn-fin" id="btnFin" style="display:none" onclick="terminerSession()">
-          Terminer et fermer
-        </button>
+        <button class="btn-valider" id="btnValider" onclick="validerPilote()">Valider ce pilote</button>
+        <button class="btn-fin" id="btnFin" style="display:none" onclick="terminerSession()">Terminer et fermer</button>
       </div>
     </div>
   </div>
 </main>
 
 <script>
-var API = 'https://script.google.com/macros/s/AKfycby7p0L6AocjoMXFZuPcBKrsSMEMexf3DHdnjPOFs11JOrFZULY6zMitc9DWuISOutkIyg/exec';
-var allThemes = [], allDem = [], selTheme = null, selDem = null;
-var pilotsValides = 0, placesRestantes = 0;
-var dateDebut = '', nbJours = '';
+var API = 'https://script.google.com/macros/s/AKfycbwUGalRomoa6JP1Z3dMgafzivbQCAtZKo-Z9GUqngnDPJ1jmhBbGMMzI8ga5Mo9Oq8JBQ/exec';
+var allThemes=[], allDem=[], selTheme=null, selDem=null;
+var placesRestantes=0, pilotsValides=0;
+var pilotCards=[];
 
 document.getElementById('fDateDebut').min = new Date().toISOString().split('T')[0];
 
-function apiGet(a) { return fetch(API+'?action='+a, {redirect:'follow'}).then(function(r){return r.json();}); }
-function apiPost(d) { return fetch(API, {method:'POST', body:JSON.stringify(d), redirect:'follow'}).then(function(r){return r.json();}); }
+function apiGet(a){ return fetch(API+'?action='+a,{redirect:'follow'}).then(function(r){return r.json();}); }
+function apiPost(d){ return fetch(API,{method:'POST',body:JSON.stringify(d),redirect:'follow'}).then(function(r){return r.json();}); }
 
-function load() {
-  Promise.all([apiGet('themes'), apiGet('demandeurs')]).then(function(r) {
-    allThemes = r[0] || [];
-    allDem    = r[1] || [];
-    document.getElementById('loadMsg').style.display = 'none';
-    buildThemes();
-    buildDem();
-    document.getElementById('step1').className = 'step on';
-  }).catch(function() {
-    document.getElementById('loadMsg').textContent = 'Erreur de connexion.';
+function load(){
+  Promise.all([apiGet('themes'),apiGet('demandeurs')]).then(function(r){
+    allThemes=r[0]||[]; allDem=r[1]||[];
+    document.getElementById('loadMsg').style.display='none';
+    buildThemes(); buildDem();
+    document.getElementById('step1').className='step on';
+  }).catch(function(){
+    document.getElementById('loadMsg').textContent='Erreur de connexion.';
   });
 }
 
-function buildThemes() {
-  var g = document.getElementById('themesGrid');
-  if (!allThemes.length) { g.innerHTML='<p style="color:#9CA3AF;font-size:13px">Aucun theme disponible.</p>'; return; }
-  g.innerHTML = '';
-  allThemes.forEach(function(t) {
-    var pct = t.MaxPlaces > 0 ? Math.min((t.Occupees/t.MaxPlaces)*100, 100) : 0;
-    var col = t.Complet ? '#EF4444' : '#1B4FBF';
-    var badge = t.Complet
-      ? '<div class="badge-full">Classe pleine</div>'
-      : '<div class="badge-ok">' + t.Restantes + ' place(s) disponible(s)</div>';
-    var c = document.createElement('div');
-    c.className = 'th-card' + (t.Complet ? ' full' : '');
-    c.innerHTML = '<div class="th-name">' + t.Titre + '</div>'
-      + '<div class="th-info" style="color:'+col+'"><strong>' + t.Occupees + '</strong> / ' + t.MaxPlaces + '</div>'
-      + '<div class="pbar"><div class="pbar-f" style="width:'+pct+'%;background:'+col+'"></div></div>'
-      + badge;
-    if (!t.Complet) c.onclick = function(){ selTheme=t; placesRestantes=t.Restantes; selectCard(c); };
+function buildThemes(){
+  var g=document.getElementById('themesGrid');
+  if(!allThemes.length){g.innerHTML='<p style="color:#9CA3AF;font-size:13px">Aucun theme disponible.</p>';return;}
+  g.innerHTML='';
+  allThemes.forEach(function(t){
+    var c=document.createElement('div');
+    c.className='th-card';
+    c.innerHTML='<div class="th-name">'+t.Titre+'</div>'
+      +'<div class="th-sub">Max '+t.MaxPlaces+' places / session</div>';
+    c.onclick=function(){ selTheme=t; selectCard(c); };
     g.appendChild(c);
   });
 }
 
-function selectCard(card) {
-  document.querySelectorAll('.th-card').forEach(function(c){ if(!c.classList.contains('full')) c.className='th-card'; });
-  card.className = 'th-card sel';
+function selectCard(card){
+  document.querySelectorAll('.th-card').forEach(function(c){c.className='th-card';});
+  card.className='th-card sel';
   hideAlert();
-  document.getElementById('step2').className = 'step on';
-  document.getElementById('step3').className = 'step on';
-  document.getElementById('step4').className = 'step';
-  document.getElementById('selDem').value = '';
-  document.getElementById('infoDem').style.display = 'none';
-  selDem = null;
-  document.getElementById('step2').scrollIntoView({behavior:'smooth', block:'nearest'});
+  hidePleine();
+  document.getElementById('step2').className='step on';
+  document.getElementById('step3').className='step on';
+  document.getElementById('step4').className='step';
+  document.getElementById('selDem').value='';
+  document.getElementById('infoDem').style.display='none';
+  document.getElementById('fDateDebut').value='';
+  document.getElementById('fNbJours').value='';
+  selDem=null;
+  document.getElementById('step2').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-function buildDem() {
-  var sel = document.getElementById('selDem');
-  sel.innerHTML = '<option value="">-- Choisir --</option>';
-  allDem.forEach(function(d, i) {
-    var o = document.createElement('option');
-    o.value = i;
-    o.textContent = d.Nom + ' ' + d.Prenom + ' (' + (d.Matricule||'') + ')';
+function buildDem(){
+  var sel=document.getElementById('selDem');
+  sel.innerHTML='<option value="">-- Choisir --</option>';
+  allDem.forEach(function(d,i){
+    var o=document.createElement('option');
+    o.value=i;
+    o.textContent=d.Nom+' '+d.Prenom+' ('+d.Matricule+')';
     sel.appendChild(o);
   });
 }
 
-function chgDem() {
-  var i = document.getElementById('selDem').value;
-  if (i === '') { selDem=null; document.getElementById('infoDem').style.display='none'; return; }
-  selDem = allDem[parseInt(i)];
-  document.getElementById('dMat').textContent   = selDem.Matricule || '-';
-  document.getElementById('dPoste').textContent = selDem.Poste     || '-';
-  document.getElementById('dResp').textContent  = selDem.Responsable || '-';
-  document.getElementById('infoDem').style.display = 'grid';
-  // Afficher step4 si dates aussi remplies
-  checkStep4();
+function chgDem(){
+  var i=document.getElementById('selDem').value;
+  if(i===''){selDem=null;document.getElementById('infoDem').style.display='none';return;}
+  selDem=allDem[parseInt(i)];
+  document.getElementById('dMat').textContent=selDem.Matricule||'-';
+  document.getElementById('dPoste').textContent=selDem.Poste||'-';
+  document.getElementById('dResp').textContent=selDem.Responsable||'-';
+  document.getElementById('infoDem').style.display='grid';
 }
 
-function checkStep4() {
-  var dd = document.getElementById('fDateDebut').value;
-  var nj = document.getElementById('fNbJours').value;
-  if (selDem && dd && nj) {
-    dateDebut = dd;
-    nbJours   = nj;
-    pilotsValides = 0;
-    document.getElementById('pilotsList').innerHTML = '';
-    document.getElementById('btnFin').style.display = 'none';
-    updateCounter();
-    document.getElementById('step4').className = 'step on';
-    document.getElementById('step4').scrollIntoView({behavior:'smooth', block:'nearest'});
-  }
+function onDateChange(){
+  var dd=document.getElementById('fDateDebut').value;
+  var nj=document.getElementById('fNbJours').value;
+  if(!dd||!nj||!selTheme){return;}
+
+  // Verifier places pour ce theme + cette date
+  var checking=document.getElementById('checkingMsg');
+  checking.className='checking show';
+  checking.textContent='Verification des places disponibles...';
+  document.getElementById('step4').className='step';
+
+  fetch(API+'?action=checkPlaces&theme='+encodeURIComponent(selTheme.Titre)+'&date='+dd,{redirect:'follow'})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      checking.className='checking';
+      if(res.err){showAlert(res.err);return;}
+
+      placesRestantes=res.restantes;
+      pilotsValides=0;
+      pilotCards=[];
+      document.getElementById('pilotsList').innerHTML='';
+      document.getElementById('btnFin').style.display='none';
+      document.getElementById('btnValider').disabled=false;
+      document.getElementById('btnValider').innerHTML='Valider ce pilote';
+      clearPilotForm();
+      hidePleine();
+      updateCounter(res);
+
+      document.getElementById('step4').className='step on';
+      document.getElementById('step4').scrollIntoView({behavior:'smooth',block:'nearest'});
+
+      if(res.complet){
+        showPleine(selTheme.Titre, dd);
+        document.getElementById('btnValider').disabled=true;
+      }
+    }).catch(function(){
+      checking.className='checking';
+      showAlert('Erreur de verification. Reessayez.');
+    });
 }
 
-document.getElementById('fDateDebut').addEventListener('change', checkStep4);
-document.getElementById('fNbJours').addEventListener('change', checkStep4);
-
-function updateCounter() {
-  var el = document.getElementById('placesNum');
-  el.textContent = placesRestantes;
-  el.style.color = placesRestantes === 0 ? '#EF4444' : '#1B4FBF';
-  el.style.fontSize = '22px';
-  var ctr = document.getElementById('placesCounter');
-  ctr.className = 'places-counter' + (placesRestantes === 0 ? ' rouge' : '');
+function updateCounter(res){
+  var el=document.getElementById('placesNum');
+  var box=document.getElementById('placesBox');
+  var n=res.restantes!==undefined?res.restantes:placesRestantes;
+  el.textContent=String(n);
+  box.className='places-box'+(n===0?' rouge':'');
+  var dd=document.getElementById('fDateDebut').value;
+  document.getElementById('sessionInfo').textContent=
+    selTheme.Titre+' | '+dd+' | '+res.occupees+'/'+res.maxPlaces+' inscrits';
 }
-function validerPilote() {
-  if (!selTheme || !selDem) { showAlert('Veuillez completer les etapes precedentes.'); return; }
-  var dd = document.getElementById('fDateDebut').value;
-  var nj = document.getElementById('fNbJours').value;
-  var nom    = document.getElementById('pNom').value.trim();
-  var prenom = document.getElementById('pPrenom').value.trim();
-  var mat    = document.getElementById('pMat').value.trim();
-  var poste  = document.getElementById('pPoste').value.trim();
-  if (!nom)   { showAlert('Veuillez saisir le nom du pilote.'); return; }
-  if (!prenom){ showAlert('Veuillez saisir le prenom du pilote.'); return; }
-  if (!mat)   { showAlert('Veuillez saisir le matricule du pilote.'); return; }
-  if (!poste) { showAlert('Veuillez saisir le poste du pilote.'); return; }
-  if (!dd)    { showAlert('Veuillez saisir la date de debut.'); return; }
-  if (!nj)    { showAlert('Veuillez saisir le nombre de jours.'); return; }
-  if (placesRestantes <= 0) { showPleine(); return; }
 
-  var respParts = (selDem.Responsable || '').split(' ');
-  var btn = document.getElementById('btnValider');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span> Validation...';
+function validerPilote(){
+  if(!selTheme||!selDem){showAlert('Veuillez completer les etapes precedentes.');return;}
+  var dd=document.getElementById('fDateDebut').value;
+  var nj=document.getElementById('fNbJours').value;
+  var nom=document.getElementById('pNom').value.trim();
+  var prenom=document.getElementById('pPrenom').value.trim();
+  var mat=document.getElementById('pMat').value.trim();
+  var poste=document.getElementById('pPoste').value.trim();
+  if(!nom){showAlert('Veuillez saisir le nom du pilote.');return;}
+  if(!prenom){showAlert('Veuillez saisir le prenom du pilote.');return;}
+  if(!mat){showAlert('Veuillez saisir le matricule du pilote.');return;}
+  if(!poste){showAlert('Veuillez saisir le poste du pilote.');return;}
+  if(!dd){showAlert('Veuillez saisir la date de debut.');return;}
+  if(!nj){showAlert('Veuillez saisir le nombre de jours.');return;}
+  if(placesRestantes<=0){showPleine(selTheme.Titre,dd);return;}
+
+  var respParts=(selDem.Responsable||'').split(' ');
+  var btn=document.getElementById('btnValider');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span> Validation...';
   hideAlert();
 
   apiPost({
-    action: 'submit',
-    theme:        selTheme.Titre,
-    date_debut:   dd,
-    nb_jours:     nj,
-    pilote_nom:   nom,
+    action:'submit',
+    theme:selTheme.Titre,
+    date_debut:dd,
+    nb_jours:nj,
+    pilote_nom:nom,
     pilote_prenom:prenom,
-    pilote_mat:   mat,
-    pilote_poste: poste,
-    dem_nom:      selDem.Nom,
-    dem_prenom:   selDem.Prenom,
-    dem_mat:      selDem.Matricule || '',
-    dem_poste:    selDem.Poste || '',
-    resp_nom:     respParts[0] || '',
-    resp_prenom:  respParts.slice(1).join(' ') || '',
-    resp_poste:   ''
-  }).then(function(r) {
-    btn.disabled = false;
-    btn.innerHTML = 'Valider ce pilote';
-    if (r.err) {
+    pilote_mat:mat,
+    pilote_poste:poste,
+    dem_nom:selDem.Nom,
+    dem_prenom:selDem.Prenom,
+    dem_mat:selDem.Matricule||'',
+    dem_poste:selDem.Poste||'',
+    resp_nom:respParts[0]||'',
+    resp_prenom:respParts.slice(1).join(' ')||'',
+    resp_poste:''
+  }).then(function(r){
+    btn.disabled=false;
+    btn.innerHTML='Valider ce pilote';
+    if(r.err){
       showAlert(r.err);
-      if (r.complet) showPleine();
+      if(r.complet){showPleine(selTheme.Titre,dd);btn.disabled=true;}
     } else {
+      placesRestantes=r.restantes;
+      updateCounter(r);
       pilotsValides++;
-      placesRestantes = r.restantes;
-      updateCounter();
-      addPilotCard(pilotsValides, nom, prenom, mat, poste);
+      addPilotCard(pilotsValides,nom,prenom,mat,poste);
       clearPilotForm();
-      document.getElementById('btnFin').style.display = 'block';
-      if (r.complet) {
-        showPleine();
-        btn.disabled = true;
-      }
+      document.getElementById('btnFin').style.display='block';
+      if(r.complet){showPleine(selTheme.Titre,dd);btn.disabled=true;}
     }
-  }).catch(function() {
-    btn.disabled = false;
-    btn.innerHTML = 'Valider ce pilote';
+  }).catch(function(){
+    btn.disabled=false;
+    btn.innerHTML='Valider ce pilote';
     showAlert('Erreur de connexion. Reessayez.');
   });
 }
 
-function addPilotCard(num, nom, prenom, mat, poste) {
-  var list = document.getElementById('pilotsList');
-  var div = document.createElement('div');
-  div.className = 'pilot-item';
-  div.innerHTML = '<div class="pnum">' + num + '</div>'
-    + '<div class="pinfo"><strong>' + nom + ' ' + prenom + '</strong>'
-    + '<span>Mat: ' + mat + ' — ' + poste + '</span></div>'
-    + '<div class="ok">&#10003;</div>';
+function addPilotCard(num,nom,prenom,mat,poste){
+  var list=document.getElementById('pilotsList');
+  var div=document.createElement('div');
+  div.className='pilot-item';
+  div.id='pilot-'+num;
+  div.innerHTML='<div class="pnum">'+num+'</div>'
+    +'<div class="pinfo"><strong>'+nom+' '+prenom+'</strong>'
+    +'<span>Mat: '+mat+' — '+poste+'</span></div>'
+    +'<button class="del-pilot" onclick="supprimerPilot('+num+')" title="Annuler ce pilote">x</button>';
   list.appendChild(div);
 }
 
-function clearPilotForm() {
-  document.getElementById('pNom').value = '';
-  document.getElementById('pPrenom').value = '';
-  document.getElementById('pMat').value = '';
-  document.getElementById('pPoste').value = '';
+function supprimerPilot(num){
+  if(!confirm('Annuler l inscription de ce pilote ?'))return;
+  // Note: supprime visuellement - pour supprimer du sheet il faut l admin
+  var el=document.getElementById('pilot-'+num);
+  if(el){
+    el.style.opacity='0.4';
+    el.style.textDecoration='line-through';
+    el.querySelector('.del-pilot').disabled=true;
+    placesRestantes++;
+    var box=document.getElementById('placesBox');
+    document.getElementById('placesNum').textContent=String(placesRestantes);
+    box.className='places-box';
+  }
+}
+
+function clearPilotForm(){
+  document.getElementById('pNom').value='';
+  document.getElementById('pPrenom').value='';
+  document.getElementById('pMat').value='';
+  document.getElementById('pPoste').value='';
   document.getElementById('pNom').focus();
 }
 
-function terminerSession() {
-  document.getElementById('formWrap').style.display = 'none';
-  document.getElementById('pleineBox').className = 'pleine-box';
-  var msg = pilotsValides + ' pilote(s) inscrit(s) avec succes pour la formation "' + selTheme.Titre + '".';
-  document.getElementById('succMsg').textContent = msg;
-  document.getElementById('succSession').className = 'succ-session on';
-  window.scrollTo(0, 0);
+function terminerSession(){
+  document.getElementById('formWrap').style.display='none';
+  hidePleine();
+  var dd=document.getElementById('fDateDebut').value;
+  document.getElementById('succMsg').textContent=
+    pilotsValides+' pilote(s) inscrit(s) pour "'+selTheme.Titre+'" du '+dd+'.';
+  document.getElementById('succSession').className='succ-session on';
+  window.scrollTo(0,0);
 }
 
-function showPleine() {
-  document.getElementById('pleineMsg').textContent = 'La classe "' + selTheme.Titre + '" est maintenant pleine. Aucune inscription supplementaire possible.';
-  document.getElementById('pleineBox').className = 'pleine-box show';
-  document.getElementById('btnValider').disabled = true;
-  window.scrollTo(0, 0);
+function showPleine(theme,date){
+  document.getElementById('pleineMsg').textContent='La session "'+theme+'" du '+date+' est maintenant pleine. Aucune inscription supplementaire possible.';
+  document.getElementById('pleineBox').className='pleine-box show';
+  document.getElementById('btnValider').disabled=true;
+  window.scrollTo(0,0);
 }
+function hidePleine(){document.getElementById('pleineBox').className='pleine-box';}
+function showAlert(msg){document.getElementById('alertMsg').textContent=msg;document.getElementById('alertBox').className='alert show';}
+function hideAlert(){document.getElementById('alertBox').className='alert';}
 
-function showAlert(msg) { document.getElementById('alertMsg').textContent=msg; document.getElementById('alertBox').className='alert show'; }
-function hideAlert() { document.getElementById('alertBox').className='alert'; }
-
-function resetAll() {
-  document.getElementById('succSession').className = 'succ-session';
-  document.getElementById('formWrap').style.display = 'block';
-  document.getElementById('pleineBox').className = 'pleine-box';
-  document.getElementById('step2').className = 'step';
-  document.getElementById('step3').className = 'step';
-  document.getElementById('step4').className = 'step';
-  document.getElementById('selDem').value = '';
-  document.getElementById('infoDem').style.display = 'none';
-  document.getElementById('fDateDebut').value = '';
-  document.getElementById('fNbJours').value = '';
-  document.getElementById('pilotsList').innerHTML = '';
-  document.getElementById('btnFin').style.display = 'none';
-  document.getElementById('btnValider').disabled = false;
-  document.getElementById('btnValider').innerHTML = 'Valider ce pilote';
+function resetAll(){
+  document.getElementById('succSession').className='succ-session';
+  document.getElementById('formWrap').style.display='block';
+  document.getElementById('step2').className='step';
+  document.getElementById('step3').className='step';
+  document.getElementById('step4').className='step';
+  document.getElementById('selDem').value='';
+  document.getElementById('infoDem').style.display='none';
+  document.getElementById('fDateDebut').value='';
+  document.getElementById('fNbJours').value='';
+  document.getElementById('pilotsList').innerHTML='';
+  document.getElementById('btnFin').style.display='none';
+  document.getElementById('btnValider').disabled=false;
+  document.getElementById('btnValider').innerHTML='Valider ce pilote';
   clearPilotForm();
-  selTheme=null; selDem=null; pilotsValides=0;
-  hideAlert(); load();
+  selTheme=null;selDem=null;pilotsValides=0;placesRestantes=0;
+  hideAlert();hidePleine();load();
 }
 
 load();
