@@ -41,29 +41,63 @@ label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5
 select,input[type=date],input[type=text],input[type=number]{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D1B2A;background:#fff;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7FA3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:15px;padding-right:36px}
 select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,191,.08)}
+/* Theme cards */
 .themes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:9px}
-.th-card{border:2px solid #E8F0FE;border-radius:11px;padding:13px 15px;cursor:pointer;transition:.15s;background:#fff}
+.th-card{border:2px solid #E8F0FE;border-radius:11px;padding:0;cursor:pointer;transition:.15s;background:#fff;overflow:hidden}
 .th-card:hover{border-color:#1B4FBF;background:#F0F4FF}
 .th-card.sel{border-color:#1B4FBF;background:#EFF6FF;box-shadow:0 0 0 3px rgba(27,79,191,.1)}
-.th-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:5px;font-family:'Syne',sans-serif}
-.th-sub{font-size:12px;color:#6B7FA3}
+.th-body{padding:13px 15px}
+.th-name{font-weight:700;font-size:14px;color:#0D1B2A;margin-bottom:4px;font-family:'Syne',sans-serif}
+.th-sub{font-size:12px;color:#6B7FA3;margin-bottom:8px}
+.th-btn-info{width:100%;background:#F0F4FF;border:none;border-top:1px solid #E8F0FE;padding:7px;font-size:11px;font-weight:700;color:#1B4FBF;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.15s}
+.th-btn-info:hover{background:#DBEAFE}
+/* Popup / Modal sessions */
+.popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
+.popup-overlay.open{display:flex}
+.popup{background:#fff;border-radius:18px;width:100%;max-width:520px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.popup-header{background:#0D1B2A;color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
+.popup-header h3{font-size:15px;font-weight:700;font-family:'Syne',sans-serif}
+.popup-header p{font-size:12px;color:#93C5FD;margin-top:2px}
+.popup-close{background:none;border:none;color:#93C5FD;font-size:22px;cursor:pointer;line-height:1;padding:0}
+.popup-close:hover{color:#fff}
+.popup-body{padding:16px 20px;max-height:60vh;overflow-y:auto}
+.popup-footer{padding:12px 20px;border-top:1px solid #EFF6FF;display:flex;gap:8px}
+.btn-select-session{flex:1;background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer}
+.btn-select-session:hover{background:#1539A0}
+.btn-cancel-popup{padding:10px 16px;background:#F3F4F6;color:#374151;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:9px;cursor:pointer}
+.btn-cancel-popup:hover{background:#E5E7EB}
+/* Table sessions */
+.sessions-table{width:100%;border-collapse:collapse;font-size:13px}
+.sessions-table thead{background:#F0F4FF}
+.sessions-table thead th{padding:8px 12px;text-align:left;font-family:'Syne',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#6B7FA3;font-weight:700;white-space:nowrap}
+.sessions-table tbody tr{border-top:1px solid #EFF6FF;cursor:pointer;transition:.12s}
+.sessions-table tbody tr:hover:not(.complet){background:#F0F4FF}
+.sessions-table tbody tr.selected{background:#EFF6FF;border-left:3px solid #1B4FBF}
+.sessions-table tbody tr.complet{opacity:.55;cursor:not-allowed}
+.sessions-table td{padding:10px 12px;vertical-align:middle}
+.badge-dispo{display:inline-block;background:#D1FAE5;color:#065F46;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
+.badge-full{display:inline-block;background:#FEE2E2;color:#991B1B;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
+.no-sessions{text-align:center;padding:24px;color:#9CA3AF;font-size:13px}
+.new-session-btn{width:100%;margin-top:12px;background:#F0F4FF;border:1px dashed #BFDBFE;border-radius:9px;padding:10px;font-size:13px;color:#1B4FBF;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.new-session-btn:hover{background:#DBEAFE}
+/* Info grid */
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}
 .ic{background:#F0F4FF;border-radius:8px;padding:9px 11px}
 .ic small{font-size:10px;color:#6B7FA3;text-transform:uppercase;letter-spacing:.06em;font-weight:700;display:block;margin-bottom:2px}
 .ic span{font-size:13px;font-weight:600;color:#0D1B2A}
 /* Places counter */
 .places-box{background:#F0F4FF;border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.places-box .label{font-size:13px;color:#374151;font-weight:500}
-.places-box .count{font-size:24px;font-weight:800;font-family:'Syne',sans-serif;color:#1B4FBF;min-width:40px;text-align:right}
-.places-box.rouge .count{color:#EF4444}
-.places-box .session-info{font-size:11px;color:#6B7FA3;margin-top:2px}
-/* Pilotes list */
+.places-box .plabel{font-size:13px;color:#374151;font-weight:500}
+.places-box .pcount{font-size:24px;font-weight:800;font-family:'Syne',sans-serif;color:#1B4FBF;min-width:40px;text-align:right}
+.places-box.rouge .pcount{color:#EF4444}
+.places-box .psub{font-size:11px;color:#6B7FA3;margin-top:2px}
+/* Pilotes */
 .pilot-item{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:11px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .pilot-item .pnum{width:24px;height:24px;background:#16A34A;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
 .pilot-item .pinfo{flex:1}
 .pilot-item .pinfo strong{display:block;color:#0D1B2A;font-weight:700;font-size:13px}
 .pilot-item .pinfo span{color:#6B7FA3;font-size:12px}
-.pilot-item .del-pilot{background:#FEE2E2;color:#DC2626;border:none;width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.15s}
+.pilot-item .del-pilot{background:#FEE2E2;color:#DC2626;border:none;width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:16px;font-weight:700;flex-shrink:0;transition:.15s;display:flex;align-items:center;justify-content:center}
 .pilot-item .del-pilot:hover{background:#FCA5A5}
 .sep{border:none;border-top:1px solid #EFF6FF;margin:14px 0}
 .step{display:none}.step.on{display:block}
@@ -81,8 +115,6 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
 .succ-session p{color:#6B7FA3;font-size:13px;margin-bottom:16px}
 .btn-new{background:#1B4FBF;color:#fff;font-family:'Syne',sans-serif;font-weight:700;padding:11px 26px;border:none;border-radius:10px;cursor:pointer;font-size:14px}
 .btn-new:hover{background:#1539A0}
-.checking{background:#FEF9C3;border-radius:8px;padding:8px 12px;font-size:13px;color:#92400E;margin-bottom:10px;display:none}
-.checking.show{display:block}
 @media(max-width:500px){.hero h2{font-size:20px}.themes-grid{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.card{padding:14px}}
 </style>
 </head>
@@ -131,9 +163,7 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
         <div class="card-h"><span class="num">2</span>Demandeur</div>
         <div class="fld">
           <label>Selectionner le demandeur <span class="req">*</span></label>
-          <select id="selDem" onchange="chgDem()">
-            <option value="">-- Choisir --</option>
-          </select>
+          <select id="selDem" onchange="chgDem()"><option value="">-- Choisir --</option></select>
         </div>
         <div class="info-grid" id="infoDem" style="display:none">
           <div class="ic"><small>Matricule</small><span id="dMat">-</span></div>
@@ -157,7 +187,9 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
             <input type="number" id="fNbJours" placeholder="Ex: 3" min="1" max="365" onchange="onDateChange()">
           </div>
         </div>
-        <div class="checking" id="checkingMsg">Verification des places disponibles...</div>
+        <div id="checkingMsg" style="display:none;background:#FEF9C3;border-radius:8px;padding:8px 12px;font-size:13px;color:#92400E;margin-top:8px">
+          Verification en cours...
+        </div>
       </div>
     </div>
 
@@ -165,19 +197,14 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
     <div class="step" id="step4">
       <div class="card">
         <div class="card-h"><span class="num">4</span>Pilotes a inscrire</div>
-
-        <!-- Compteur places -->
         <div class="places-box" id="placesBox">
           <div>
-            <div class="label">Places disponibles pour cette session</div>
-            <div class="session-info" id="sessionInfo"></div>
+            <div class="plabel">Places disponibles pour cette session</div>
+            <div class="psub" id="sessionInfo"></div>
           </div>
-          <div class="count" id="placesNum">-</div>
+          <div class="pcount" id="placesNum">-</div>
         </div>
-
-        <!-- Liste pilotes valides -->
         <div id="pilotsList"></div>
-
         <hr class="sep">
         <p style="font-size:13px;color:#6B7FA3;margin-bottom:13px;font-weight:600">Ajouter un pilote :</p>
         <div class="g2">
@@ -188,7 +215,6 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
           <div class="fld"><label>Matricule <span class="req">*</span></label><input type="text" id="pMat" placeholder="500702"></div>
           <div class="fld"><label>Poste <span class="req">*</span></label><input type="text" id="pPoste" placeholder="Technicien"></div>
         </div>
-
         <button class="btn-valider" id="btnValider" onclick="validerPilote()">Valider ce pilote</button>
         <button class="btn-fin" id="btnFin" style="display:none" onclick="terminerSession()">Terminer et fermer</button>
       </div>
@@ -196,11 +222,33 @@ select:focus,input:focus{border-color:#1B4FBF;box-shadow:0 0 0 3px rgba(27,79,19
   </div>
 </main>
 
+<!-- POPUP SESSIONS -->
+<div class="popup-overlay" id="popupOverlay" onclick="if(event.target===this)closePopup()">
+  <div class="popup">
+    <div class="popup-header">
+      <div>
+        <h3 id="popupTitle">Situations des sessions</h3>
+        <p id="popupSub"></p>
+      </div>
+      <button class="popup-close" onclick="closePopup()">x</button>
+    </div>
+    <div class="popup-body" id="popupBody">
+      <div class="loading">Chargement...</div>
+    </div>
+    <div class="popup-footer">
+      <button class="btn-cancel-popup" onclick="closePopup()">Fermer</button>
+      <button class="btn-select-session" id="btnSelectSession" onclick="confirmerSelection()" style="display:none">
+        Selectionner cette session
+      </button>
+    </div>
+  </div>
+</div>
+
 <script>
-var API = 'https://script.google.com/macros/s/AKfycbz-GL69sH63D2P2ytd1ZlfwwJxPh8_TD9cCxtTXEaxrVY_6mmkdoaISp-6dLunWkX2UkA/exec';
+var API = 'https://script.google.com/macros/s/AKfycbzKcfgmkKWFB4HxwdsbFu_bPkNKkP_e4Pj3U4vgq-uz01MX_FRhsEGw6J7wrqCqQwgYsA/exec';
 var allThemes=[], allDem=[], selTheme=null, selDem=null;
 var placesRestantes=0, pilotsValides=0;
-var pilotCards=[];
+var popupTheme=null, selectedSession=null;
 
 document.getElementById('fDateDebut').min = new Date().toISOString().split('T')[0];
 
@@ -213,9 +261,7 @@ function load(){
     document.getElementById('loadMsg').style.display='none';
     buildThemes(); buildDem();
     document.getElementById('step1').className='step on';
-  }).catch(function(){
-    document.getElementById('loadMsg').textContent='Erreur de connexion.';
-  });
+  }).catch(function(){document.getElementById('loadMsg').textContent='Erreur de connexion.';});
 }
 
 function buildThemes(){
@@ -225,18 +271,22 @@ function buildThemes(){
   allThemes.forEach(function(t){
     var c=document.createElement('div');
     c.className='th-card';
-    c.innerHTML='<div class="th-name">'+t.Titre+'</div>'
-      +'<div class="th-sub">Max '+t.MaxPlaces+' places / session</div>';
-    c.onclick=function(){ selTheme=t; selectCard(c); };
+    c.innerHTML='<div class="th-body">'
+      +'<div class="th-name">'+t.Titre+'</div>'
+      +'<div class="th-sub">Max '+t.MaxPlaces+' places / session</div>'
+      +'</div>'
+      +'<button class="th-btn-info" onclick="ouvrirPopup(event,\''+t.Titre+'\')">Voir les sessions disponibles</button>';
+    // Clic sur th-body pour selectionner
+    c.querySelector('.th-body').onclick = function(){ selectionnerTheme(t,c); };
     g.appendChild(c);
   });
 }
 
-function selectCard(card){
+function selectionnerTheme(t, card){
   document.querySelectorAll('.th-card').forEach(function(c){c.className='th-card';});
   card.className='th-card sel';
-  hideAlert();
-  hidePleine();
+  selTheme=t;
+  hideAlert(); hidePleine();
   document.getElementById('step2').className='step on';
   document.getElementById('step3').className='step on';
   document.getElementById('step4').className='step';
@@ -248,6 +298,127 @@ function selectCard(card){
   document.getElementById('step2').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+// ---- POPUP SESSIONS ----
+function ouvrirPopup(e, theme){
+  e.stopPropagation();
+  popupTheme=theme;
+  selectedSession=null;
+  document.getElementById('popupTitle').textContent='Sessions — '+theme;
+  document.getElementById('popupSub').textContent='Choisissez une session existante ou saisissez une nouvelle date';
+  document.getElementById('popupBody').innerHTML='<div class="loading">Chargement...</div>';
+  document.getElementById('btnSelectSession').style.display='none';
+  document.getElementById('popupOverlay').className='popup-overlay open';
+
+  fetch(API+'?action=sessions&theme='+encodeURIComponent(theme),{redirect:'follow'})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.err){document.getElementById('popupBody').innerHTML='<p style="color:#DC2626;padding:16px">'+res.err+'</p>';return;}
+      renderSessions(res);
+    }).catch(function(){
+      document.getElementById('popupBody').innerHTML='<p style="color:#DC2626;padding:16px">Erreur de connexion.</p>';
+    });
+}
+
+function renderSessions(res){
+  var body=document.getElementById('popupBody');
+  var html='';
+
+  if(!res.sessions||res.sessions.length===0){
+    html='<div class="no-sessions">Aucune session planifiee pour ce theme.<br>Saisissez une nouvelle date ci-dessous.</div>';
+  } else {
+    html='<table class="sessions-table"><thead><tr>'
+      +'<th>Date debut</th><th>Nb jours</th><th>Inscrits</th><th>Disponibles</th><th>Statut</th>'
+      +'</tr></thead><tbody>';
+
+    res.sessions.forEach(function(s){
+      var cls = s.complet ? 'complet' : '';
+      var badge = s.complet
+        ? '<span class="badge-full">Pleine</span>'
+        : '<span class="badge-dispo">'+s.restantes+' place(s)</span>';
+      // Format date display
+      var parts = s.date.split('-');
+      var dateFr = parts.length===3 ? parts[2]+'/'+parts[1]+'/'+parts[0] : s.date;
+
+      html+='<tr class="'+cls+'" onclick="selectSession(\''+s.date+'\','+s.nbJours+','+s.complet+')" id="sess-'+s.date+'">'
+        +'<td><strong>'+dateFr+'</strong></td>'
+        +'<td>'+s.nbJours+' jour(s)</td>'
+        +'<td>'+s.inscrits+' / '+res.maxPlaces+'</td>'
+        +'<td>'+s.restantes+'</td>'
+        +'<td>'+badge+'</td>'
+        +'</tr>';
+    });
+    html+='</tbody></table>';
+  }
+
+  html+='<button class="new-session-btn" onclick="nouvelleSession()">+ Nouvelle session (autre date)</button>';
+  body.innerHTML=html;
+}
+
+function selectSession(date, nbJours, complet){
+  if(complet) return;
+  selectedSession={date:date, nbJours:nbJours};
+  // Highlight row
+  document.querySelectorAll('.sessions-table tbody tr').forEach(function(r){
+    r.className=r.classList.contains('complet')?'complet':'';
+  });
+  var row=document.getElementById('sess-'+date);
+  if(row) row.className='selected';
+  document.getElementById('btnSelectSession').style.display='block';
+}
+
+function confirmerSelection(){
+  if(!selectedSession) return;
+  // Selectionner le theme si pas encore fait
+  var t=allThemes.find(function(x){return x.Titre===popupTheme;});
+  if(t){
+    document.querySelectorAll('.th-card').forEach(function(c){c.className='th-card';});
+    // find and select card
+    document.querySelectorAll('.th-card').forEach(function(c){
+      if(c.querySelector('.th-name')&&c.querySelector('.th-name').textContent===popupTheme){
+        c.className='th-card sel';
+      }
+    });
+    selTheme=t;
+  }
+  // Remplir date et nb jours
+  document.getElementById('fDateDebut').value=selectedSession.date;
+  document.getElementById('fNbJours').value=selectedSession.nbJours;
+  closePopup();
+  // Activer etapes
+  document.getElementById('step2').className='step on';
+  document.getElementById('step3').className='step on';
+  document.getElementById('step2').scrollIntoView({behavior:'smooth',block:'nearest'});
+  // Declencher verification
+  onDateChange();
+}
+
+function nouvelleSession(){
+  closePopup();
+  // Selectionner le theme
+  var t=allThemes.find(function(x){return x.Titre===popupTheme;});
+  if(t){
+    selTheme=t;
+    document.querySelectorAll('.th-card').forEach(function(c){
+      if(c.querySelector('.th-name')&&c.querySelector('.th-name').textContent===popupTheme){
+        c.className='th-card sel';
+      } else {
+        c.className='th-card';
+      }
+    });
+  }
+  document.getElementById('step2').className='step on';
+  document.getElementById('step3').className='step on';
+  document.getElementById('fDateDebut').value='';
+  document.getElementById('fNbJours').value='';
+  document.getElementById('step2').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function closePopup(){
+  document.getElementById('popupOverlay').className='popup-overlay';
+  selectedSession=null;
+}
+
+// ---- DEMANDEUR ----
 function buildDem(){
   var sel=document.getElementById('selDem');
   sel.innerHTML='<option value="">-- Choisir --</option>';
@@ -272,53 +443,41 @@ function chgDem(){
 function onDateChange(){
   var dd=document.getElementById('fDateDebut').value;
   var nj=document.getElementById('fNbJours').value;
-  if(!dd||!nj||!selTheme){return;}
+  if(!dd||!nj||!selTheme) return;
 
-  // Verifier places pour ce theme + cette date
-  var checking=document.getElementById('checkingMsg');
-  checking.className='checking show';
-  checking.textContent='Verification des places disponibles...';
+  var cm=document.getElementById('checkingMsg');
+  cm.style.display='block';
+  cm.textContent='Verification des places disponibles...';
   document.getElementById('step4').className='step';
 
   fetch(API+'?action=checkPlaces&theme='+encodeURIComponent(selTheme.Titre)+'&date='+dd,{redirect:'follow'})
     .then(function(r){return r.json();})
     .then(function(res){
-      checking.className='checking';
+      cm.style.display='none';
       if(res.err){showAlert(res.err);return;}
-
       placesRestantes=res.restantes;
       pilotsValides=0;
-      pilotCards=[];
       document.getElementById('pilotsList').innerHTML='';
       document.getElementById('btnFin').style.display='none';
       document.getElementById('btnValider').disabled=false;
       document.getElementById('btnValider').innerHTML='Valider ce pilote';
-      clearPilotForm();
-      hidePleine();
+      clearPilotForm(); hidePleine();
       updateCounter(res);
-
       document.getElementById('step4').className='step on';
       document.getElementById('step4').scrollIntoView({behavior:'smooth',block:'nearest'});
-
-      if(res.complet){
-        showPleine(selTheme.Titre, dd);
-        document.getElementById('btnValider').disabled=true;
-      }
-    }).catch(function(){
-      checking.className='checking';
-      showAlert('Erreur de verification. Reessayez.');
-    });
+      if(res.complet){showPleine(selTheme.Titre,dd);document.getElementById('btnValider').disabled=true;}
+    }).catch(function(){cm.style.display='none';showAlert('Erreur de verification.');});
 }
 
 function updateCounter(res){
-  var el=document.getElementById('placesNum');
-  var box=document.getElementById('placesBox');
   var n=res.restantes!==undefined?res.restantes:placesRestantes;
-  el.textContent=String(n);
-  box.className='places-box'+(n===0?' rouge':'');
+  document.getElementById('placesNum').textContent=String(n);
+  document.getElementById('placesBox').className='places-box'+(n===0?' rouge':'');
   var dd=document.getElementById('fDateDebut').value;
+  var parts=dd.split('-');
+  var dateFr=parts.length===3?parts[2]+'/'+parts[1]+'/'+parts[0]:dd;
   document.getElementById('sessionInfo').textContent=
-    selTheme.Titre+' | '+dd+' | '+res.occupees+'/'+res.maxPlaces+' inscrits';
+    selTheme.Titre+' | '+dateFr+' | '+res.occupees+'/'+res.maxPlaces+' inscrits';
 }
 
 function validerPilote(){
@@ -339,98 +498,66 @@ function validerPilote(){
 
   var respParts=(selDem.Responsable||'').split(' ');
   var btn=document.getElementById('btnValider');
-  btn.disabled=true;
-  btn.innerHTML='<span class="spin"></span> Validation...';
+  btn.disabled=true; btn.innerHTML='<span class="spin"></span> Validation...';
   hideAlert();
 
   apiPost({
-    action:'submit',
-    theme:selTheme.Titre,
-    date_debut:dd,
-    nb_jours:nj,
-    pilote_nom:nom,
-    pilote_prenom:prenom,
-    pilote_mat:mat,
-    pilote_poste:poste,
-    dem_nom:selDem.Nom,
-    dem_prenom:selDem.Prenom,
-    dem_mat:selDem.Matricule||'',
-    dem_poste:selDem.Poste||'',
-    resp_nom:respParts[0]||'',
-    resp_prenom:respParts.slice(1).join(' ')||'',
-    resp_poste:''
+    action:'submit', theme:selTheme.Titre, date_debut:dd, nb_jours:nj,
+    pilote_nom:nom, pilote_prenom:prenom, pilote_mat:mat, pilote_poste:poste,
+    dem_nom:selDem.Nom, dem_prenom:selDem.Prenom, dem_mat:selDem.Matricule||'',
+    dem_poste:selDem.Poste||'', resp_nom:respParts[0]||'',
+    resp_prenom:respParts.slice(1).join(' ')||'', resp_poste:''
   }).then(function(r){
-    btn.disabled=false;
-    btn.innerHTML='Valider ce pilote';
-    if(r.err){
-      showAlert(r.err);
-      if(r.complet){showPleine(selTheme.Titre,dd);btn.disabled=true;}
-    } else {
-      placesRestantes=r.restantes;
-      updateCounter(r);
-      pilotsValides++;
+    btn.disabled=false; btn.innerHTML='Valider ce pilote';
+    if(r.err){showAlert(r.err);if(r.complet){showPleine(selTheme.Titre,dd);btn.disabled=true;}}
+    else{
+      placesRestantes=r.restantes; updateCounter(r); pilotsValides++;
       addPilotCard(pilotsValides,nom,prenom,mat,poste);
-      clearPilotForm();
-      document.getElementById('btnFin').style.display='block';
+      clearPilotForm(); document.getElementById('btnFin').style.display='block';
       if(r.complet){showPleine(selTheme.Titre,dd);btn.disabled=true;}
     }
-  }).catch(function(){
-    btn.disabled=false;
-    btn.innerHTML='Valider ce pilote';
-    showAlert('Erreur de connexion. Reessayez.');
-  });
+  }).catch(function(){btn.disabled=false;btn.innerHTML='Valider ce pilote';showAlert('Erreur de connexion.');});
 }
 
 function addPilotCard(num,nom,prenom,mat,poste){
   var list=document.getElementById('pilotsList');
   var div=document.createElement('div');
-  div.className='pilot-item';
-  div.id='pilot-'+num;
+  div.className='pilot-item'; div.id='pilot-'+num;
   div.innerHTML='<div class="pnum">'+num+'</div>'
-    +'<div class="pinfo"><strong>'+nom+' '+prenom+'</strong>'
-    +'<span>Mat: '+mat+' — '+poste+'</span></div>'
-    +'<button class="del-pilot" onclick="supprimerPilot('+num+')" title="Annuler ce pilote">x</button>';
+    +'<div class="pinfo"><strong>'+nom+' '+prenom+'</strong><span>Mat: '+mat+' - '+poste+'</span></div>'
+    +'<button class="del-pilot" onclick="supprimerPilot('+num+')" title="Annuler">x</button>';
   list.appendChild(div);
 }
 
 function supprimerPilot(num){
-  if(!confirm('Annuler l inscription de ce pilote ?'))return;
-  // Note: supprime visuellement - pour supprimer du sheet il faut l admin
+  if(!confirm('Annuler inscription de ce pilote ?')) return;
   var el=document.getElementById('pilot-'+num);
-  if(el){
-    el.style.opacity='0.4';
-    el.style.textDecoration='line-through';
-    el.querySelector('.del-pilot').disabled=true;
+  if(el){el.style.opacity='0.4';el.style.textDecoration='line-through';el.querySelector('.del-pilot').disabled=true;
     placesRestantes++;
-    var box=document.getElementById('placesBox');
     document.getElementById('placesNum').textContent=String(placesRestantes);
-    box.className='places-box';
+    document.getElementById('placesBox').className='places-box';
   }
 }
 
 function clearPilotForm(){
-  document.getElementById('pNom').value='';
-  document.getElementById('pPrenom').value='';
-  document.getElementById('pMat').value='';
-  document.getElementById('pPoste').value='';
+  document.getElementById('pNom').value=''; document.getElementById('pPrenom').value='';
+  document.getElementById('pMat').value=''; document.getElementById('pPoste').value='';
   document.getElementById('pNom').focus();
 }
 
 function terminerSession(){
-  document.getElementById('formWrap').style.display='none';
-  hidePleine();
+  document.getElementById('formWrap').style.display='none'; hidePleine();
   var dd=document.getElementById('fDateDebut').value;
-  document.getElementById('succMsg').textContent=
-    pilotsValides+' pilote(s) inscrit(s) pour "'+selTheme.Titre+'" du '+dd+'.';
-  document.getElementById('succSession').className='succ-session on';
-  window.scrollTo(0,0);
+  var parts=dd.split('-'); var dateFr=parts.length===3?parts[2]+'/'+parts[1]+'/'+parts[0]:dd;
+  document.getElementById('succMsg').textContent=pilotsValides+' pilote(s) inscrit(s) pour "'+selTheme.Titre+'" du '+dateFr+'.';
+  document.getElementById('succSession').className='succ-session on'; window.scrollTo(0,0);
 }
 
 function showPleine(theme,date){
-  document.getElementById('pleineMsg').textContent='La session "'+theme+'" du '+date+' est maintenant pleine. Aucune inscription supplementaire possible.';
+  var parts=date.split('-'); var dateFr=parts.length===3?parts[2]+'/'+parts[1]+'/'+parts[0]:date;
+  document.getElementById('pleineMsg').textContent='La session "'+theme+'" du '+dateFr+' est maintenant pleine.';
   document.getElementById('pleineBox').className='pleine-box show';
-  document.getElementById('btnValider').disabled=true;
-  window.scrollTo(0,0);
+  document.getElementById('btnValider').disabled=true; window.scrollTo(0,0);
 }
 function hidePleine(){document.getElementById('pleineBox').className='pleine-box';}
 function showAlert(msg){document.getElementById('alertMsg').textContent=msg;document.getElementById('alertBox').className='alert show';}
@@ -439,19 +566,12 @@ function hideAlert(){document.getElementById('alertBox').className='alert';}
 function resetAll(){
   document.getElementById('succSession').className='succ-session';
   document.getElementById('formWrap').style.display='block';
-  document.getElementById('step2').className='step';
-  document.getElementById('step3').className='step';
-  document.getElementById('step4').className='step';
-  document.getElementById('selDem').value='';
-  document.getElementById('infoDem').style.display='none';
-  document.getElementById('fDateDebut').value='';
-  document.getElementById('fNbJours').value='';
-  document.getElementById('pilotsList').innerHTML='';
-  document.getElementById('btnFin').style.display='none';
-  document.getElementById('btnValider').disabled=false;
-  document.getElementById('btnValider').innerHTML='Valider ce pilote';
-  clearPilotForm();
-  selTheme=null;selDem=null;pilotsValides=0;placesRestantes=0;
+  ['step2','step3','step4'].forEach(function(s){document.getElementById(s).className='step';});
+  document.getElementById('selDem').value=''; document.getElementById('infoDem').style.display='none';
+  document.getElementById('fDateDebut').value=''; document.getElementById('fNbJours').value='';
+  document.getElementById('pilotsList').innerHTML=''; document.getElementById('btnFin').style.display='none';
+  document.getElementById('btnValider').disabled=false; document.getElementById('btnValider').innerHTML='Valider ce pilote';
+  clearPilotForm(); selTheme=null;selDem=null;pilotsValides=0;placesRestantes=0;
   hideAlert();hidePleine();load();
 }
 
