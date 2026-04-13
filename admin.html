@@ -55,7 +55,6 @@ tbody tr{border-top:1px solid #EFF6FF;transition:.1s}
 tbody tr:hover{background:#F8FAFF}
 tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap}
 .empty{text-align:center;padding:36px;color:#9CA3AF;font-size:13px}
-.tag{display:inline-block;background:#EFF6FF;color:#1B4FBF;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:700}
 .pw{display:flex;align-items:center;gap:7px}
 .pb{width:65px;height:5px;background:#DBEAFE;border-radius:3px;overflow:hidden;flex-shrink:0}
 .pf{height:100%;border-radius:3px}
@@ -63,6 +62,28 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 .be:hover{background:#DBEAFE}
 .bd{background:#FEF2F2;color:#DC2626;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;margin-left:3px}
 .bd:hover{background:#FEE2E2}
+/* Presence button */
+.btn-pres{border:none;padding:5px 11px;border-radius:7px;font-size:12px;cursor:pointer;font-weight:700;font-family:'DM Sans',sans-serif;transition:.15s;white-space:nowrap}
+.btn-pres.present{background:#D1FAE5;color:#065F46}
+.btn-pres.present:hover{background:#A7F3D0}
+.btn-pres.absent{background:#F3F4F6;color:#6B7FA3}
+.btn-pres.absent:hover{background:#E5E7EB;color:#374151}
+.badge-pres{display:inline-block;padding:3px 9px;border-radius:8px;font-size:11px;font-weight:700}
+.badge-pres.oui{background:#D1FAE5;color:#065F46}
+.badge-pres.non{background:#FEE2E2;color:#991B1B}
+.badge-pres.vide{background:#F3F4F6;color:#9CA3AF}
+/* Synthese */
+.synth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:16px}
+.synth-card{background:#fff;border-radius:12px;border:1px solid #EFF6FF;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.synth-title{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#0D1B2A;margin-bottom:12px;border-bottom:2px solid #1B4FBF;padding-bottom:8px}
+.synth-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #F3F4F6}
+.synth-row:last-child{border-bottom:none}
+.synth-label{font-size:13px;color:#6B7FA3}
+.synth-val{font-size:15px;font-weight:800;font-family:'Syne',sans-serif}
+.synth-val.blue{color:#1B4FBF}
+.synth-val.green{color:#16A34A}
+.synth-val.red{color:#DC2626}
+/* Modal */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
 .ov.on{display:flex}
 .mo{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:460px;position:relative;max-height:92vh;overflow-y:auto}
@@ -117,11 +138,12 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
     <div class="stats">
       <div class="stat" style="background:#1B4FBF"><small>Total inscriptions</small><strong id="s1">0</strong></div>
       <div class="stat" style="background:#0D1B2A"><small>Themes actifs</small><strong id="s2">0</strong></div>
-      <div class="stat" style="background:#059669"><small>Demandeurs</small><strong id="s3">0</strong></div>
-      <div class="stat" style="background:#3B82F6"><small>Responsables</small><strong id="s4">0</strong></div>
+      <div class="stat" style="background:#059669"><small>Presences confirmees</small><strong id="s3">0</strong></div>
+      <div class="stat" style="background:#3B82F6"><small>En attente de presence</small><strong id="s4">0</strong></div>
     </div>
     <div class="tabs">
       <button class="tb on" onclick="showTab('inscriptions')">Inscriptions</button>
+      <button class="tb" onclick="showTab('synthese')">Synthese</button>
       <button class="tb" onclick="showTab('themes')">Themes</button>
       <button class="tb" onclick="showTab('demandeurs')">Demandeurs</button>
       <button class="tb" onclick="showTab('responsables')">Responsables</button>
@@ -131,9 +153,27 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
     <div class="tc on" id="tc-inscriptions">
       <div class="card">
         <div class="ct"><h3>Toutes les inscriptions</h3>
-          <input class="srch" placeholder="Rechercher..." oninput="filterI(this.value)">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <select id="filtrePresence" onchange="filterI(document.getElementById('srchI').value)" style="border:1px solid #DBEAFE;border-radius:8px;padding:6px 11px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;background:#fff">
+              <option value="">Toutes</option>
+              <option value="Oui">Presences seulement</option>
+              <option value="Non">Absences seulement</option>
+              <option value="vide">Non renseigne</option>
+            </select>
+            <input class="srch" id="srchI" placeholder="Rechercher..." oninput="filterI(this.value)">
+          </div>
         </div>
         <div class="tw"><div id="tI">Chargement...</div></div>
+      </div>
+    </div>
+
+    <!-- Synthese -->
+    <div class="tc" id="tc-synthese">
+      <div class="card">
+        <div class="ct"><h3>Synthese par theme</h3>
+          <button class="ba" onclick="loadSynthese()">Actualiser</button>
+        </div>
+        <div id="synthBody"><div class="empty">Chargement...</div></div>
       </div>
     </div>
 
@@ -183,7 +223,7 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 <div class="toast" id="toast"></div>
 
 <script>
-var API = 'https://script.google.com/macros/s/AKfycbx2R07mwUsXXxDjS1z9YQ9Zj1NgqfaFs7y3_fqqdmTNZ1Kd8wGjz8UsXWV8RX4J1A7SzA/exec';
+var API = 'https://script.google.com/macros/s/AKfycbw56ZFDOv9bTgw-teK2it2x3ETRK8nlfXf9PYw2x-Qrn0IiFVeNX0s09FwvsrvQqQSEAg/exec';
 var pwd='', mType='', mIdx=null;
 var aI=[], aR=[], aT=[], aDem=[];
 
@@ -219,27 +259,71 @@ function post(d){ if(!d.p)d.p=pwd; return fetch(API,{method:'POST',body:JSON.str
 function loadAll(){
   Promise.all([get('demandeurs'),get('responsables'),get('themes'),get('demandes')]).then(function(r){
     aDem=r[0]||[]; aR=r[1]||[]; aT=r[2]||[]; aI=r[3]||[];
+    var presOui = aI.filter(function(d){ return String(d.Presence)==='Oui'; }).length;
+    var presVide = aI.filter(function(d){ return !d.Presence||String(d.Presence).trim()===''; }).length;
     document.getElementById('s1').textContent=aI.length;
     document.getElementById('s2').textContent=aT.length;
-    document.getElementById('s3').textContent=aDem.length;
-    document.getElementById('s4').textContent=aR.length;
+    document.getElementById('s3').textContent=presOui;
+    document.getElementById('s4').textContent=presVide;
     renderI(aI); renderT(); renderD(); renderR();
   }).catch(function(){toast('Erreur de chargement');});
 }
 
 function showTab(name){
-  var names=['inscriptions','themes','demandeurs','responsables'];
+  var names=['inscriptions','synthese','themes','demandeurs','responsables'];
   document.querySelectorAll('.tb').forEach(function(t,i){t.className='tb'+(names[i]===name?' on':'');});
   document.querySelectorAll('.tc').forEach(function(c){c.className='tc'+(c.id==='tc-'+name?' on':'');});
+  if(name==='synthese') loadSynthese();
 }
 
 function x(s){ return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''; }
 function sv(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
 
+function fmtDate(val){
+  var s=String(val||'');
+  if(s.length>=10){
+    var raw=s.substring(0,10);
+    if(raw.includes('-')){var p=raw.split('-');return p[2]+'/'+p[1]+'/'+p[0];}
+  }
+  return s;
+}
+
+function periodeFormation(dateDebut, nbJours){
+  // Calculer periode automatique depuis date_debut + nb_jours
+  try {
+    var s = String(dateDebut||'').substring(0,10);
+    if(!s||s.length<10) return fmtDate(dateDebut);
+    var d = new Date(s);
+    if(isNaN(d.getTime())) return fmtDate(dateDebut);
+    var nb = parseInt(nbJours)||1;
+    var fin = new Date(d);
+    fin.setDate(fin.getDate() + nb - 1);
+    var debut = [
+      String(d.getDate()).padStart(2,'0'),
+      String(d.getMonth()+1).padStart(2,'0'),
+      d.getFullYear()
+    ].join('/');
+    if(nb<=1) return debut;
+    var finStr = [
+      String(fin.getDate()).padStart(2,'0'),
+      String(fin.getMonth()+1).padStart(2,'0'),
+      fin.getFullYear()
+    ].join('/');
+    return debut + ' au ' + finStr;
+  } catch(e) { return fmtDate(dateDebut); }
+}
+
 // ===== INSCRIPTIONS =====
 function filterI(q){
+  var filtre = document.getElementById('filtrePresence').value;
   var f=aI.filter(function(d){
-    return (x(d.Theme)+x(d.Pilote_Nom)+x(d.Pilote_Prenom)+x(d.Pilote_Matricule)+x(d.Dem_Nom)+x(d.Dem_Prenom)).toLowerCase().includes(q.toLowerCase());
+    var pres = String(d.Presence||'').trim();
+    var matchPres = true;
+    if(filtre==='Oui') matchPres = pres==='Oui';
+    else if(filtre==='Non') matchPres = pres==='Non';
+    else if(filtre==='vide') matchPres = pres==='';
+    var matchQ = (x(d.Theme)+x(d.Pilote_Nom)+x(d.Pilote_Prenom)+x(d.Pilote_Matricule)+x(d.Dem_Nom)+x(d.Dem_Prenom)).toLowerCase().includes(q.toLowerCase());
+    return matchPres && matchQ;
   });
   renderI(f);
 }
@@ -248,17 +332,24 @@ function renderI(list){
   var el=document.getElementById('tI');
   if(!list.length){el.innerHTML='<div class="empty">Aucune inscription.</div>';return;}
   var h='<table><thead><tr>'
-    +'<th>Theme</th><th>Date debut</th><th>Nb jours</th>'
+    +'<th>Theme</th><th>Periode de formation</th><th>Nb jours</th>'
     +'<th>Pilote — Nom Prenom</th><th>Matricule</th><th>Poste Pilote</th>'
     +'<th>Demandeur</th><th>Mat. Dem.</th><th>Poste Dem.</th>'
     +'<th>Responsable</th><th>Poste Resp.</th>'
-    +'<th>Soumis le</th><th></th>'
+    +'<th>Soumis le</th><th>Presence</th><th></th>'
     +'</tr></thead><tbody>';
   list.forEach(function(d){
     var row=d._row;
+    var periode=periodeFormation(d.Date_Debut, d.Nb_Jours);
+    var pres=String(d.Presence||'').trim();
+    var badgeClass=pres==='Oui'?'oui':(pres==='Non'?'non':'vide');
+    var badgeLabel=pres==='Oui'?'Present':(pres==='Non'?'Absent':'Non renseigne');
+    var btnLabel=pres==='Oui'?'Marquer absent':'Marquer present';
+    var btnClass=pres==='Oui'?'present':'absent';
+    var nextVal=pres==='Oui'?'Non':'Oui';
     h+='<tr>'
       +'<td style="font-weight:700;color:#1B4FBF">'+x(d.Theme)+'</td>'
-      +'<td>'+x(d.Date_Debut)+'</td>'
+      +'<td style="font-weight:600">'+x(periode)+'</td>'
       +'<td style="text-align:center">'+x(d.Nb_Jours)+'</td>'
       +'<td><strong>'+x(d.Pilote_Nom)+' '+x(d.Pilote_Prenom)+'</strong></td>'
       +'<td style="color:#1B4FBF;font-weight:700">'+x(d.Pilote_Matricule)+'</td>'
@@ -269,27 +360,64 @@ function renderI(list){
       +'<td>'+x(d.Resp_Nom)+' '+x(d.Resp_Prenom)+'</td>'
       +'<td style="color:#6B7FA3">'+x(d.Resp_Poste)+'</td>'
       +'<td style="color:#6B7FA3;font-size:12px">'+x(d.Soumis_le)+'</td>'
-      +'<td><button class="bd" onclick="delI('+row+')">Suppr</button></td>'
+      +'<td><span class="badge-pres '+badgeClass+'">'+badgeLabel+'</span></td>'
+      +'<td style="display:flex;gap:4px">'
+      +'<button class="btn-pres '+btnClass+'" onclick="togglePresence('+row+',\''+nextVal+'\',this)">'+btnLabel+'</button>'
+      +'<button class="bd" onclick="delI('+row+')">Suppr</button>'
+      +'</td>'
       +'</tr>';
   });
   h+='</tbody></table>';
   el.innerHTML=h;
 }
+
+function togglePresence(row, val, btn){
+  btn.innerHTML='...'; btn.disabled=true;
+  post({action:'setPresence', row:row, val:val}).then(function(r){
+    if(r.ok){ loadAll(); toast(val==='Oui'?'Presence confirmee !':'Marque absent'); }
+    else { toast('Erreur: '+(r.err||'')); btn.disabled=false; }
+  }).catch(function(){ toast('Erreur connexion'); btn.disabled=false; });
+}
+
 function delI(row){if(!confirm('Supprimer ?'))return;post({action:'delDem',row:row}).then(function(){loadAll();toast('Supprime');});}
+
+// ===== SYNTHESE =====
+function loadSynthese(){
+  document.getElementById('synthBody').innerHTML='<div class="empty">Chargement...</div>';
+  get('synthese').then(function(data){
+    if(!data||!data.length){document.getElementById('synthBody').innerHTML='<div class="empty">Aucune donnee.</div>';return;}
+    var html='<div class="synth-grid">';
+    data.forEach(function(t){
+      var txPres = t.nbDemandes>0 ? Math.round((t.nbPresences/t.nbDemandes)*100) : 0;
+      html+='<div class="synth-card">'
+        +'<div class="synth-title">'+x(t.titre)+'</div>'
+        +'<div class="synth-row"><span class="synth-label">Max places / session</span><span class="synth-val blue">'+t.maxPlaces+'</span></div>'
+        +'<div class="synth-row"><span class="synth-label">Nb inscriptions</span><span class="synth-val blue">'+t.nbDemandes+'</span></div>'
+        +'<div class="synth-row"><span class="synth-label">Presences confirmees</span><span class="synth-val green">'+t.nbPresences+'</span></div>'
+        +'<div class="synth-row"><span class="synth-label">Non renseigne / Absent</span><span class="synth-val red">'+t.nbAbsences+'</span></div>'
+        +'<div class="synth-row"><span class="synth-label">Taux de presence</span><span class="synth-val '+(txPres>=80?'green':'red')+'">'+txPres+'%</span></div>'
+        +'</div>';
+    });
+    html+='</div>';
+    document.getElementById('synthBody').innerHTML=html;
+  }).catch(function(){document.getElementById('synthBody').innerHTML='<div class="empty">Erreur de chargement.</div>';});
+}
 
 // ===== THEMES =====
 function renderT(){
   var el=document.getElementById('tT');
   if(!aT.length){el.innerHTML='<div class="empty">Aucun theme.</div>';return;}
-  var h='<table><thead><tr><th>Titre</th><th>Max</th><th>Occupees</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
+  var h='<table><thead><tr><th>Titre</th><th>Max places</th><th>Total inscrits</th><th>Disponibles</th><th>Progression</th><th>Actions</th></tr></thead><tbody>';
   aT.forEach(function(t,i){
-    var pct=t.MaxPlaces>0?Math.min((t.Occupees/t.MaxPlaces)*100,100):0;
-    var col=t.Complet?'#EF4444':'#1B4FBF';
+    var total=t.TotalInscrits||0;
+    var max=t.MaxPlaces||0;
+    var dispo=Math.max(0,max-total);
+    var pct=max>0?Math.min((total/max)*100,100):0;
+    var col=total>=max?'#EF4444':'#1B4FBF';
     h+='<tr>'
       +'<td><strong>'+x(t.Titre)+'</strong></td>'
-      +'<td>'+x(t.MaxPlaces)+'</td>'
-      +'<td>'+x(t.Occupees||0)+'</td>'
-      +'<td style="color:'+(t.Complet?'#DC2626':'#16A34A')+';font-weight:700">'+x(t.Restantes||0)+'</td>'
+      +'<td>'+max+'</td><td>'+total+'</td>'
+      +'<td style="color:'+(total>=max?'#DC2626':'#16A34A')+';font-weight:700">'+dispo+'</td>'
       +'<td><div class="pw"><div class="pb"><div class="pf" style="width:'+pct.toFixed(0)+'%;background:'+col+'"></div></div>'
       +'<span style="font-size:11px;color:#6B7FA3">'+pct.toFixed(0)+'%</span></div></td>'
       +'<td><button class="be" onclick="openM(\'theme\','+i+')">Modifier</button>'
@@ -355,19 +483,16 @@ function openM(type,idx){
     body='<div class="g2">'
       +'<div class="mf"><label>Nom</label><input id="f1" value="'+(d?x(d.Nom):'')+'" placeholder="BENALI"></div>'
       +'<div class="mf"><label>Prenom</label><input id="f2" value="'+(d?x(d.Prenom):'')+'" placeholder="Mohammed"></div>'
-      +'</div>'
-      +'<div class="g2">'
+      +'</div><div class="g2">'
       +'<div class="mf"><label>Matricule</label><input id="f3" value="'+(d?x(d.Matricule):'')+'" placeholder="500702"></div>'
       +'<div class="mf"><label>Poste</label><input id="f4" value="'+(d?x(d.Poste):'')+'" placeholder="Chef de departement"></div>'
-      +'</div>'
-      +'<div class="mf"><label>Responsable</label><select id="f5">'+opts+'</select></div>';
+      +'</div><div class="mf"><label>Responsable</label><select id="f5">'+opts+'</select></div>';
   } else if(type==='resp'){
     var r=isEdit?aR[idx]:null;
     body='<div class="g2">'
       +'<div class="mf"><label>Nom</label><input id="f1" value="'+(r?x(r.Nom):'')+'" placeholder="ALAOUI"></div>'
       +'<div class="mf"><label>Prenom</label><input id="f2" value="'+(r?x(r.Prenom):'')+'" placeholder="Fatima"></div>'
-      +'</div>'
-      +'<div class="mf"><label>Poste</label><input id="f3" value="'+(r?x(r.Poste):'')+'" placeholder="Directeur Regional"></div>';
+      +'</div><div class="mf"><label>Poste</label><input id="f3" value="'+(r?x(r.Poste):'')+'" placeholder="Directeur Regional"></div>';
   }
   document.getElementById('mB').innerHTML=body;
   document.getElementById('ov').className='ov on';
