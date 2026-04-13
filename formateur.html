@@ -4,28 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<title>APPL Academy — Presence</title>
+<title>APPL Academy — Espace Formateur</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#F0F4FF;min-height:100vh;color:#0D1B2A}
-.hdr{background:#0D1B2A;padding:13px 18px}
+
+/* Login */
+.lw{min-height:100vh;background:#064E3B;display:flex;align-items:center;justify-content:center;padding:20px}
+.lc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:36px 30px;width:100%;max-width:360px}
+.ll{width:56px;height:56px;background:#10B981;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:16px;margin:0 auto 16px}
+.lh{color:#fff;font-size:20px;font-weight:800;text-align:center;margin-bottom:3px;font-family:'Syne',sans-serif}
+.lp{color:#A7F3D0;font-size:13px;text-align:center;margin-bottom:24px}
+.ll2{color:#6EE7B7;font-size:12px;font-weight:600;display:block;margin-bottom:5px}
+.li{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:11px 13px;color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:8px}
+.li::placeholder{color:#6EE7B7}.li:focus{border-color:#10B981}
+.le{color:#FCA5A5;font-size:12px;margin-bottom:8px;display:none}.le.on{display:block}
+.bl{width:100%;background:#10B981;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;padding:12px;border:none;border-radius:10px;cursor:pointer;margin-top:4px}
+.bl:hover{background:#059669}
+.bk{display:block;text-align:center;margin-top:14px;color:#6EE7B7;text-decoration:none;font-size:13px}
+.bk:hover{color:#fff}
+
+/* Dashboard */
+.hdr{background:#064E3B;padding:13px 18px}
 .hdr-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:11px}
-.logo{width:36px;height:36px;background:#F5A623;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#0D1B2A;font-size:11px;flex-shrink:0}
+.logo{width:36px;height:36px;background:#10B981;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:11px;flex-shrink:0}
 .hdr h1{color:#fff;font-size:16px;font-weight:800;font-family:'Syne',sans-serif}
-.hdr p{color:#93C5FD;font-size:11px}
-.hero{background:linear-gradient(135deg,#059669,#1B4FBF);color:#fff;padding:22px 18px}
+.hdr p{color:#6EE7B7;font-size:11px}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.hdr-r a{color:#6EE7B7;text-decoration:none;font-size:12px}.hdr-r a:hover{color:#fff}
+.blo{background:rgba(239,68,68,.2);color:#FCA5A5;border:none;padding:5px 12px;border-radius:7px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.blo:hover{background:rgba(239,68,68,.4);color:#fff}
+
+.hero{background:linear-gradient(135deg,#064E3B,#059669);color:#fff;padding:22px 18px}
 .hero-in{max-width:900px;margin:0 auto}
 .hero-badge{color:#A7F3D0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
 .hero h2{font-size:22px;font-weight:800;font-family:'Syne',sans-serif;margin-bottom:4px}
 .hero p{color:#D1FAE5;font-size:13px}
+
 main{max-width:900px;margin:0 auto;padding:20px 14px 50px}
 
-/* Filtres */
 .filters{background:#fff;border-radius:14px;border:1px solid #EFF6FF;padding:18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .filters-h{font-weight:700;font-size:14px;font-family:'Syne',sans-serif;margin-bottom:14px;color:#0D1B2A}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fld{margin-bottom:0}
 label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
 select,input[type=date]{width:100%;border:1px solid #DBEAFE;border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:14px;color:#0D1B2A;background:#fff;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7FA3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;background-size:15px;padding-right:36px}
@@ -34,17 +55,15 @@ select:focus,input:focus{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,10
 .btn-charger:hover{background:#047857}
 .btn-charger:disabled{opacity:.5;cursor:not-allowed}
 
-/* Stats session */
 .session-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .ss-card{background:#fff;border-radius:12px;padding:14px 16px;text-align:center;border:1px solid #EFF6FF}
 .ss-card small{font-size:11px;color:#6B7FA3;display:block;margin-bottom:4px}
 .ss-card strong{font-size:24px;font-weight:800;font-family:'Syne',sans-serif}
 
-/* Liste pilotes */
 .session-card{background:#fff;border-radius:14px;border:1px solid #EFF6FF;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.session-header{background:#0D1B2A;color:#fff;padding:14px 18px}
+.session-header{background:#064E3B;color:#fff;padding:14px 18px}
 .session-header h3{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
-.session-header p{font-size:12px;color:#93C5FD;margin-top:3px}
+.session-header p{font-size:12px;color:#6EE7B7;margin-top:3px}
 
 .pilot-row{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #EFF6FF;transition:.1s}
 .pilot-row:last-child{border-bottom:none}
@@ -64,276 +83,268 @@ select:focus,input:focus{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,10
 .btn-absent.active{background:#DC2626;color:#fff}
 
 .empty{text-align:center;padding:40px;color:#9CA3AF;font-size:13px}
-.loading{text-align:center;padding:36px;color:#6B7FA3;font-size:14px}
-.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(5,150,105,.2);border-top-color:#059669;border-radius:50%;animation:sp .7s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;bottom:18px;right:18px;background:#059669;color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
-.toast.show{transform:translateY(0);opacity:1}
-.badge-all{display:inline-block;background:#D1FAE5;color:#065F46;padding:4px 12px;border-radius:10px;font-size:12px;font-weight:700;margin-left:8px}
-
-/* Btn valider tous */
+.badge-all{display:inline-block;background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:10px;font-size:12px;font-weight:700;margin-left:8px}
 .btn-all-wrap{display:flex;gap:8px;padding:14px 18px;border-top:1px solid #EFF6FF;background:#F9FAFB}
 .btn-all-pres{flex:1;background:#059669;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer}
 .btn-all-pres:hover{background:#047857}
 .btn-all-abs{flex:1;background:#DC2626;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:10px;border:none;border-radius:9px;cursor:pointer}
 .btn-all-abs:hover{background:#B91C1C}
 
-@media(max-width:500px){.g2{grid-template-columns:1fr}.session-stats{grid-template-columns:1fr 1fr}.pilot-actions{flex-direction:column}}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:18px;right:18px;background:#059669;color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;z-index:9999;transform:translateY(60px);opacity:0;transition:.3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:500px){.g2{grid-template-columns:1fr}.session-stats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<header class="hdr">
-  <div class="hdr-in">
-    <div class="logo">AA</div>
-    <div><h1>APPL Academy</h1><p>Gestion des presences</p></div>
-  </div>
-</header>
-
-<div class="hero">
-  <div class="hero-in">
-    <div class="hero-badge">Espace Formateur</div>
-    <h2>Validation des Presences</h2>
-    <p>Selectionnez un theme et une session pour valider les presences.</p>
+<!-- ===== LOGIN ===== -->
+<div id="loginScreen" style="min-height:100vh;background:#064E3B;display:flex;align-items:center;justify-content:center;padding:20px">
+  <div class="lc">
+    <div class="ll">F</div>
+    <p class="lh">Espace Formateur</p>
+    <p class="lp">APPL Academy — Validation des presences</p>
+    <label class="ll2">Mot de passe formateur</label>
+    <input class="li" type="password" id="inpPwd" placeholder="••••••••">
+    <div class="le" id="lErr">Mot de passe incorrect.</div>
+    <button class="bl" id="btnLogin" onclick="doLogin()">Se connecter</button>
+    <a href="index.html" class="bk">← Retour au formulaire</a>
   </div>
 </div>
 
-<main>
-
-  <!-- Filtres -->
-  <div class="filters">
-    <div class="filters-h">Choisir la session</div>
-    <div class="g2">
-      <div class="fld">
-        <label>Theme de formation</label>
-        <select id="selTheme" onchange="chargerSessions()">
-          <option value="">-- Choisir un theme --</option>
-        </select>
-      </div>
-      <div class="fld">
-        <label>Session (date)</label>
-        <select id="selSession">
-          <option value="">-- Choisir une session --</option>
-        </select>
+<!-- ===== DASHBOARD ===== -->
+<div id="dash" style="display:none">
+  <div class="hdr">
+    <div class="hdr-in">
+      <div class="logo">F</div>
+      <div><h1>Espace Formateur</h1><p>APPL Academy — Validation des presences</p></div>
+      <div class="hdr-r">
+        <a href="index.html">Formulaire</a>
+        <button class="blo" onclick="doLogout()">Deconnexion</button>
       </div>
     </div>
-    <button class="btn-charger" id="btnCharger" onclick="chargerPresences()">
-      Charger la liste des pilotes
-    </button>
   </div>
 
-  <!-- Contenu -->
-  <div id="content"></div>
+  <div class="hero">
+    <div class="hero-in">
+      <div class="hero-badge">Formateur</div>
+      <h2>Validation des Presences</h2>
+      <p>Selectionnez un theme et une session pour valider les presences des pilotes.</p>
+    </div>
+  </div>
 
-</main>
+  <main>
+    <div class="filters">
+      <div class="filters-h">Choisir la session</div>
+      <div class="g2">
+        <div>
+          <label>Theme de formation</label>
+          <select id="selTheme" onchange="chargerSessions()">
+            <option value="">-- Choisir un theme --</option>
+          </select>
+        </div>
+        <div>
+          <label>Session (date)</label>
+          <select id="selSession">
+            <option value="">-- Choisir une session --</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-charger" onclick="chargerPresences()">Charger la liste des pilotes</button>
+    </div>
+    <div id="content"></div>
+  </main>
+</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-var API = 'https://script.google.com/macros/s/AKfycbwv_PDcBDYbfpIPEvCYaS92SejnCRV2Zn8eBIXPe_4Ij-tPacxEuEovOjYJXuKZHOeBOw/exec';
-var allDemandes = [];
-var allThemes   = [];
-var sessionsMap = {};
+var API = 'https://script.google.com/macros/s/AKfycbw56ZFDOv9bTgw-teK2it2x3ETRK8nlfXf9PYw2x-Qrn0IiFVeNX0s09FwvsrvQqQSEAg/exec';
+var allDemandes=[], allThemes=[], sessionsMap={};
 
-function apiGet(a){ return fetch(API+'?action='+a, {redirect:'follow'}).then(function(r){return r.json();}); }
-function apiPost(d){ return fetch(API, {method:'POST', body:JSON.stringify(d), redirect:'follow'}).then(function(r){return r.json();}); }
+document.getElementById('inpPwd').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
 
-// Chargement initial
+function doLogin(){
+  var p=document.getElementById('inpPwd').value;
+  if(!p)return;
+  var b=document.getElementById('btnLogin');
+  b.innerHTML='<span class="spin"></span>';b.disabled=true;
+  apiPost({action:'loginFormateur',p:p}).then(function(r){
+    if(r.ok){
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('dash').style.display='block';
+      init();
+    } else {
+      document.getElementById('lErr').className='le on';
+    }
+    b.innerHTML='Se connecter';b.disabled=false;
+  }).catch(function(){
+    document.getElementById('lErr').textContent='Erreur de connexion.';
+    document.getElementById('lErr').className='le on';
+    b.innerHTML='Se connecter';b.disabled=false;
+  });
+}
+
+function doLogout(){
+  document.getElementById('dash').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('inpPwd').value='';
+  document.getElementById('lErr').className='le';
+  document.getElementById('content').innerHTML='';
+  document.getElementById('selTheme').value='';
+  document.getElementById('selSession').innerHTML='<option value="">-- Choisir une session --</option>';
+  allDemandes=[];allThemes=[];sessionsMap={};
+}
+
+function apiGet(a){ return fetch(API+'?action='+a,{redirect:'follow'}).then(function(r){return r.json();}); }
+function apiPost(d){ return fetch(API,{method:'POST',body:JSON.stringify(d),redirect:'follow'}).then(function(r){return r.json();}); }
+
 function init(){
-  Promise.all([apiGet('themes'), apiGet('demandes')]).then(function(r){
-    allThemes   = r[0] || [];
-    allDemandes = r[1] || [];
+  Promise.all([apiGet('themes'),apiGet('demandesFormateur')]).then(function(r){
+    allThemes=r[0]||[];
+    allDemandes=r[1]||[];
     buildThemeSelect();
   }).catch(function(){
-    document.getElementById('content').innerHTML = '<div class="empty">Erreur de connexion. Verifiez la configuration.</div>';
+    document.getElementById('content').innerHTML='<div class="empty">Erreur de connexion.</div>';
   });
 }
 
 function buildThemeSelect(){
-  var sel = document.getElementById('selTheme');
-  sel.innerHTML = '<option value="">-- Choisir un theme --</option>';
+  var sel=document.getElementById('selTheme');
+  sel.innerHTML='<option value="">-- Choisir un theme --</option>';
   allThemes.forEach(function(t){
-    var o = document.createElement('option');
-    o.value = t.Titre;
-    o.textContent = t.Titre;
+    var o=document.createElement('option');
+    o.value=t.Titre; o.textContent=t.Titre;
     sel.appendChild(o);
   });
 }
 
 function chargerSessions(){
-  var theme = document.getElementById('selTheme').value;
-  var selS  = document.getElementById('selSession');
-  selS.innerHTML = '<option value="">-- Choisir une session --</option>';
-  sessionsMap = {};
-  if(!theme) return;
-
-  // Grouper les demandes de ce theme par date
-  var dems = allDemandes.filter(function(d){ return d.Theme === theme; });
-  var dateMap = {};
+  var theme=document.getElementById('selTheme').value;
+  var selS=document.getElementById('selSession');
+  selS.innerHTML='<option value="">-- Choisir une session --</option>';
+  sessionsMap={};
+  if(!theme)return;
+  var dems=allDemandes.filter(function(d){return d.Theme===theme;});
+  var dateMap={};
   dems.forEach(function(d){
-    var ds = toDateStr(d.Date_Debut);
-    if(!dateMap[ds]) dateMap[ds] = {date:ds, nbJours:d.Nb_Jours, pilotes:[]};
+    var ds=toDateStr(d.Date_Debut);
+    if(!dateMap[ds])dateMap[ds]={date:ds,nbJours:d.Nb_Jours,pilotes:[]};
     dateMap[ds].pilotes.push(d);
   });
-
   Object.keys(dateMap).sort().forEach(function(ds){
-    var s = dateMap[ds];
-    sessionsMap[ds] = s;
-    var nb = parseInt(s.nbJours)||1;
-    var label = fmtDate(ds);
-    if(nb > 1){
-      var fin = addDays(ds, nb-1);
-      label += ' au ' + fmtDate(fin) + ' (' + nb + ' jours)';
-    }
-    var o = document.createElement('option');
-    o.value = ds;
-    o.textContent = label + ' — ' + s.pilotes.length + ' pilote(s)';
+    var s=dateMap[ds];
+    sessionsMap[ds]=s;
+    var nb=parseInt(s.nbJours)||1;
+    var label=fmtDate(ds);
+    if(nb>1) label+=' au '+fmtDate(addDays(ds,nb-1))+' ('+nb+' jours)';
+    var o=document.createElement('option');
+    o.value=ds;
+    o.textContent=label+' — '+s.pilotes.length+' pilote(s)';
     selS.appendChild(o);
   });
 }
 
 function chargerPresences(){
-  var theme = document.getElementById('selTheme').value;
-  var date  = document.getElementById('selSession').value;
-  if(!theme){ toast('Veuillez choisir un theme.'); return; }
-  if(!date){  toast('Veuillez choisir une session.'); return; }
-
-  var session = sessionsMap[date];
-  if(!session || !session.pilotes.length){
-    document.getElementById('content').innerHTML = '<div class="empty">Aucun pilote pour cette session.</div>';
+  var theme=document.getElementById('selTheme').value;
+  var date=document.getElementById('selSession').value;
+  if(!theme){toast('Veuillez choisir un theme.');return;}
+  if(!date){toast('Veuillez choisir une session.');return;}
+  var session=sessionsMap[date];
+  if(!session||!session.pilotes.length){
+    document.getElementById('content').innerHTML='<div class="empty">Aucun pilote pour cette session.</div>';
     return;
   }
-
-  renderSession(theme, date, session);
+  renderSession(theme,date,session);
 }
 
-function renderSession(theme, date, session){
-  var pilotes  = session.pilotes;
-  var nbJours  = parseInt(session.nbJours)||1;
-  var nbPres   = pilotes.filter(function(p){ return String(p.Presence)==='Oui'; }).length;
-  var nbAbs    = pilotes.filter(function(p){ return String(p.Presence)==='Non'; }).length;
-  var nbVide   = pilotes.length - nbPres - nbAbs;
+function renderSession(theme,date,session){
+  var pilotes=session.pilotes;
+  var nbJours=parseInt(session.nbJours)||1;
+  var nbPres=pilotes.filter(function(p){return String(p.Presence)==='Oui';}).length;
+  var nbAbs=pilotes.filter(function(p){return String(p.Presence)==='Non';}).length;
+  var nbVide=pilotes.length-nbPres-nbAbs;
+  var periode=fmtDate(date);
+  if(nbJours>1)periode+=' au '+fmtDate(addDays(date,nbJours-1));
 
-  var periode  = fmtDate(date);
-  if(nbJours > 1) periode += ' au ' + fmtDate(addDays(date, nbJours-1));
-
-  var html = '<div class="session-stats">'
+  var html='<div class="session-stats">'
     +'<div class="ss-card"><small>Total pilotes</small><strong style="color:#1B4FBF">'+pilotes.length+'</strong></div>'
     +'<div class="ss-card"><small>Presences</small><strong style="color:#059669">'+nbPres+'</strong></div>'
     +'<div class="ss-card"><small>Non renseigne</small><strong style="color:#D97706">'+nbVide+'</strong></div>'
     +'</div>';
 
-  html += '<div class="session-card">';
-  html += '<div class="session-header">'
-    +'<h3>'+x(theme)+'<span class="badge-all">'+pilotes.length+' pilote(s)</span></h3>'
-    +'<p>Periode : '+periode+' &nbsp;|&nbsp; '+nbJours+' jour(s) de formation</p>'
-    +'</div>';
+  html+='<div class="session-card">';
+  html+='<div class="session-header"><h3>'+x(theme)+'<span class="badge-all">'+pilotes.length+' pilote(s)</span></h3>'
+    +'<p>Periode : '+periode+' | '+nbJours+' jour(s)</p></div>';
 
-  pilotes.forEach(function(p, i){
-    var pres = String(p.Presence||'').trim();
-    var rowClass = pres==='Oui' ? 'present' : (pres==='Non' ? 'absent' : '');
-    html += '<div class="pilot-row '+rowClass+'" id="row-'+p._row+'">'
+  pilotes.forEach(function(p,i){
+    var pres=String(p.Presence||'').trim();
+    var rowClass=pres==='Oui'?'present':(pres==='Non'?'absent':'');
+    html+='<div class="pilot-row '+rowClass+'" id="row-'+p._row+'">'
       +'<div class="pilot-num">'+(i+1)+'</div>'
-      +'<div class="pilot-info">'
-      +'<strong>'+x(p.Pilote_Nom)+' '+x(p.Pilote_Prenom)+'</strong>'
-      +'<span>Mat: '+x(p.Pilote_Matricule)+' &mdash; '+x(p.Pilote_Poste)+'</span>'
-      +'</div>'
+      +'<div class="pilot-info"><strong>'+x(p.Pilote_Nom)+' '+x(p.Pilote_Prenom)+'</strong>'
+      +'<span>Mat: '+x(p.Pilote_Matricule)+' — '+x(p.Pilote_Poste)+'</span></div>'
       +'<div class="pilot-actions">'
       +'<button class="btn-present'+(pres==='Oui'?' active':'')+'" onclick="setPresence('+p._row+',\'Oui\',this)">Present</button>'
       +'<button class="btn-absent'+(pres==='Non'?' active':'')+'" onclick="setPresence('+p._row+',\'Non\',this)">Absent</button>'
-      +'</div>'
-      +'</div>';
+      +'</div></div>';
   });
 
-  // Boutons "Valider tous"
-  html += '<div class="btn-all-wrap">'
+  html+='<div class="btn-all-wrap">'
     +'<button class="btn-all-pres" onclick="validerTous(\'Oui\')">Tous Present</button>'
     +'<button class="btn-all-abs" onclick="validerTous(\'Non\')">Tous Absent</button>'
-    +'</div>';
+    +'</div></div>';
 
-  html += '</div>';
-  document.getElementById('content').innerHTML = html;
+  document.getElementById('content').innerHTML=html;
 }
 
-function setPresence(row, val, btn){
-  var oldTxt = btn.innerHTML;
-  btn.innerHTML = '...'; btn.disabled = true;
-
-  apiPost({action:'setPresence', row:row, val:val, p:''}).then(function(r){
-    btn.disabled = false;
-    btn.innerHTML = oldTxt;
+function setPresence(row,val,btn){
+  var oldTxt=btn.innerHTML;
+  btn.innerHTML='...';btn.disabled=true;
+  apiPost({action:'setPresence',row:row,val:val,p:''}).then(function(r){
+    btn.disabled=false;btn.innerHTML=oldTxt;
     if(r.ok){
-      // Mettre a jour localement
-      var d = allDemandes.find(function(x){ return x._row === row; });
-      if(d) d.Presence = val;
-      // Recharger l'affichage
+      var d=allDemandes.find(function(x){return x._row===row;});
+      if(d)d.Presence=val;
       chargerPresences();
-      toast(val==='Oui' ? 'Presence confirmee !' : 'Marque absent');
-    } else {
-      toast('Erreur: '+(r.err||''));
-    }
-  }).catch(function(){
-    btn.innerHTML = oldTxt; btn.disabled = false;
-    toast('Erreur de connexion.');
-  });
+      toast(val==='Oui'?'Presence confirmee !':'Marque absent');
+    } else toast('Erreur: '+(r.err||''));
+  }).catch(function(){btn.innerHTML=oldTxt;btn.disabled=false;toast('Erreur de connexion.');});
 }
 
 function validerTous(val){
-  var theme = document.getElementById('selTheme').value;
-  var date  = document.getElementById('selSession').value;
-  if(!theme||!date) return;
-  var session = sessionsMap[date];
-  if(!session) return;
-
-  var label = val==='Oui' ? 'Marquer TOUS comme Present ?' : 'Marquer TOUS comme Absent ?';
-  if(!confirm(label)) return;
-
-  var pilotes = session.pilotes;
-  var promises = pilotes.map(function(p){
-    return apiPost({action:'setPresence', row:p._row, val:val, p:''});
-  });
-
+  var theme=document.getElementById('selTheme').value;
+  var date=document.getElementById('selSession').value;
+  if(!theme||!date)return;
+  var session=sessionsMap[date];
+  if(!session)return;
+  if(!confirm(val==='Oui'?'Marquer TOUS comme Present ?':'Marquer TOUS comme Absent ?'))return;
+  var pilotes=session.pilotes;
+  var promises=pilotes.map(function(p){return apiPost({action:'setPresence',row:p._row,val:val,p:''});});
   Promise.all(promises).then(function(){
-    pilotes.forEach(function(p){ p.Presence = val; });
+    pilotes.forEach(function(p){p.Presence=val;});
     chargerPresences();
-    toast(val==='Oui' ? 'Tous marques Present !' : 'Tous marques Absent !');
-  }).catch(function(){
-    toast('Erreur lors de la validation groupee.');
-  });
+    toast(val==='Oui'?'Tous presents !':'Tous absents !');
+  }).catch(function(){toast('Erreur lors de la validation.');});
 }
 
-// ---- Utils ----
 function toDateStr(val){
-  if(!val) return '';
-  if(val instanceof Date) return val.toISOString().substring(0,10);
+  if(!val)return '';
+  if(val instanceof Date)return val.toISOString().substring(0,10);
   return String(val).trim().substring(0,10);
 }
-
 function fmtDate(ds){
-  if(!ds||ds.length<10) return ds;
-  var p = ds.split('-');
-  if(p.length===3) return p[2]+'/'+p[1]+'/'+p[0];
-  return ds;
+  if(!ds||ds.length<10)return ds;
+  var p=ds.split('-');
+  return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:ds;
 }
-
-function addDays(ds, n){
-  var d = new Date(ds);
-  d.setDate(d.getDate()+n);
+function addDays(ds,n){
+  var d=new Date(ds);d.setDate(d.getDate()+n);
   return d.toISOString().substring(0,10);
 }
-
-function x(s){ return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''; }
-
-function toast(msg){
-  var t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast show';
-  setTimeout(function(){ t.className = 'toast'; }, 2500);
-}
-
-// Code.gs: setPresence doit accepter p='' (public)
-// Modifier doPost: if (a === 'setPresence') return res(setPresence(d));  AVANT le check pwd
-
-init();
+function x(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''; }
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show';setTimeout(function(){t.className='toast';},2500);}
 </script>
 </body>
 </html>
