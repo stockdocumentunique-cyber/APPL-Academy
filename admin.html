@@ -148,6 +148,7 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
       <button class="tb" onclick="showTab('themes')">Themes</button>
       <button class="tb" onclick="showTab('demandeurs')">Demandeurs</button>
       <button class="tb" onclick="showTab('responsables')">Responsables</button>
+      <button class="tb" onclick="showTab('password')">Mots de passe</button>
     </div>
 
     <!-- Inscriptions -->
@@ -207,6 +208,31 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
         <div class="tw"><div id="tR">Chargement...</div></div>
       </div>
     </div>
+  
+    <!-- MOT DE PASSE -->
+    <div class="tc" id="tc-password">
+      <div class="card">
+        <div class="ct"><h3>Changer le mot de passe Admin</h3></div>
+        <div style="padding:18px;max-width:420px">
+          <div id="pwdAdminSucc" style="background:#F0FDF4;border-left:4px solid #16A34A;border-radius:11px;padding:13px 15px;margin-bottom:16px;display:none"><p style="color:#15803D;font-size:13px;font-weight:600">Mot de passe change avec succes !</p></div>
+          <div id="pwdAdminErr" style="background:#FEF2F2;border-left:4px solid #EF4444;border-radius:11px;padding:13px 15px;margin-bottom:16px;display:none"><p id="pwdAdminErrMsg" style="color:#DC2626;font-size:13px"></p></div>
+          <div class="mf"><label>Mot de passe actuel</label><input type="password" id="pwdActuelAdmin" placeholder="••••••••" style="width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:DM Sans,sans-serif;font-size:13px;outline:none"></div>
+          <div class="mf"><label>Nouveau mot de passe</label><input type="password" id="pwdNouveauAdmin" placeholder="Minimum 4 caracteres" style="width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:DM Sans,sans-serif;font-size:13px;outline:none"></div>
+          <div class="mf"><label>Confirmer</label><input type="password" id="pwdConfirmAdmin" placeholder="••••••••" style="width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:DM Sans,sans-serif;font-size:13px;outline:none"></div>
+          <button onclick="changerPwdAdmin()" style="width:100%;background:#1B4FBF;color:#fff;font-family:Syne,sans-serif;font-weight:700;font-size:14px;padding:11px;border:none;border-radius:10px;cursor:pointer;margin-top:8px">Enregistrer</button>
+          <hr style="margin:24px 0;border:none;border-top:1px solid #EFF6FF">
+          <h4 style="font-size:14px;font-weight:700;font-family:Syne,sans-serif;margin-bottom:14px">Changer le mot de passe Formateur</h4>
+          <div id="pwdFormSucc" style="background:#F0FDF4;border-left:4px solid #16A34A;border-radius:11px;padding:13px 15px;margin-bottom:16px;display:none"><p style="color:#15803D;font-size:13px;font-weight:600">Mot de passe formateur change !</p></div>
+          <div class="mf"><label>Nouveau mot de passe Formateur</label><input type="password" id="pwdNouveauForm" placeholder="Minimum 4 caracteres" style="width:100%;border:1px solid #DBEAFE;border-radius:8px;padding:9px 11px;font-family:DM Sans,sans-serif;font-size:13px;outline:none"></div>
+          <button onclick="changerPwdFormateur()" style="width:100%;background:#059669;color:#fff;font-family:Syne,sans-serif;font-weight:700;font-size:14px;padding:11px;border:none;border-radius:10px;cursor:pointer;margin-top:8px">Enregistrer mot de passe Formateur</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="ct"><h3>Mots de passe Demandeurs</h3></div>
+        <div class="tw"><div id="tMdp">Chargement...</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -224,7 +250,7 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 <div class="toast" id="toast"></div>
 
 <script>
-var API = 'https://script.google.com/macros/s/AKfycbwQVWunT9EIQbJYUsWp8GKnbyW1UWenIX9-uYiD3TW8tQRbJS74lFMFTLfMuViW_okZQA/exec';
+var API = 'https://script.google.com/macros/s/AKfycbxEJ7ZACvSQ2j4ejjsDs7Quv9lMKgxkubOVWzdBx0cQcjNaIHtM5cmjx0lSh-d7ia9d5Q/exec';
 var pwd='', mType='', mIdx=null;
 var aI=[], aR=[], aT=[], aDem=[];
 
@@ -271,10 +297,11 @@ function loadAll(){
 }
 
 function showTab(name){
-  var names=['inscriptions','synthese','themes','demandeurs','responsables'];
+  var names=['inscriptions','synthese','themes','demandeurs','responsables','password'];
   document.querySelectorAll('.tb').forEach(function(t,i){t.className='tb'+(names[i]===name?' on':'');});
   document.querySelectorAll('.tc').forEach(function(c){c.className='tc'+(c.id==='tc-'+name?' on':'');});
   if(name==='synthese') loadSynthese();
+  if(name==='password') loadMdp();
 }
 
 function x(s){ return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''; }
@@ -523,6 +550,67 @@ function doSave(){
   }).catch(function(){btn.innerHTML='Enregistrer';btn.disabled=false;alert('Erreur connexion.');});
 }
 
+
+function changerPwdAdmin(){
+  var actuel=document.getElementById('pwdActuelAdmin').value;
+  var nouveau=document.getElementById('pwdNouveauAdmin').value;
+  var confirm=document.getElementById('pwdConfirmAdmin').value;
+  document.getElementById('pwdAdminSucc').style.display='none';
+  document.getElementById('pwdAdminErr').style.display='none';
+  if(!actuel||!nouveau||!confirm){showPwdAdminErr('Veuillez remplir tous les champs.');return;}
+  if(nouveau!==confirm){showPwdAdminErr('Les mots de passe ne correspondent pas.');return;}
+  if(nouveau.length<4){showPwdAdminErr('Minimum 4 caracteres.');return;}
+  post({action:'changePwdAdmin',pActuel:actuel,pNouveau:nouveau}).then(function(r){
+    if(r.ok){
+      pwd=nouveau;
+      document.getElementById('pwdAdminSucc').style.display='block';
+      document.getElementById('pwdActuelAdmin').value='';
+      document.getElementById('pwdNouveauAdmin').value='';
+      document.getElementById('pwdConfirmAdmin').value='';
+      toast('Mot de passe admin change !');
+    } else showPwdAdminErr(r.err||'Erreur');
+  }).catch(function(){showPwdAdminErr('Erreur de connexion.');});
+}
+
+function changerPwdFormateur(){
+  var nouveau=document.getElementById('pwdNouveauForm').value;
+  if(!nouveau||nouveau.length<4){toast('Minimum 4 caracteres.');return;}
+  post({action:'resetPwdForm',pNouveau:nouveau}).then(function(r){
+    if(r.ok){document.getElementById('pwdFormSucc').style.display='block';document.getElementById('pwdNouveauForm').value='';toast('Mot de passe formateur change !');}
+    else toast('Erreur: '+(r.err||''));
+  });
+}
+
+function showPwdAdminErr(msg){document.getElementById('pwdAdminErrMsg').textContent=msg;document.getElementById('pwdAdminErr').style.display='block';}
+
+function loadMdp(){
+  get('motsdepasse').then(function(data){
+    if(!data||data.err){document.getElementById('tMdp').innerHTML='<div class="empty">Erreur de chargement.</div>';return;}
+    var dems=data.filter(function(r){return r.Type==='Demandeur';});
+    if(!dems.length){document.getElementById('tMdp').innerHTML='<div class="empty">Aucun demandeur avec mot de passe.</div>';return;}
+    var h='<table><thead><tr><th>Matricule</th><th>Mot de passe actuel</th><th>Mot de passe precedent</th><th>Derniere modification</th><th>Actions</th></tr></thead><tbody>';
+    dems.forEach(function(r){
+      h+='<tr>'
+        +'<td style="font-weight:700;color:#1B4FBF">'+x(r.Login)+'</td>'
+        +'<td style="font-family:monospace">'+x(r.Passe_Actuel)+'</td>'
+        +'<td style="color:#9CA3AF;font-family:monospace">'+x(r.Passe_Precedent||'-')+'</td>'
+        +'<td style="color:#6B7FA3;font-size:12px">'+x(r.Date_Changement||'-')+'</td>'
+        +'<td><button class="be" onclick="resetMdpDem(''+x(r.Login)+'')">Reinitialiser</button></td>'
+        +'</tr>';
+    });
+    h+='</tbody></table>';
+    document.getElementById('tMdp').innerHTML=h;
+  });
+}
+
+function resetMdpDem(mat){
+  var nouveau=prompt('Nouveau mot de passe pour le matricule '+mat+' :');
+  if(!nouveau||nouveau.length<4){alert('Minimum 4 caracteres.');return;}
+  post({action:'resetPwdDem',mat:mat,pNouveau:nouveau}).then(function(r){
+    if(r.ok){toast('Mot de passe reinitialise !');loadMdp();}
+    else toast('Erreur: '+(r.err||''));
+  });
+}
 function closeM(){document.getElementById('ov').className='ov';}
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show';setTimeout(function(){t.className='toast';},2500);}
 </script>
