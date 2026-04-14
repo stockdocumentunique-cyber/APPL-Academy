@@ -62,7 +62,6 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 .be:hover{background:#DBEAFE}
 .bd{background:#FEF2F2;color:#DC2626;border:none;padding:4px 9px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;margin-left:3px}
 .bd:hover{background:#FEE2E2}
-/* Presence button */
 .btn-pres{border:none;padding:5px 11px;border-radius:7px;font-size:12px;cursor:pointer;font-weight:700;font-family:'DM Sans',sans-serif;transition:.15s;white-space:nowrap}
 .btn-pres.present{background:#D1FAE5;color:#065F46}
 .btn-pres.present:hover{background:#A7F3D0}
@@ -72,7 +71,6 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 .badge-pres.oui{background:#D1FAE5;color:#065F46}
 .badge-pres.non{background:#FEE2E2;color:#991B1B}
 .badge-pres.vide{background:#F3F4F6;color:#9CA3AF}
-/* Synthese */
 .synth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:16px}
 .synth-card{background:#fff;border-radius:12px;border:1px solid #EFF6FF;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .synth-title{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#0D1B2A;margin-bottom:12px;border-bottom:2px solid #1B4FBF;padding-bottom:8px}
@@ -83,7 +81,6 @@ tbody td{padding:9px 13px;color:#0D1B2A;vertical-align:middle;white-space:nowrap
 .synth-val.blue{color:#1B4FBF}
 .synth-val.green{color:#16A34A}
 .synth-val.red{color:#DC2626}
-/* Modal */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
 .ov.on{display:flex}
 .mo{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:460px;position:relative;max-height:92vh;overflow-y:auto}
@@ -316,7 +313,6 @@ function fmtDate(val){
 }
 
 function periodeFormation(dateDebut, nbJours){
-  // Calculer periode automatique depuis date_debut + nb_jours
   try {
     var s = String(dateDebut||'').substring(0,10);
     if(!s||s.length<10) return fmtDate(dateDebut);
@@ -340,7 +336,6 @@ function periodeFormation(dateDebut, nbJours){
   } catch(e) { return fmtDate(dateDebut); }
 }
 
-// ===== INSCRIPTIONS =====
 function filterI(q){
   var filtre = document.getElementById('filtrePresence').value;
   var f=aI.filter(function(d){
@@ -408,7 +403,6 @@ function togglePresence(row, val, btn){
 
 function delI(row){if(!confirm('Supprimer ?'))return;post({action:'delDem',row:row}).then(function(){loadAll();toast('Supprime');});}
 
-// ===== SYNTHESE =====
 function loadSynthese(){
   document.getElementById('synthBody').innerHTML='<div class="empty">Chargement...</div>';
   get('synthese').then(function(data){
@@ -430,7 +424,6 @@ function loadSynthese(){
   }).catch(function(){document.getElementById('synthBody').innerHTML='<div class="empty">Erreur de chargement.</div>';});
 }
 
-// ===== THEMES =====
 function renderT(){
   var el=document.getElementById('tT');
   if(!aT.length){el.innerHTML='<div class="empty">Aucun theme.</div>';return;}
@@ -454,7 +447,6 @@ function renderT(){
 }
 function delT(row){if(!confirm('Supprimer ?'))return;post({action:'delT',row:row}).then(function(){loadAll();toast('Theme supprime');});}
 
-// ===== DEMANDEURS =====
 function renderD(){
   var el=document.getElementById('tD');
   if(!aDem.length){el.innerHTML='<div class="empty">Aucun demandeur.</div>';return;}
@@ -474,7 +466,6 @@ function renderD(){
 }
 function delD(row){if(!confirm('Supprimer ?'))return;post({action:'delD',row:row}).then(function(){loadAll();toast('Demandeur supprime');});}
 
-// ===== RESPONSABLES =====
 function renderR(){
   var el=document.getElementById('tR');
   if(!aR.length){el.innerHTML='<div class="empty">Aucun responsable.</div>';return;}
@@ -492,7 +483,6 @@ function renderR(){
 }
 function delR(row){if(!confirm('Supprimer ?'))return;post({action:'delR',row:row}).then(function(){loadAll();toast('Responsable supprime');});}
 
-// ===== MODAL =====
 function openM(type,idx){
   mType=type; mIdx=idx;
   var isEdit=idx!==null;
@@ -549,7 +539,6 @@ function doSave(){
   }).catch(function(){btn.innerHTML='Enregistrer';btn.disabled=false;alert('Erreur connexion.');});
 }
 
-
 function changerPwdAdmin(){
   var a=document.getElementById('pwdActuelAdmin').value;
   var n=document.getElementById('pwdNouveauAdmin').value;
@@ -564,6 +553,7 @@ function changerPwdAdmin(){
     else showPwdErr(r.err||'Erreur');
   }).catch(function(){showPwdErr('Erreur connexion.');});
 }
+
 function changerPwdFormateur(){
   var n=document.getElementById('pwdNouveauForm').value;
   if(!n||n.length<4){toast('Minimum 4 caracteres.');return;}
@@ -572,7 +562,9 @@ function changerPwdFormateur(){
     else toast('Erreur: '+(r.err||''));
   });
 }
+
 function showPwdErr(msg){document.getElementById('pwdAdminErrMsg').textContent=msg;document.getElementById('pwdAdminErr').style.display='block';}
+
 function loadMdp(){
   get('motsdepasse').then(function(data){
     if(!data||data.err||!data.length){document.getElementById('tMdp').innerHTML='<div class="empty">Aucun mot de passe demandeur enregistre.</div>';return;}
@@ -584,12 +576,13 @@ function loadMdp(){
         +'<td style="font-family:monospace">'+x(r.Passe_Actuel)+'</td>'
         +'<td style="color:#9CA3AF;font-family:monospace">'+x(r.Passe_Precedent||'-')+'</td>'
         +'<td style="color:#6B7FA3;font-size:12px">'+x(r.Date_Changement||'-')+'</td>'
-        +'<td><button class="be" onclick="resetDem('' + x(r.Login) + '')">Reinitialiser</button></td></tr>';
+        +'<td><button class="be" onclick="resetDem(\''+x(r.Login)+'\')">Reinitialiser</button></td></tr>';
     });
     h+='</tbody></table>';
     document.getElementById('tMdp').innerHTML=h;
   });
 }
+
 function resetDem(mat){
   var n=prompt('Nouveau mot de passe pour '+mat+' :');
   if(!n||n.length<4){alert('Minimum 4 caracteres.');return;}
@@ -598,6 +591,7 @@ function resetDem(mat){
     else toast('Erreur: '+(r.err||''));
   });
 }
+
 function closeM(){document.getElementById('ov').className='ov';}
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show';setTimeout(function(){t.className='toast';},2500);}
 </script>
